@@ -1,12 +1,15 @@
-const debug = require('debug')('app:server');
-require('dotenv').config();
-const router = require('./app/router');
-const express = require('express');
+import debug from 'debug';
+const logger = debug('app:server');
+
+import 'dotenv/config';
+import express from 'express';
 const app = express();
-const cors = require('cors');
+
+import router from './app/router/index.js';
+
+import cors from 'cors';
 
 const PORT = process.env.PORT;
-
 app.listen(PORT, () => {
-    debug(`Server started on http://localhost:${PORT}`);
+    logger(`Server started on http://localhost:${PORT}`);
 });

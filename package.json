@@ -6,12 +6,13 @@
   "scripts": {
     "start": "node index.js",
     "dev": "set DEBUG=app:* & nodemon -q index.js",
-    "initDB": "bash ./script/1.init_db.sh",
+    "initDB": "bash ./script/1.init_db.sh && psql -U postgres -d ocaritatif -f ./script/create_table.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "O'Caritatif",
   "license": "ISC",
+  "type":"module",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",

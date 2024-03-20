@@ -1,21 +1,21 @@
-export PGUSER=
-export PGPASSWORD=
+export PGUSER=postgres
+export PGPASSWORD=postgres
 
 # Suppression BDD si existante
 
-dropdb
+dropdb ocaritatif
 
 # Suppression User si existante
 
-dropuser 
+dropuser ocaritatif
 
 # Création d'un User
 
-createuser  -P
+createuser ocaritatif
 
 # Création de la BDD
 
-createdb
+createdb ocaritatif
 
 #sqitch deploy
 #sqitch verify

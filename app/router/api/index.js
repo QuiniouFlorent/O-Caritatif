@@ -1,7 +1,8 @@
-const debug = require('debug')('app:router');
-const express = require('express');
+import debug from 'debug';
+const logger = debug('app:router')
 
-const router = express.Router();
+import { Router } from 'express';
+const router = Router();
 
-debug('API router initialized');
-module.exports = router;
+logger('API router initialized');
+export default router;
