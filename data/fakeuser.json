@@ -1,5 +1,5 @@
-[{"id":54,"lastName":"Joly","firstName":"Aldegonde","email":"Aldegonde_Joly@gmail.com","password":"bZcmBamnieCSgAF","role":"utilisateur","photo_url":"https://loremflickr.com/640/480?lock=2079814552911872"},
-{"id":17,"lastName":"Fontaine","firstName":"Sidoine","email":"Sidoine.Fontaine95@gmail.com","password":"p8jtkkPQ1ExJH1r","role":"utilisateur","photo_url":"https://loremflickr.com/640/480?lock=1208104551186432"},
+[{"id":54,"lastName":"Joly","firstName":"Aldegonde","email":"Aldegonde_Joly@gmail.com","password":"bZcmBamnieCSgAF","role":"administrateur","photo_url":"https://loremflickr.com/640/480?lock=2079814552911872"},
+{"id":17,"lastName":"Fontaine","firstName":"Sidoine","email":"Sidoine.Fontaine95@gmail.com","password":"p8jtkkPQ1ExJH1r","role":"responsable","photo_url":"https://loremflickr.com/640/480?lock=1208104551186432"},
 {"id":24,"lastName":"Noel","firstName":"Bartimée","email":"Bartimee_Noel73@yahoo.fr","password":"HcXezCdcCbYeScV","role":"utilisateur","photo_url":"https://loremflickr.com/640/480?lock=2832279864868864"},
 {"id":16,"lastName":"Faure","firstName":"Armine","email":"Armine_Faure@gmail.com","password":"LNHnRS3GkE9bJk0","role":"utilisateur","photo_url":"https://picsum.photos/seed/WDSEGScZ/640/480"},
 {"id":88,"lastName":"Benoit","firstName":"Savinien","email":"Savinien.Benoit@yahoo.fr","password":"aLQucTyOXHGYQac","role":"utilisateur","photo_url":"https://picsum.photos/seed/SD6oGYjYr/640/480"},
