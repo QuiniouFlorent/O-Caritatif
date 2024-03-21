@@ -1,5 +1,5 @@
 import debug from 'debug';
-const logger = debug('app:eventRouter');
+const logger = debug('app:router');
 
 import { Router } from 'express';
 const eventRouter = Router();

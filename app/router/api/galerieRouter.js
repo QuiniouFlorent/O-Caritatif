@@ -1,5 +1,5 @@
 import debug from 'debug';
-const logger = debug('app:galerieRouter');
+const logger = debug('app:router');
 
 import { Router } from 'express';
 const galerieRouter = Router();
