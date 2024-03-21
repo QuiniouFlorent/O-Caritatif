@@ -5,6 +5,9 @@ import client from '../app/models/client.js';
 import { readFile } from 'node:fs/promises';
 
 const fakeDataUser = './data/fakeuser.json';
+const fakeDataEvent = './data/fakeevent.json';
+const fakeDataNews = './data/fakenews.json';
+
 /*
 function pgQuoteEscape(row) {
     const newRow = {};
@@ -41,4 +44,6 @@ async function insertData(fileName, tableName) {
 
 (async()=>{
     await insertData(fakeDataUser, `"user"`);
+    await insertData(fakeDataNews, `news`);
+    await insertData(fakeDataEvent, `event`);
 })();
