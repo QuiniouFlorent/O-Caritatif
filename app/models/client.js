@@ -1,5 +1,6 @@
 import debug from 'debug';
 const logger = debug('app:client');
+import 'dotenv/config';
 
 //import { Pool } from 'pg';
 //const pool = new Pool();
