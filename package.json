@@ -7,6 +7,7 @@
     "start": "node index.js",
     "dev": "set DEBUG=app:* & nodemon -q index.js",
     "initDB": "bash ./script/1.init_db.sh && psql -U postgres -d ocaritatif -f ./script/create_table.sql",
+    "seeding": "node ./data/seeding.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

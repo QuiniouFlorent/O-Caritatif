@@ -4,7 +4,7 @@ const logger = debug('app:insertData');
 import client from '../app/models/client.js';
 import { readFile } from 'node:fs/promises';
 
-const fakeDataUser = './fakeuser.json';
+const fakeDataUser = './data/fakeuser.json';
 /*
 function pgQuoteEscape(row) {
     const newRow = {};
@@ -31,7 +31,8 @@ async function insertData(fileName, tableName) {
             logger(query);
             await client.query(query);
         }
-        logger(`Données insérées dans la table ${tableName} avec succès.`) 
+        logger(`Données insérées dans la table ${tableName} avec succès.`);
+        client.end();
 
     } catch (error) {
         console.error("Erreur lors de l'insertion des données:", error);
@@ -39,5 +40,5 @@ async function insertData(fileName, tableName) {
 };
 
 (async()=>{
-    await insertData(fakeDataUser, "user");
+    await insertData(fakeDataUser, `"user"`);
 })();
