@@ -11,8 +11,8 @@ const newsDatamapper = {
             return result;
 
         } catch (err) {
-        logger(err)
-        throw new Error('Pas de news !')
+            logger(err);
+            throw new Error('Pas de news !');
         }
     }
 };
