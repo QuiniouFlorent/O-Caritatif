@@ -4,7 +4,7 @@ import client from '../models/client.js';
 
 const newsDatamapper = {
     async findAllNews() {
-        const query = 'SELECT * FROM "news"';
+        const query = 'SELECT * FROM view_all_news';
         try {
             const response = await client.query(query); 
             const result = response.rows;

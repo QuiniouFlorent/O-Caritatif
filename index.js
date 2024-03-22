@@ -8,6 +8,8 @@ const app = express();
 import router from './app/router/index.js';
 import cors from 'cors';
 
+app.use(cors());
+
 app.use(express.json());
 app.use(router);
 

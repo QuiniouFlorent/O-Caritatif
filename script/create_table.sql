@@ -86,4 +86,16 @@ CREATE TABLE registration (
     updated_at TIMESTAMPTZ
 );
 
+CREATE VIEW view_all_events AS
+    SELECT e.title, e.category, e.photo_url, e.description, e.date, e.calendar_url, e.place, u.lastname, u.firstname
+    FROM event e
+    JOIN "user" u
+    ON u.id = e.author;
+
+CREATE VIEW view_all_news AS
+    SELECT n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname
+    FROM news n
+    JOIN "user" u
+    ON u.id = n.author;
+
 COMMIT;

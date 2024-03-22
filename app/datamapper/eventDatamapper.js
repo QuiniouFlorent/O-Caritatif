@@ -4,7 +4,7 @@ import client from '../models/client.js';
 
 const eventDatamapper = {
     async findAllEvent() {
-        const query = 'SELECT * FROM "event"';
+        const query = 'SELECT * FROM view_all_events';
         try {
             const response = await client.query(query);
             const result = response.rows;
