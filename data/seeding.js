@@ -11,17 +11,7 @@ const fakeDataNews = './data/fakenews.json';
 const fakeDataGalery = './data/fakegalery.json';
 const fakeDataSponsor = './data/fakesponsor.json';
 
-/*
-function pgQuoteEscape(row) {
-    const newRow = {};
-    Object.entries(row).forEach(([prop,value]) => {
-        if(typeof value !== 'string') {
-            newRow[prop] = value;
-            return;
-        }
-        newRow[prop] = value.replaceAll("'","''");
-    })
-}*/
+
 function pgQuoteEscape(value) {
     if(typeof value!== 'string'){
         return value;

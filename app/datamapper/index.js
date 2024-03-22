@@ -5,6 +5,7 @@ import eventDatamapper from './eventDatamapper.js';
 import galeryDatamapper from './galerieDatamapper.js';
 import newsDatamapper from './newsDatamapper.js';
 import sponsorDatamapper from './sponsorDatamapper.js';
+import userDatamapper from './userDatamapper.js';
 
 logger('main datamapper initialized');
-export { eventDatamapper, galeryDatamapper, newsDatamapper, sponsorDatamapper };
+export { eventDatamapper, galeryDatamapper, newsDatamapper, sponsorDatamapper, userDatamapper };
