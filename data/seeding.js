@@ -1,5 +1,6 @@
 import debug from 'debug';
 const logger = debug('app:insertData');
+logger.enabled = true;
 
 import client from '../app/models/client.js';
 import { readFile } from 'node:fs/promises';
@@ -7,6 +8,8 @@ import { readFile } from 'node:fs/promises';
 const fakeDataUser = './data/fakeuser.json';
 const fakeDataEvent = './data/fakeevent.json';
 const fakeDataNews = './data/fakenews.json';
+const fakeDataGalery = './data/fakegalery.json';
+const fakeDataSponsor = './data/fakesponsor.json';
 
 /*
 function pgQuoteEscape(row) {
@@ -19,6 +22,13 @@ function pgQuoteEscape(row) {
         newRow[prop] = value.replaceAll("'","''");
     })
 }*/
+function pgQuoteEscape(value) {
+    if(typeof value!== 'string'){
+        return value;
+    } else {
+    return value.replaceAll("'","''");
+    }
+}
 
 async function insertData(fileName, tableName) {
     try {
@@ -29,14 +39,12 @@ async function insertData(fileName, tableName) {
 
         for( const record of data ) {
             const keys = Object.keys(record);
-            const values = Object.values(record).map((value) => `'${value}'`).join(",");
+            const values = Object.values(record).map((value) => `'${pgQuoteEscape(value)}'`).join(",");
             const query = `INSERT INTO ${tableName} (${keys}) VALUES (${values});`;
-            logger(query);
             await client.query(query);
         }
         logger(`Données insérées dans la table ${tableName} avec succès.`);
-        client.end();
-
+        
     } catch (error) {
         console.error("Erreur lors de l'insertion des données:", error);
     }
@@ -46,4 +54,7 @@ async function insertData(fileName, tableName) {
     await insertData(fakeDataUser, `"user"`);
     await insertData(fakeDataNews, `news`);
     await insertData(fakeDataEvent, `event`);
+    await insertData(fakeDataGalery, `galery`);
+    await insertData(fakeDataSponsor, `sponsor`);
+    client.end();
 })();

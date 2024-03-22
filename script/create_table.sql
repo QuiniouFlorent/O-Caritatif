@@ -10,7 +10,7 @@ CREATE TABLE "user" (
     firstname TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
-    role ROLE DEFAULT 'utilisateur',
+    role ROLE ,
     photo_url TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
@@ -47,6 +47,7 @@ CREATE TABLE galery (
     name TEXT NOT NULL,
     description TEXT NOT NULL,
     category TEXT NOT NULL,
+    photo_url TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
