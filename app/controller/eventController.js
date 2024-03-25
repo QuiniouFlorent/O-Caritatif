@@ -4,9 +4,37 @@ import { eventDatamapper } from '../datamapper/index.js';
 
 const eventController = {
     async getAllEvent(req,res) {
-        logger('event getAll controller called');
+        logger('Event getAll controller called');
         const events = await eventDatamapper.findAllEvent();
         res.json(events);
+    },
+
+    async getOneEvent(req,res) {
+        logger('Event getOne controller called');
+        const id = req.params.id;
+        const event = await eventDatamapper.findOneEvent(id);
+        res.json(event);
+    },
+
+    async createEvent(req, res) {
+        logger('Event create controller called');
+        const newEvent = req.body;
+        const event = await eventDatamapper.insertEvent(newEvent)
+        res.json(event);
+    },
+
+    async updateEvent(req, res) {
+        logger('Event modify controller called');
+        const id = req.params.id;
+        const eventModified = req.body;
+        const event = await eventDatamapper.modifyEvent(id, eventModified);
+        res.json(event);
+    },
+
+    async removeEvent(req,res) {
+        const id = req.params.id;
+        const event = await eventDatamapper.deleteEvent(id);
+        res.json(event);
     }
 }
 

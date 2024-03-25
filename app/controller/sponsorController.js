@@ -7,6 +7,33 @@ const sponsorController = {
         logger('Sponsor getAll controller called');
         const sponsors = await sponsorDatamapper.findAllSponsor();
         res.json(sponsors);
+    },
+    async getOneSponsor(req,res) {
+        logger('Sponsor getOne controller called');
+        const id = req.params.id;
+        const sponsor = await sponsorDatamapper.findOneSponsor(id);
+        res.json(sponsor);
+    },
+
+    async createSponsor(req, res) {
+        logger('Sponsor create controller called');
+        const newSponsor = req.body;
+        const sponsor = await sponsorDatamapper.insertSponsor(newSponsor);
+        res.json(sponsor);
+    },
+
+    async updateSponsor(req, res) {
+        logger('Sponsor modify controller called');
+        const id = req.params.id;
+        const sponsorModified = req.body;
+        const sponsor = await sponsorDatamapper.modifySponsor(id, sponsorModified);
+        res.json(sponsor);
+    },
+
+    async removeSponsor(req,res) {
+        const id = req.params.id;
+        const sponsor = await sponsorDatamapper.deleteSponsor(id);
+        res.json(sponsor);
     }
 }
 
