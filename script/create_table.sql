@@ -101,22 +101,21 @@ CREATE VIEW view_all_news AS
     ON n.id = c.news_id
 	GROUP BY n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname;
 
--- CREATE VIEW view_one_news AS
---SELECT n.title, 
---           n.category, 
---           n.photo_url, 
---           n.summary, 
---           u.lastname AS nom_auteur_news, 
---           u.firstname AS prenom_auteur_news, 
---           c.content AS commentaire, 
---           uc.lastname AS nom_auteur_commentaire, 
---           uc.firstname AS prenom_auteur_commentaire
---    FROM news n
---    JOIN "user" u ON u.id = n.author
---    LEFT JOIN comment c ON n.id = c.news_id
---    LEFT JOIN "user" uc ON uc.id = c.user_id
---    WHERE n.id = $1 ?
---    GROUP BY n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname, c.content, uc.lastname, uc.firstname
---	ORDER by n.title;
+CREATE VIEW view_one_news AS
+SELECT n.id,
+        n.title, 
+        n.category, 
+        n.photo_url, 
+        n.content, 
+        u.lastname AS nom_auteur_news, 
+        u.firstname AS prenom_auteur_news, 
+        c.content AS commentaire, 
+        uc.lastname AS nom_auteur_commentaire, 
+        uc.firstname AS prenom_auteur_commentaire
+    FROM news n
+    JOIN "user" u ON u.id = n.author
+    LEFT JOIN comment c ON n.id = c.news_id
+    LEFT JOIN "user" uc ON uc.id = c.user_id
+    GROUP BY n.id, n.title, n.category, n.photo_url, n.content, u.lastname, u.firstname, c.content, uc.lastname, uc.firstname;
 
 COMMIT;
