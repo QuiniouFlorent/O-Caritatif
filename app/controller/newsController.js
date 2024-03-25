@@ -19,7 +19,7 @@ const newsController = {
     async createNews(req, res) {
         logger('News create controller called');
         const newNews = req.body;
-        const news = await newsDatamapper.insertNews(newNews)
+        const news = await newsDatamapper.insertNews(newNews);
         res.json(news);
     },
 
