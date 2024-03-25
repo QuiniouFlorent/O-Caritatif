@@ -11,6 +11,7 @@ const fakeDataNews = './data/fakenews.json';
 const fakeDataGalery = './data/fakegalery.json';
 const fakeDataSponsor = './data/fakesponsor.json';
 const fakeDataComment = './data/fakecomment.json';
+const fakeDataPhoto = './data/fakephoto.json';
 
 
 function pgQuoteEscape(value) {
@@ -48,5 +49,6 @@ async function insertData(fileName, tableName) {
     await insertData(fakeDataGalery, `galery`);
     await insertData(fakeDataSponsor, `sponsor`);
     await insertData(fakeDataComment, `comment`);
+    await insertData(fakeDataPhoto, `photo`);
     client.end();
 })();
