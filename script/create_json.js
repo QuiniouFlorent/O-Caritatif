@@ -7,6 +7,7 @@ const FILENAME3 = './data/fakeevent.json';
 const FILENAME4 = './data/fakesponsor.json';
 const FILENAME5 = './data/fakegalery.json';
 const FILENAME6 = './data/fakecomment.json';
+const FILENAME7 = './data/fakephoto.json';
 
 /*
 (async () => {
@@ -94,16 +95,19 @@ const FILENAME6 = './data/fakecomment.json';
         if(galerieIndex > 0) {
             await appendFile(FILENAME5, ',\n');
         }
-        const name = fakerFR.company.catchPhraseDescriptor();
+        const title = fakerFR.word.words({count: {min:2, max:5}});
         const description = fakerFR.commerce.productDescription();
         const category = fakerFR.commerce.department();
-        const photo_url = fakerFR.image.urlLoremFlickr({ category: 'association' });
-        const galerie = {name, description, category, photo_url};
+        const galery_date = fakerFR.date.past();
+        const galerie = {title, description, category, galery_date};
         await appendFile(FILENAME5, JSON.stringify(galerie))
         }
     await appendFile(FILENAME5, ']');
     console.log('galeries created');
 }) ();*/
+
+/*
+fakerFR.image.urlLoremFlickr({ category: 'association' })
 
 (async () => {
     await writeFile(FILENAME6, '[');
@@ -130,3 +134,19 @@ const FILENAME6 = './data/fakecomment.json';
     console.log('comments created');
 }) ();
 
+*/
+(async () => {
+    await writeFile(FILENAME7, '[');
+    for( let photoIndex = 0; photoIndex < 50; photoIndex ++ ) {
+        if(photoIndex > 0) {
+            await appendFile(FILENAME7, ',\n');
+        }
+        const galery_id = fakerFR.number.int(10);
+        const photo_url = fakerFR.image.urlLoremFlickr({ category: 'association' })
+        const content = fakerFR.lorem.sentences({min: 1 , max: 2});
+        const photo = {galery_id, photo_url, content};
+        await appendFile(FILENAME7, JSON.stringify(photo))
+        }
+    await appendFile(FILENAME7, ']');
+    console.log('photos created');
+}) ();

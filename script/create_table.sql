@@ -44,13 +44,22 @@ CREATE TABLE event (
 
 CREATE TABLE galery (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name TEXT NOT NULL,
+    title TEXT NOT NULL,
     description TEXT NOT NULL,
     category TEXT NOT NULL,
-    photo_url TEXT NOT NULL,
+    galery_date TIMESTAMPTZ NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
+
+CREATE TABLE photo (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    galery_id INT NOT NULL REFERENCES galery(id),
+    photo_url TEXT NOT NULL,
+    content TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
+); 
 
 CREATE TABLE sponsor (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
