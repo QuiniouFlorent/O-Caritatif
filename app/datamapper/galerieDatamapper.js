@@ -28,23 +28,37 @@ const galeryDatamapper= {
         }
     },
 
-    async insertGalery(newNews) {
-        const query = `INSERT INTO galery
-        (title, category, photo_url, summary, content, author)
-        VALUES
-        ($1,$2,$3,$4,$5,$6)`
-        const values = [newNews.title, newNews.category, newNews.photo_url, newNews.summary, newNews.content, newNews.author]
+    async insertGalery(newGalery, newPhoto) {
         try {
+            await client.query('BEGIN');
+            const query = `INSERT INTO galery
+            (title, description, category, galery_date)
+            VALUES
+            ($1,$2,$3,$4) RETURNING id`;
+            const values = [newGalery.title, newGalery.description, newGalery.category, newGalery.galery_date];
             const response = await client.query(query,values);
             const result = response.rows;
+            const galery_id = result[0].id;
+
+            for (const photo of newPhoto) {
+                const query2 = `INSERT INTO photo
+                (galery_id, photo_url,content)
+                VALUES
+                ($1,$2,$3)`;
+                const values2 = [galery_id, photo.photo_url, photo.content];
+                await client.query(query2, values2);
+            }
+            await client.query('COMMIT');
             return result;
+
         } catch (err) {
+            await client.query('ROLLBACK');
             logger(err);
             throw new Error(`Un truc horrible s'est produit`);
         }
     },
 
-    async modifyNews(id, newsModified) {
+    async modifyGalery(id, newsModified) {
         const query = `UPDATE news SET
             title = $1,
             category = $2,
@@ -64,8 +78,8 @@ const galeryDatamapper= {
         }
     },
 
-    async deleteNews(id) {
-        const query = 'DELETE FROM news WHERE id = $1';
+    async deleteGalery(id) {
+        const query = 'DELETE FROM galery WHERE id = $1';
         const values = [id];
         try {
             const response = await client.query(query,values);
@@ -73,7 +87,7 @@ const galeryDatamapper= {
             return result;
         } catch (err) {
             logger(err);
-            throw new Error('Pas de news à supprimer');
+            throw new Error('Pas de galery à supprimer');
         }
     }
 };
