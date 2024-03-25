@@ -128,7 +128,7 @@ CREATE VIEW view_one_news AS
     GROUP BY n.id, n.title, n.category, n.photo_url, n.content, u.lastname, u.firstname, c.content, uc.lastname, uc.firstname;
 
 CREATE VIEW view_one_galery AS
-    SELECT p.galery_id, p.photo_url, p.content, g.title, g.description, g.category, g.galery_date
+    SELECT p.id, p.galery_id, p.photo_url, p.content, g.title, g.description, g.category, g.galery_date
     FROM photo p
     JOIN galery g ON p.galery_id = g.id;
 
