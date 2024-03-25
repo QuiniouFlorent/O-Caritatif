@@ -10,9 +10,9 @@ newsRouter.get('/news/:id', newsController.getOneNews);
 
 newsRouter.post('/news', newsController.createNews);
 
-//newsRouter.patch('/news/:id', newsController.updateNews);
+newsRouter.patch('/news/:id', newsController.updateNews);
 
-//newsRouter.delete('/news/:id', newsController.deleteNews);
+newsRouter.delete('/news/:id', newsController.removeNews);
 
 
 logger('news router initialized');

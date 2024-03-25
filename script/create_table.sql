@@ -73,7 +73,7 @@ CREATE TABLE item (
 
 CREATE TABLE comment (
     user_id INT REFERENCES "user"(id),
-    news_id INT REFERENCES news(id),
+    news_id INT REFERENCES news(id) ON DELETE CASCADE,
     content TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
@@ -81,7 +81,7 @@ CREATE TABLE comment (
 
 CREATE TABLE registration (
     user_id INT REFERENCES "user"(id),
-    event_id INT REFERENCES event(id),
+    event_id INT REFERENCES event(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
