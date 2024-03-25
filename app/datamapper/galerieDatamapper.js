@@ -57,24 +57,23 @@ const galeryDatamapper= {
             throw new Error(`Un truc horrible s'est produit`);
         }
     },
-
+// TODO !!!
     async modifyGalery(id, galeryModified) {
-        const query = `UPDATE news SET
+        const query = `UPDATE galery SET
             title = $1,
-            category = $2,
-            photo_url = $3,
-            summary = $4,
-            content = $5,
+            description = $2,
+            category = $3,
+            galery_date = $4,
             updated_at = NOW()
-            WHERE id = $6`;
-        const values = [newsModified.title, newsModified.category, newsModified.photo_url, newsModified.summary, newsModified.content, id]
+            WHERE id = $5`;
+        const values = [galeryModified.title, galeryModified.description, galeryModified.category, galeryModified.galery_date, id];
         try {
             const response = await client.query(query, values);
             const result = response.rows;
             return result;
         } catch (err) {
             logger(err);
-            throw new Error('Impossible de modifier la news');
+            throw new Error('Impossible de modifier la galerie');
         }
     },
 

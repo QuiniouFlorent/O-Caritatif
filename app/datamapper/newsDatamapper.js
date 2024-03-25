@@ -15,6 +15,7 @@ const newsDatamapper = {
             throw new Error('Pas de news !');
         }
     },
+
     async findOneNews(id) {
         const query = 'SELECT * FROM view_one_news WHERE id = $1';
         const values = [id]
@@ -27,6 +28,7 @@ const newsDatamapper = {
             throw new Error('Pas de news correspondante !')
         }
     },
+
     async insertNews(newNews) {
         const query = `INSERT INTO news
         (title, category, photo_url, summary, content, author)
@@ -42,6 +44,7 @@ const newsDatamapper = {
             throw new Error(`Un truc horrible s'est produit`);
         }
     },
+
     async modifyNews(id, newsModified) {
         const query = `UPDATE news SET
             title = $1,
@@ -61,6 +64,7 @@ const newsDatamapper = {
             throw new Error('Impossible de modifier la news');
         }
     },
+    
     async deleteNews(id) {
         const query = 'DELETE FROM news WHERE id = $1';
         const values = [id];
