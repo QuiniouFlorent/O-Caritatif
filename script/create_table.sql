@@ -108,7 +108,7 @@ CREATE VIEW view_all_news AS
     ON u.id = n.author
     LEFT JOIN comment c
     ON n.id = c.news_id
-	GROUP BY n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname;
+	GROUP BY n.id, n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname;
 
 CREATE VIEW view_one_news AS
     SELECT n.id,

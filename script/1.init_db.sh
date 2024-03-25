@@ -1,5 +1,5 @@
 export PGUSER=postgres
-export PGPASSWORD=lolo
+export PGPASSWORD=postgres
 
 # Suppression BDD si existante
 
