@@ -16,6 +16,13 @@ const userController = {
         res.json(user);
     },
 
+    async createUser(req, res) {
+        logger('User create controller called');
+        const newUser = req.body;
+        const user = await userDatamapper.insertUser(newUser);
+        res.json(user);
+    },
+
     async updateUser(req, res) {
         logger('user update controller called');
         const id = req.params.id;

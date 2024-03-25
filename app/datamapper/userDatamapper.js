@@ -29,6 +29,22 @@ const userDatamapper = {
         }
     },
 
+    async insertUser(newUser) {
+        const query = `INSERT INTO "user"
+        (lastname, firstname, email, password, role, photo_url)
+        VALUES
+        ($1,$2,$3,$4,$5,$6)`;
+        const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.password, "utilisateur", newUser.photo_url];
+        try { 
+            const response = await client.query(query, values);
+            const result = response.rows;
+            return result;
+        } catch (err) {
+            logger(err);
+            throw new Error(`Impossible de créer un compte utilisateur`)
+        }
+    },
+
     async modifyUser(id, userModified) {
         const query = `UPDATE "user" SET
             lastname = $1,
