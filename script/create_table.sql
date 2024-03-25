@@ -111,7 +111,7 @@ CREATE VIEW view_all_news AS
 	GROUP BY n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname;
 
 CREATE VIEW view_one_news AS
-SELECT n.id,
+    SELECT n.id,
         n.title, 
         n.category, 
         n.photo_url, 
@@ -126,5 +126,10 @@ SELECT n.id,
     LEFT JOIN comment c ON n.id = c.news_id
     LEFT JOIN "user" uc ON uc.id = c.user_id
     GROUP BY n.id, n.title, n.category, n.photo_url, n.content, u.lastname, u.firstname, c.content, uc.lastname, uc.firstname;
+
+CREATE VIEW view_one_galery AS
+    SELECT p.galery_id, p.photo_url, p.content, g.title, g.description, g.category, g.galery_date
+    FROM photo p
+    JOIN galery g ON p.galery_id = g.id;
 
 COMMIT;

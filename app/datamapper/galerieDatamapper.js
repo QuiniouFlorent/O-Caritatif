@@ -16,7 +16,7 @@ const galeryDatamapper= {
     },
 
     async findOneGalery(id) {
-        const query = 'SELECT * FROM photo WHERE galery_id = $1';
+        const query = 'SELECT * FROM view_one_galery WHERE galery_id = $1';
         const values = [id]
         try {
             const response = await client.query(query, values);
@@ -58,7 +58,7 @@ const galeryDatamapper= {
         }
     },
 
-    async modifyGalery(id, newsModified) {
+    async modifyGalery(id, galeryModified) {
         const query = `UPDATE news SET
             title = $1,
             category = $2,
