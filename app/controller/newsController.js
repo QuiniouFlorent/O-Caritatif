@@ -8,25 +8,29 @@ const newsController = {
         const news = await newsDatamapper.findAllNews();
         res.json(news);
     },
+
     async getOneNews(req,res) {
         logger('News getOne controller called');
         const id = req.params.id;
         const news = await newsDatamapper.findOneNews(id);
         res.json(news);
     },
+
     async createNews(req, res) {
-        logger('News createNews controller called');
+        logger('News create controller called');
         const newNews = req.body;
         const news = await newsDatamapper.insertNews(newNews)
         res.json(news);
     },
+
     async updateNews(req, res) {
-        logger('News modifyNews controller called');
+        logger('News modify controller called');
         const id = req.params.id;
         const newsModified = req.body;
         const news = await newsDatamapper.modifyNews(id, newsModified);
         res.json(news);
     },
+
     async removeNews(req,res) {
         const id = req.params.id;
         const news = await newsDatamapper.deleteNews(id);
