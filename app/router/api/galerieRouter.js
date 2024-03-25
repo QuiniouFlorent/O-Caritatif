@@ -6,6 +6,14 @@ import { galerieController } from '../../controller/index.js';
 const galerieRouter = Router();
 
 galerieRouter.get('/galerie', galerieController.getAllGalerie);
+galerieRouter.get('/galerie/:id', galerieController.getOneGalerie);
+
+galerieRouter.post('/galerie', galerieController.createGalerie);
+
+galerieRouter.patch('/galerie/:id', galerieController.updateGalerie);
+
+galerieRouter.delete('/galerie/:id', galerieController.removeGalerie);
+
 
 logger('galerie router initialized');
 export default galerieRouter;
