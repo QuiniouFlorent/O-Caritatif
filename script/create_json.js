@@ -6,6 +6,7 @@ const FILENAME2 = './data/fakenews.json';
 const FILENAME3 = './data/fakeevent.json';
 const FILENAME4 = './data/fakesponsor.json';
 const FILENAME5 = './data/fakegalery.json';
+const FILENAME6 = './data/fakecomment.json';
 
 /*
 (async () => {
@@ -86,7 +87,7 @@ const FILENAME5 = './data/fakegalery.json';
     console.log('sponsors created');
 }) ();
 */
-
+/*
 (async () => {
     await writeFile(FILENAME5, '[');
     for( let galerieIndex = 0; galerieIndex < 10; galerieIndex ++ ) {
@@ -102,4 +103,30 @@ const FILENAME5 = './data/fakegalery.json';
         }
     await appendFile(FILENAME5, ']');
     console.log('galeries created');
+}) ();*/
+
+(async () => {
+    await writeFile(FILENAME6, '[');
+    for( let commentIndex = 0; commentIndex < 100; commentIndex ++ ) {
+        if(commentIndex > 0) {
+            await appendFile(FILENAME6, ',\n');
+        }
+        const user_id = fakerFR.number.int(50);
+        const news_id = fakerFR.number.int(30);
+        const content = fakerFR.helpers.mustache('{{interjection}} {{conjonction}} {{person}} {{verb}} {{adverb}} {{preposition}} {{adjectif}} {{words}}', {
+            person: fakerFR.helpers.weightedArrayElement([{weight:3, value:'Jean-Guillaume'},{weight:1, value:'Laurent'},{weight: 1, value:'Florent'}]),
+            adverb: fakerFR.word.adverb(),
+            preposition: fakerFR.word.preposition(),
+            interjection: fakerFR.word.interjection(),
+            verb: fakerFR.word.verb(),
+            conjonction: fakerFR.word.conjunction(),
+            adjectif: fakerFR.word.adjective(),
+            words: fakerFR.word.noun(),
+        })
+        const comment = {user_id, news_id, content};
+        await appendFile(FILENAME6, JSON.stringify(comment))
+        }
+    await appendFile(FILENAME6, ']');
+    console.log('comments created');
 }) ();
+

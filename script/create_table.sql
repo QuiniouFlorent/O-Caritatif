@@ -72,7 +72,7 @@ CREATE TABLE item (
 );
 
 CREATE TABLE comment (
-    user1_id INT REFERENCES "user"(id),
+    user_id INT REFERENCES "user"(id),
     news_id INT REFERENCES news(id),
     content TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -80,7 +80,7 @@ CREATE TABLE comment (
 );
 
 CREATE TABLE registration (
-    user1_id INT REFERENCES "user"(id),
+    user_id INT REFERENCES "user"(id),
     event_id INT REFERENCES event(id),
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
@@ -93,9 +93,30 @@ CREATE VIEW view_all_events AS
     ON u.id = e.author;
 
 CREATE VIEW view_all_news AS
-    SELECT n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname
+    SELECT n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname, COUNT(c.news_id) AS nombre_commentaires
     FROM news n
     JOIN "user" u
-    ON u.id = n.author;
+    ON u.id = n.author
+    LEFT JOIN comment c
+    ON n.id = c.news_id
+	GROUP BY n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname;
+
+-- CREATE VIEW view_one_news AS
+--SELECT n.title, 
+--           n.category, 
+--           n.photo_url, 
+--           n.summary, 
+--           u.lastname AS nom_auteur_news, 
+--           u.firstname AS prenom_auteur_news, 
+--           c.content AS commentaire, 
+--           uc.lastname AS nom_auteur_commentaire, 
+--           uc.firstname AS prenom_auteur_commentaire
+--    FROM news n
+--    JOIN "user" u ON u.id = n.author
+--    LEFT JOIN comment c ON n.id = c.news_id
+--    LEFT JOIN "user" uc ON uc.id = c.user_id
+--    WHERE n.id = $1 ?
+--    GROUP BY n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname, c.content, uc.lastname, uc.firstname
+--	ORDER by n.title;
 
 COMMIT;
