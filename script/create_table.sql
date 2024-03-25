@@ -96,13 +96,13 @@ CREATE TABLE registration (
 );
 
 CREATE VIEW view_all_events AS
-    SELECT e.title, e.category, e.photo_url, e.description, e.date, e.calendar_url, e.place, u.lastname, u.firstname
+    SELECT e.id, e.title, e.category, e.photo_url, e.description, e.date, e.calendar_url, e.place, u.lastname, u.firstname
     FROM event e
     JOIN "user" u
     ON u.id = e.author;
 
 CREATE VIEW view_all_news AS
-    SELECT n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname, COUNT(c.news_id) AS nombre_commentaires
+    SELECT n.id , n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname, COUNT(c.news_id) AS nombre_commentaires
     FROM news n
     JOIN "user" u
     ON u.id = n.author
