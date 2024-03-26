@@ -9,11 +9,11 @@ const newsDatamapper = {
             const response = await client.query(query); 
             const result = response.rows;
             return result;
-
+            
         } catch (err) {
             logger(err);
             throw new Error('Pas de news !');
-        }
+        } 
     },
 
     async findOneNews(id) {
