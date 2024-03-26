@@ -45,7 +45,7 @@ CREATE TABLE event (
 CREATE TABLE galery (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title TEXT NOT NULL,
-    description TEXT NOT NULL,
+    description TEXT ,
     category TEXT NOT NULL,
     galery_date TIMESTAMPTZ NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -99,33 +99,43 @@ CREATE VIEW view_all_events AS
     SELECT e.id, e.title, e.category, e.photo_url, e.description, e.date, e.calendar_url, e.place, u.lastname, u.firstname
     FROM event e
     JOIN "user" u
-    ON u.id = e.author;
+    ON u.id = e.author
+    ORDER BY e.date;
 
 CREATE VIEW view_all_news AS
-    SELECT n.id , n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname, COUNT(c.news_id) AS nombre_commentaires
+    SELECT n.id,
+        n.title,
+        n.category,
+        n.photo_url,
+        n.summary,
+        n.created_at,
+        u.lastname,
+        u.firstname,
+        count(c.news_id) AS nombre_commentaires
     FROM news n
-    JOIN "user" u
-    ON u.id = n.author
-    LEFT JOIN comment c
-    ON n.id = c.news_id
-	GROUP BY n.id, n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname;
+    JOIN "user" u ON u.id = n.author
+    LEFT JOIN comment c ON n.id = c.news_id
+    GROUP BY n.id, n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname
+    ORDER BY n.created_at DESC;
 
 CREATE VIEW view_one_news AS
     SELECT n.id,
-        n.title, 
-        n.category, 
-        n.photo_url, 
-        n.content, 
-        u.lastname AS nom_auteur_news, 
-        u.firstname AS prenom_auteur_news, 
-        c.content AS commentaire, 
-        uc.lastname AS nom_auteur_commentaire, 
+        n.title,
+        n.category,
+        n.photo_url,
+        n.content,
+        u.lastname AS nom_auteur_news,
+        u.firstname AS prenom_auteur_news,
+        c.content AS commentaire,
+        c.created_at AS date_commentaire,
+        uc.lastname AS nom_auteur_commentaire,
         uc.firstname AS prenom_auteur_commentaire
     FROM news n
     JOIN "user" u ON u.id = n.author
     LEFT JOIN comment c ON n.id = c.news_id
     LEFT JOIN "user" uc ON uc.id = c.user_id
-    GROUP BY n.id, n.title, n.category, n.photo_url, n.content, u.lastname, u.firstname, c.content, uc.lastname, uc.firstname;
+    GROUP BY n.id, n.title, n.category, n.photo_url, n.content, u.lastname, u.firstname, c.content, c.created_at, uc.lastname, uc.firstname
+    ORDER BY c.created_at;
 
 CREATE VIEW view_one_galery AS
     SELECT p.id, p.galery_id, p.photo_url, p.content, g.title, g.description, g.category, g.galery_date
@@ -133,3 +143,7 @@ CREATE VIEW view_one_galery AS
     JOIN galery g ON p.galery_id = g.id;
 
 COMMIT;
+-- View pour home
+-- select * from event
+-- where date >= CURRENT_DATE
+-- ORDER BY date LIMIT 3;

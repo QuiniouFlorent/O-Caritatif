@@ -27,7 +27,7 @@ const galeryDatamapper= {
             throw new Error('Pas de galerie correspondante !')
         }
     },
-
+/*
     async insertGalery(newGalery, newPhoto) {
         try {
             await client.query('BEGIN');
@@ -56,7 +56,25 @@ const galeryDatamapper= {
             logger(err);
             throw new Error(`Un truc horrible s'est produit`);
         }
+    },*/
+    async insertGalery(newGalery) {
+        try {
+            
+            const query = `INSERT INTO galery
+            (title, description, category, galery_date)
+            VALUES
+            ($1,$2,$3,$4)`;
+            const values = [newGalery.title, newGalery.description, newGalery.category, newGalery.galery_date];
+            const response = await client.query(query,values);
+            const result = response.rows;
+            return result;
+
+        } catch (err) {
+            logger(err);
+            throw new Error(`Un truc horrible s'est produit`);
+        }
     },
+    
 // TODO !!!
     async modifyGalery(id, galeryModified) {
         const query = `UPDATE galery SET
