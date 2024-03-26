@@ -54,7 +54,7 @@ CREATE TABLE galery (
 
 CREATE TABLE photo (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    galery_id INT NOT NULL REFERENCES galery(id) ON DELETE CASCADE,
+    galery_id INT REFERENCES galery(id),
     photo_url TEXT NOT NULL,
     content TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
