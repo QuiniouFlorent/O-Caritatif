@@ -45,7 +45,7 @@ CREATE TABLE event (
 CREATE TABLE galery (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title TEXT NOT NULL,
-    description TEXT ,
+    description TEXT,
     category TEXT NOT NULL,
     galery_date TIMESTAMPTZ NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
