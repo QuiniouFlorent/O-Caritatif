@@ -7,10 +7,12 @@ const apiRouter = Router();
 import commentRouter from './commentRouter.js';
 import eventRouter from './eventRouter.js';
 import galerieRouter from './galerieRouter.js';
+import homeRouter from './homeRouter.js';
 import newsRouter from './newsRouter.js';
 import photoRouter from './photoRouter.js';
 import sponsorRouter from './sponsorRouter.js';
 
+apiRouter.use(homeRouter);
 apiRouter.use(commentRouter);
 apiRouter.use(eventRouter);
 apiRouter.use(galerieRouter);
