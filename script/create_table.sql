@@ -145,6 +145,35 @@ CREATE VIEW view_one_galery AS
     FROM photo p
     JOIN galery g ON p.galery_id = g.id;
 
+CREATE VIEW view_last_galery AS
+    SELECT g.id, g.title
+    FROM galery g
+    ORDER BY g.galery_date DESC
+    LIMIT 1;
+
+CREATE VIEW view_last_news AS
+    SELECT n.id, 
+        n.title, 
+        n.category, 
+        n.photo_url, 
+        n.summary,
+        n.created_at,
+        u.lastname,
+        u.firstname,
+        count(c.news_id) AS nombre_commentaires
+    FROM news n
+    JOIN "user" u ON u.id = n.author
+    LEFT JOIN comment c ON n.id = c.news_id
+    GROUP BY n.id, n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname
+    ORDER BY n.created_at DESC 
+    LIMIT 3;
+
+CREATE VIEW view_next_event AS
+    SELECT * 
+    FROM event
+    WHERE date >= CURRENT_DATE
+    ORDER BY date LIMIT 3;
+
 COMMIT;
 -- View pour home
 -- select * from event
