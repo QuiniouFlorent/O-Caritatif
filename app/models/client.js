@@ -2,13 +2,17 @@ import debug from 'debug';
 const logger = debug('app:client');
 import 'dotenv/config';
 
-//import { Pool } from 'pg';
-//const pool = new Pool();
-
 import pkg from 'pg';
-const { Client } = pkg;
-const client = new Client();
-client.connect();
+const { Pool } = pkg;
+
+const pool = new Pool({
+    user: process.env.PGUSER,
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,
+    password: process.env.PGPASSWORD,
+    port: process.env.PGPORT,
+});
+const client = await pool.connect();
 
 logger('client initialized');
 export default client;
