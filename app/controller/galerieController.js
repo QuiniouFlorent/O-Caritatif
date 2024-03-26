@@ -19,14 +19,8 @@ const galeryController = {
 
     async createGalerie(req, res) {
         logger('Galerie create controller called');
-        const { newGallery, newPhoto } = req.body;
-        const newGalery = {
-            title: newGallery.title, 
-            description: newGallery.description,
-            category: newGallery.category,
-            galery_date: newGallery.galery_date
-        }
-        const galery = await galeryDatamapper.insertGalery(newGalery, newPhoto)
+        const newGalery = req.body;
+        const galery = await galeryDatamapper.insertGalery(newGalery)
         res.json(galery);
     },
 
