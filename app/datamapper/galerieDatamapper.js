@@ -75,7 +75,6 @@ const galeryDatamapper= {
         }
     },
     
-// TODO !!!
     async modifyGalery(id, galeryModified) {
         const query = `UPDATE galery SET
             title = $1,

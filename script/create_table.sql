@@ -126,16 +126,19 @@ CREATE VIEW view_one_news AS
         n.content,
         u.lastname AS nom_auteur_news,
         u.firstname AS prenom_auteur_news,
-        c.content AS commentaire,
-        c.created_at AS date_commentaire,
-        uc.lastname AS nom_auteur_commentaire,
-        uc.firstname AS prenom_auteur_commentaire
+        ARRAY_AGG(
+            JSON_BUILD_OBJECT(
+                'commentaire', c.content,
+                'date_commentaire', c.created_at,
+                'nom_auteur_commentaire', uc.lastname,
+                'prenom_auteur_commentaire', uc.firstname
+            ) ORDER BY c.created_at
+        ) AS commentaires
     FROM news n
     JOIN "user" u ON u.id = n.author
     LEFT JOIN comment c ON n.id = c.news_id
     LEFT JOIN "user" uc ON uc.id = c.user_id
-    GROUP BY n.id, n.title, n.category, n.photo_url, n.content, u.lastname, u.firstname, c.content, c.created_at, uc.lastname, uc.firstname
-    ORDER BY c.created_at;
+    GROUP BY n.id, n.title, n.category, n.photo_url, n.content, u.lastname, u.firstname;
 
 CREATE VIEW view_one_galery AS
     SELECT p.id, p.galery_id, p.photo_url, p.content, g.title, g.description, g.category, g.galery_date
