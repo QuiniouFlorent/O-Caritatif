@@ -80,6 +80,15 @@ CREATE TABLE item (
     updated_at TIMESTAMPTZ
 );
 
+CREATE TABLE opinion (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    firstname TEXT NOT NULL,
+    content TEXT NOT NULL,
+    number_star INT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
+);
+
 CREATE TABLE comment (
     user_id INT REFERENCES "user"(id),
     news_id INT REFERENCES news(id) ON DELETE CASCADE,

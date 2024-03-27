@@ -6,6 +6,7 @@ import eventController from './eventController.js';
 import galerieController from './galerieController.js';
 import homeController from './homeController.js';
 import newsController from './newsController.js';
+import opinionController from './opinionController.js';
 import photoController from './photoController.js';
 import sponsorController from './sponsorController.js';
 import userController from './userController.js';
@@ -16,7 +17,8 @@ export {commentController,
         eventController, 
         galerieController, 
         homeController, 
-        newsController, 
+        newsController,
+        opinionController,
         photoController, 
         sponsorController, 
         userController 
