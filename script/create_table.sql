@@ -179,7 +179,7 @@ CREATE VIEW view_last_news AS
     LEFT JOIN comment c ON n.id = c.news_id
     GROUP BY n.id, n.title, n.category, n.photo_url, n.summary, u.lastname, u.firstname
     ORDER BY n.created_at DESC 
-    LIMIT 3;
+    LIMIT 4;
 
 CREATE VIEW view_next_event AS
     SELECT * 

@@ -29,12 +29,12 @@ const eventDatamapper = {
         }
     },
 
-    async insertEvent(newEvent) {
+    async insertEvent(newEvent, image) {
         const query = `INSERT INTO event
         (title, category, photo_url, description, date, calendar_url, place, author)
         VALUES
         ($1,$2,$3,$4,$5,$6,$7,$8)`
-        const values = [newEvent.title, newEvent.category, newEvent.photo_url, newEvent.description, newEvent.date, newEvent.calendar_url, newEvent.place, newEvent.author];
+        const values = [newEvent.title, newEvent.category, image, newEvent.description, newEvent.date, newEvent.calendar_url, newEvent.place, newEvent.author];
         try {
             const response = await client.query(query,values);
             const result = response.rows;
@@ -66,7 +66,7 @@ const eventDatamapper = {
             throw new Error('Impossible de modifier l\'événement');
         }
     },
-    
+
     async deleteEvent(id) {
         const query = 'DELETE FROM event WHERE id = $1';
         const values = [id];
