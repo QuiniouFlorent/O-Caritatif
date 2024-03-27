@@ -15,6 +15,7 @@ const eventDatamapper = {
             throw new Error('Pas d\'événement trouvé !');
         }
     },
+
     async findOneEvent(id) {
         const query = 'SELECT * FROM event WHERE id = $1';
         const values = [id]
@@ -27,6 +28,7 @@ const eventDatamapper = {
             throw new Error('Pas d\'événement correspondante !')
         }
     },
+
     async insertEvent(newEvent) {
         const query = `INSERT INTO event
         (title, category, photo_url, description, date, calendar_url, place, author)
@@ -42,6 +44,7 @@ const eventDatamapper = {
             throw new Error(`Un truc super horrible s'est produit`);
         }
     },
+
     async modifyEvent(id, eventModified) {
         const query = `UPDATE event SET
             title = $1,
@@ -63,6 +66,7 @@ const eventDatamapper = {
             throw new Error('Impossible de modifier l\'événement');
         }
     },
+    
     async deleteEvent(id) {
         const query = 'DELETE FROM event WHERE id = $1';
         const values = [id];
