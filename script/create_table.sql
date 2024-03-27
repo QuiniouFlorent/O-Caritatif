@@ -148,9 +148,10 @@ CREATE VIEW view_one_galery AS
     JOIN galery g ON p.galery_id = g.id;
 
 CREATE VIEW view_last_galery AS
-    SELECT g.id, g.title, g.category, g.galery_date, g.description, p.photo_url
+    SELECT g.id, g.title, g.category, g.galery_date, g.description, ARRAY_AGG(p.photo_url) AS photos
     FROM galery g
-    JOIN photo p ON g.id = p.galery_id
+    JOIN photo p ON p.galery_id = g.id
+	GROUP BY g.id
     ORDER BY g.galery_date DESC
     LIMIT 1;
 
