@@ -175,7 +175,3 @@ CREATE VIEW view_next_event AS
     ORDER BY date LIMIT 3;
 
 COMMIT;
--- View pour home
--- select * from event
--- where date >= CURRENT_DATE
--- ORDER BY date LIMIT 3;
