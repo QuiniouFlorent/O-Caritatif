@@ -64,8 +64,8 @@ CREATE TABLE photo (
 CREATE TABLE sponsor (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    link_url TEXT NOT NULL,
-    photo_url TEXT NOT NULL,
+    link_url TEXT,
+    photo_url TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
