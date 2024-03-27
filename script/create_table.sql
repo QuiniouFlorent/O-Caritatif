@@ -148,7 +148,7 @@ CREATE VIEW view_one_galery AS
     JOIN galery g ON p.galery_id = g.id;
 
 CREATE VIEW view_last_galery AS
-    SELECT g.id, g.title
+    SELECT g.id, g.title, g.category, g.galery_date, g.description
     FROM galery g
     ORDER BY g.galery_date DESC
     LIMIT 1;
