@@ -6,6 +6,7 @@ import eventDatamapper from './eventDatamapper.js';
 import galeryDatamapper from './galerieDatamapper.js';
 import homeDatamapper from './homeDatamapper.js';
 import newsDatamapper from './newsDatamapper.js';
+import opinionDatamapper from './opinionDatamapper.js';
 import photoDatamapper from './photoDatamapper.js';
 import sponsorDatamapper from './sponsorDatamapper.js';
 import userDatamapper from './userDatamapper.js';
@@ -16,7 +17,8 @@ export {commentDatamapper,
         eventDatamapper, 
         galeryDatamapper,
         homeDatamapper, 
-        newsDatamapper, 
+        newsDatamapper,
+        opinionDatamapper,
         photoDatamapper, 
         sponsorDatamapper, 
         userDatamapper 

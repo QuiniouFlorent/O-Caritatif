@@ -1,4 +1,6 @@
-import multer from 'multer';
+import debug from 'debug';
+const logger = debug('app:multer');
+import multer, { diskStorage } from 'multer';
 
 const MIME_TYPES = {
     'image/jpg': 'jpg',
@@ -15,6 +17,7 @@ const storage = multer.diskStorage({
         const extension = MIME_TYPES[file.mimetype];
         callback(null, name + Date.now()+ '.' + extension);
     }
+    
 })
 
 export default multer({storage: storage}).single('image');
