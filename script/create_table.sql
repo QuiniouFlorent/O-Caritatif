@@ -130,7 +130,7 @@ CREATE VIEW view_one_news AS
             JSON_BUILD_OBJECT(
                 'commentaire', c.content,
                 'date_commentaire', c.created_at,
-                'date_modification', c.updated_at;
+                'date_modification', c.updated_at,
                 'nom_auteur_commentaire', uc.lastname,
                 'prenom_auteur_commentaire', uc.firstname,
                 'user_id', uc.id
