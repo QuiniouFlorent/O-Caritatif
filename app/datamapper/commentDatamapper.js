@@ -20,13 +20,13 @@ const commentDatamapper= {
             throw new Error(`Un giga truc horrible s'est produit`);
         }
     },
-//TODO : id ??
-    async modifyComment(id, commentModified) {
+
+    async modifyComment(commentModified) {
         const query = `UPDATE comment SET
             content = $1,
             updated_at = NOW()
-            WHERE id = $2`;
-        const values = [commentModified.content, id];
+            WHERE user_id = $2 AND news_id = $3 AND created_at = $4`;
+        const values = [commentModified.content, commentModified.user_id, commentModified.news_id, commentModified.created_at];
         try {
             const response = await client.query(query, values);
             const result = response.rows;
@@ -36,10 +36,10 @@ const commentDatamapper= {
             throw new Error('Impossible de modifier le commentaire');
         }
     },
-//TODO : id ?? 
-    async deleteComment(id) {
-        const query = 'DELETE FROM comment WHERE id = $1';
-        const values = [id];
+
+    async deleteComment(commentValues) {
+        const query = 'DELETE FROM comment WHERE user_id = $1 AND news_id = $2 AND created_at = $3';
+        const values = [commentValues.user_id, commentValues.news_id, commentValues.created_at];
         try {
             const response = await client.query(query,values);
             const result = !!response.rowCount;

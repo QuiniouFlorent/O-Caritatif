@@ -10,18 +10,17 @@ const commentController = {
         const comment = await commentDatamapper.insertComment(newComment)
         res.json(comment);
     },
-//TODO : id ??
+
     async updateComment(req, res) {
         logger('Comment modify controller called');
-        const id = req.params.id;
         const commentModified = req.body;
-        const comment = await commentDatamapper.modifyComment(id, commentModified);
+        const comment = await commentDatamapper.modifyComment(commentModified);
         res.json(comment);
     },
-//TODO : id ??
+
     async removeComment(req,res) {
-        const id = req.params.id;
-        const comment = await commentDatamapper.deleteComment(id);
+        const commentValues = req.body;
+        const comment = await commentDatamapper.deleteComment(commentValues);
         res.json(comment);
     }
 }

@@ -7,9 +7,9 @@ const commentRouter = Router();
 
 commentRouter.post('/comment', commentController.createComment);
 
-commentRouter.patch('/comment/:id', commentController.updateComment);
+commentRouter.patch('/comment', commentController.updateComment);
 
-commentRouter.delete('/comment/:id', commentController.removeComment);
+commentRouter.delete('/comment', commentController.removeComment);
 
 
 logger('Comment router initialized');
