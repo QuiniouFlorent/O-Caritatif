@@ -13,10 +13,6 @@ import cors from 'cors';
 
 app.use(cors());
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-logger(__dirname);
-
 app.use(express.json());
 app.use(urlencoded({extended: true}));
 
