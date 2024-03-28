@@ -52,9 +52,10 @@ const newsDatamapper = {
             photo_url = $3,
             summary = $4,
             content = $5,
+            is_active = $6,
             updated_at = NOW()
-            WHERE id = $6`;
-        const values = [newsModified.title, newsModified.category, newsModified.photo_url, newsModified.summary, newsModified.content, id]
+            WHERE id = $7`;
+        const values = [newsModified.title, newsModified.category, newsModified.photo_url, newsModified.summary, newsModified.content, newsModified.is_active, id]
         try {
             const response = await client.query(query, values);
             const result = response.rows;
