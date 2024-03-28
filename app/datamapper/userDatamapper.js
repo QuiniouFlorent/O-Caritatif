@@ -52,9 +52,10 @@ const userDatamapper = {
             email = $3,
             role = $4,
             photo_url = $5,
+            is_active = $6
             updated_at = NOW()
-            WHERE id = $6 `;
-        const values = [userModified.lastname, userModified.firstname, userModified.email, userModified.role, userModified.photo_url, id];
+            WHERE id = $7 `;
+        const values = [userModified.lastname, userModified.firstname, userModified.email, userModified.role, userModified.photo_url, userModified.is_active, id];
         try {
             const response = await client.query(query, values);
             const result = response.rows;
