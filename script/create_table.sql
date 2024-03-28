@@ -12,6 +12,7 @@ CREATE TABLE "user" (
     password TEXT NOT NULL,
     role ROLE ,
     photo_url TEXT,
+    is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
