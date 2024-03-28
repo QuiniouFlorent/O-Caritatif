@@ -11,14 +11,22 @@ const MIME_TYPES = {
 
 const storage = function(folder) {
     return multer.diskStorage({
-        destination(req,file, callback) {
-            callback(null, 'image'+ folder)
+        destination : (req,file, callback) => {
+            callback(null, 'image/'+ folder)
         },
-        filename
+        filename : (req, file, callback) => {
+            const name = file.originalname.split(' ').join('_');
+            const extension = MIME_TYPES[file.mimetype];
+            callback(null, name + Date.now() + '.' + extension);
+        }
     })
-}
+};
 
+const upload = function(folder) {
+    return multer({storage: storage(folder)});
+};
 
+/*
 const storage2 = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, 'image/');
@@ -29,5 +37,5 @@ const storage2 = multer.diskStorage({
         callback(null, name + Date.now()+ '.' + extension);
     }
 })
-
-export default multer({storage: storage}).single('image');
+*/
+export default upload;
