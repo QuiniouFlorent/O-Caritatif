@@ -18,7 +18,8 @@ const sponsorController = {
     async createSponsor(req, res) {
         logger('Sponsor create controller called');
         const newSponsor = req.body;
-        const sponsor = await sponsorDatamapper.insertSponsor(newSponsor);
+        const image = req.file.path;
+        const sponsor = await sponsorDatamapper.insertSponsor(newSponsor, image);
         res.json(sponsor);
     },
 

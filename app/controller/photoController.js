@@ -20,7 +20,8 @@ const photoController = {
     async createPhoto(req, res) {
         logger('Photo create controller called');
         const newPhoto = req.body;
-        const photo = await photoDatamapper.insertPhoto(newPhoto)
+        const image = req.file.path;
+        const photo = await photoDatamapper.insertPhoto(newPhoto, image)
         res.json(photo);
     },
 

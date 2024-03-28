@@ -28,14 +28,14 @@ const photoDatamapper= {
         }
     },
 
-    async insertPhoto(newPhoto) {
+    async insertPhoto(newPhoto, image) {
         try {
             
             const query = `INSERT INTO photo
             (galery_id, photo_url, content)
             VALUES
             ($1,$2,$3)`;
-            const values = [null, newPhoto.photo_url, newPhoto.content];
+            const values = [null, image, newPhoto.content];
             const response = await client.query(query,values);
             const result = response.rows;
             return result;

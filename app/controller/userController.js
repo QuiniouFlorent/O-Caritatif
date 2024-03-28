@@ -19,7 +19,8 @@ const userController = {
     async createUser(req, res) {
         logger('User create controller called');
         const newUser = req.body;
-        const user = await userDatamapper.insertUser(newUser);
+        const image = req.file.path;
+        const user = await userDatamapper.insertUser(newUser, image);
         res.json(user);
     },
 
