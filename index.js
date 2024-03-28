@@ -1,9 +1,6 @@
 import debug from 'debug';
 const logger = debug('app:server');
 
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
 import 'dotenv/config';
 import express, { urlencoded } from 'express';
 const app = express();
