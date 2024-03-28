@@ -9,7 +9,17 @@ const MIME_TYPES = {
     'image/webp': 'webp'
 };
 
-const storage = multer.diskStorage({
+const storage = function(folder) {
+    return multer.diskStorage({
+        destination(req,file, callback) {
+            callback(null, 'image'+ folder)
+        },
+        filename
+    })
+}
+
+
+const storage2 = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, 'image/');
     },
