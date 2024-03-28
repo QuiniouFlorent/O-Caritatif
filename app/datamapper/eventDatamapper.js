@@ -34,7 +34,7 @@ const eventDatamapper = {
         (title, category, photo_url, description, date, calendar_url, place, author)
         VALUES
         ($1,$2,$3,$4,$5,$6,$7,$8)`
-        const values = [newEvent.title, newEvent.category, `http://${process.env.PGHOST}:${process.env.PORT}/`+image, newEvent.description, newEvent.date, newEvent.calendar_url, newEvent.place, newEvent.author];
+        const values = [newEvent.title, newEvent.category, image, newEvent.description, newEvent.date, newEvent.calendar_url, newEvent.place, newEvent.author];
         try {
             const response = await client.query(query,values);
             const result = response.rows;
