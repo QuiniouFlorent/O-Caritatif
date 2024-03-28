@@ -13,12 +13,15 @@ import cors from 'cors';
 
 app.use(cors());
 
-app.use(express.json());
-app.use(urlencoded({extended: true}));
-app.use(router);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-app.use('/image', express.static(__dirname + '/image'));
+logger(__dirname);
+
+app.use(express.json());
+app.use(urlencoded({extended: true}));
+
+app.use('/image', express.static('image'));
+app.use(router);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
