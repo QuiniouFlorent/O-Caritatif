@@ -29,12 +29,12 @@ const newsDatamapper = {
         }
     },
 
-    async insertNews(newNews) {
+    async insertNews(newNews, image) {
         const query = `INSERT INTO news
         (title, category, photo_url, summary, content, author)
         VALUES
         ($1,$2,$3,$4,$5,$6)`
-        const values = [newNews.title, newNews.category, newNews.photo_url, newNews.summary, newNews.content, newNews.author]
+        const values = [newNews.title, newNews.category, image, newNews.summary, newNews.content, newNews.author]
         try {
             const response = await client.query(query,values);
             const result = response.rows;

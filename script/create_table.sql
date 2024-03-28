@@ -123,6 +123,7 @@ CREATE VIEW view_all_news AS
         n.category,
         n.photo_url,
         n.summary,
+        n.is_active,
         n.created_at,
         u.lastname,
         u.firstname,
@@ -139,6 +140,7 @@ CREATE VIEW view_one_news AS
         n.category,
         n.photo_url,
         n.content,
+        n.is_active,
         u.lastname AS nom_auteur_news,
         u.firstname AS prenom_auteur_news,
         ARRAY_AGG(
