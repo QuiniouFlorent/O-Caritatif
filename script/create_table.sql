@@ -25,6 +25,7 @@ CREATE TABLE news (
     summary TEXT NOT NULL,
     content TEXT NOT NULL,
     author INT REFERENCES "user"(id),
+    is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
@@ -49,6 +50,7 @@ CREATE TABLE galery (
     description TEXT,
     category TEXT NOT NULL,
     galery_date TIMESTAMPTZ NOT NULL,
+    is_active BOOLEAN DEFAULT true, 
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
@@ -58,6 +60,7 @@ CREATE TABLE photo (
     galery_id INT REFERENCES galery(id),
     photo_url TEXT NOT NULL,
     content TEXT,
+    is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 ); 
@@ -67,6 +70,7 @@ CREATE TABLE sponsor (
     name TEXT NOT NULL,
     link_url TEXT,
     photo_url TEXT,
+    is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
@@ -94,6 +98,7 @@ CREATE TABLE comment (
     user_id INT REFERENCES "user"(id),
     news_id INT REFERENCES news(id) ON DELETE CASCADE,
     content TEXT NOT NULL,
+    is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );

@@ -24,9 +24,10 @@ const commentDatamapper= {
     async modifyComment(commentModified) {
         const query = `UPDATE comment SET
             content = $1,
+            is_active = $2,
             updated_at = NOW()
-            WHERE user_id = $2 AND news_id = $3 AND created_at = $4`;
-        const values = [commentModified.content, commentModified.user_id, commentModified.news_id, commentModified.created_at];
+            WHERE user_id = $3 AND news_id = $4 AND created_at = $5`;
+        const values = [commentModified.content, commentModified.is_active, commentModified.user_id, commentModified.news_id, commentModified.created_at];
         try {
             const response = await client.query(query, values);
             const result = response.rows;

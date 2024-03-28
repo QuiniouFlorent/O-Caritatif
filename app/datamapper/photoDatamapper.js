@@ -50,9 +50,10 @@ const photoDatamapper= {
         const query = `UPDATE photo SET
             galery_id = $1,
             content = $2,
+            is_active = $3
             updated_at = NOW()
-            WHERE id = $3`;
-        const values = [photoModified.galery_id, photoModified.content, id];
+            WHERE id = $4`;
+        const values = [photoModified.galery_id, photoModified.content, photoModified.is_active, id];
         try {
             const response = await client.query(query, values);
             const result = response.rows;

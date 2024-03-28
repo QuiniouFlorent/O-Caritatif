@@ -49,9 +49,10 @@ const sponsorDatamapper = {
             name = $1,
             link_url = $2,
             photo_url = $3,
+            is_active = $4
             updated_at = NOW()
-            WHERE id = $4`;
-        const values = [sponsorModified.name, sponsorModified.link_url, sponsorModified.photo_url, id]
+            WHERE id = $5`;
+        const values = [sponsorModified.name, sponsorModified.link_url, sponsorModified.photo_url, sponsorModified.is_active, id]
         try {
             const response = await client.query(query, values);
             const result = response.rows;

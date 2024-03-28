@@ -27,36 +27,7 @@ const galeryDatamapper= {
             throw new Error('Pas de galerie correspondante !')
         }
     },
-/*
-    async insertGalery(newGalery, newPhoto) {
-        try {
-            await client.query('BEGIN');
-            const query = `INSERT INTO galery
-            (title, description, category, galery_date)
-            VALUES
-            ($1,$2,$3,$4) RETURNING id`;
-            const values = [newGalery.title, newGalery.description, newGalery.category, newGalery.galery_date];
-            const response = await client.query(query,values);
-            const result = response.rows;
-            const galery_id = result[0].id;
 
-            for (const photo of newPhoto) {
-                const query2 = `INSERT INTO photo
-                (galery_id, photo_url,content)
-                VALUES
-                ($1,$2,$3)`;
-                const values2 = [galery_id, photo.photo_url, photo.content];
-                await client.query(query2, values2);
-            }
-            await client.query('COMMIT');
-            return result;
-
-        } catch (err) {
-            await client.query('ROLLBACK');
-            logger(err);
-            throw new Error(`Un truc horrible s'est produit`);
-        }
-    },*/
     async insertGalery(newGalery) {
         try {
             
@@ -81,9 +52,10 @@ const galeryDatamapper= {
             description = $2,
             category = $3,
             galery_date = $4,
+            is_active = $5,
             updated_at = NOW()
-            WHERE id = $5`;
-        const values = [galeryModified.title, galeryModified.description, galeryModified.category, galeryModified.galery_date, id];
+            WHERE id = $6`;
+        const values = [galeryModified.title, galeryModified.description, galeryModified.category, galeryModified.galery_date, galeryModified.is_active, id];
         try {
             const response = await client.query(query, values);
             const result = response.rows;
