@@ -28,12 +28,12 @@ const sponsorDatamapper = {
         }
     },
 
-    async insertSponsor(newSponsor) {
+    async insertSponsor(newSponsor, image) {
         const query = `INSERT INTO sponsor
         (name, link_url, photo_url)
         VALUES
         ($1,$2,$3)`
-        const values = [newSponsor.name, newSponsor.link_url, newSponsor.photo_url]
+        const values = [newSponsor.name, newSponsor.link_url, image]
         try {
             const response = await client.query(query,values);
             const result = response.rows;
