@@ -29,6 +29,19 @@ const userDatamapper = {
         }
     },
 
+    async findUser(user) {
+        const query = 'SELECT * FROM "user" WHERE email = $1';
+        const values = [user.email];
+        try {
+            const response = await client.query(query, values);
+            const result = response.rows;
+            return result;
+        } catch (err) {
+            logger(err);
+            throw new Error('Bizarre bizarre');
+        }
+    },
+
     async insertUser(newUser, image) {
         const query = `INSERT INTO "user"
         (lastname, firstname, email, password, role, photo_url)
