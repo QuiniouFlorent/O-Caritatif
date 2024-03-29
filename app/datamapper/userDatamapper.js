@@ -1,65 +1,45 @@
 import debug from 'debug';
 const logger = debug('app:datamapper');
-import client from '../models/client.js';
+import datamapperUtil from '../service/util/datamapper.js';
 
 const userDatamapper = {
-    async findAllUser() {
-        const query = 'SELECT * FROM "user"';
-        try {
-            const response = await client.query(query);
-            const result = response.rows;
-            return result;
 
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas d\'utilisateur trouvé !');
-        }
+    async findAllUser() {
+
+        const query = 'SELECT * FROM "user"';
+        
+        return datamapperUtil.executeQuery(query);
     },
 
     async findOneUser(id) {
+
         const query = 'SELECT * FROM "user" WHERE id = $1';
         const values = [id]
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas d\'utilisateur correspondant !')
-        }
+        
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async findUser(user) {
+
         const query = 'SELECT * FROM "user" WHERE email = $1';
-        logger(user);
         const values = [user.email];
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Bizarre bizarre');
-        }
+
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async insertUser(newUser, image) {
+
         const query = `INSERT INTO "user"
         (lastname, firstname, email, password, role, photo_url)
         VALUES
         ($1,$2,$3,$4,$5,$6)`;
         const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.password, "utilisateur", image];
-        try { 
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error(`Impossible de créer un compte utilisateur`)
-        }
+        
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async modifyUser(id, userModified) {
+
         const query = `UPDATE "user" SET
             lastname = $1,
             firstname = $2,
@@ -70,27 +50,16 @@ const userDatamapper = {
             updated_at = NOW()
             WHERE id = $7 `;
         const values = [userModified.lastname, userModified.firstname, userModified.email, userModified.role, userModified.photo_url, userModified.is_active, id];
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('impossible de modifier l\'utilisateur');
-        }
+        
+        return datamapperUtil.executeQuery(query, values);
     },
 //TODO ! PK - FK ??
     async deleteUser(id) {
+        
         const query = 'DELETE FROM "user" WHERE id = $1';
         const values = [id];
-        try {
-            const response = await client.query(query, values);
-            const result = !!response.rowCount;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas d\'utlisateur à supprimer');
-        }
+        
+        return datamapperUtil.executeQuery(query, values);
     }
 }
 

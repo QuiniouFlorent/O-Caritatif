@@ -1,52 +1,36 @@
 import debug from 'debug';
 const logger = debug('app:datamapper');
-import client from '../models/client.js';
+import datamapperUtil from '../service/util/datamapper.js';
 
 const photoDatamapper= {
+
     async findAllPhoto() {
         const query = 'SELECT * FROM photo';
-        try { 
-            const response = await client.query(query);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas de photo !');
-        }
+
+        return datamapperUtil.executeQuery(query);
     },
 
     async findOnePhoto(id) {
+
         const query = 'SELECT * FROM photo WHERE id = $1';
         const values = [id]
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas de photo correspondante !')
-        }
+        
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async insertPhoto(newPhoto, image) {
-        try {
-            
-            const query = `INSERT INTO photo
-            (galery_id, photo_url, content)
-            VALUES
-            ($1,$2,$3)`;
-            const values = [null, image, newPhoto.content];
-            const response = await client.query(query,values);
-            const result = response.rows;
-            return result;
 
-        } catch (err) {
-            logger(err);
-            throw new Error(`Un méga truc horrible s'est produit`);
-        }
+        const query = `INSERT INTO photo
+        (galery_id, photo_url, content)
+        VALUES
+        ($1,$2,$3)`;
+        const values = [null, image, newPhoto.content];
+            
+        return datamapperUtil.executeQuery(query, values);
     },
     
     async modifyPhoto(id, photoModified) {
+
         const query = `UPDATE photo SET
             galery_id = $1,
             content = $2,
@@ -54,29 +38,16 @@ const photoDatamapper= {
             updated_at = NOW()
             WHERE id = $4`;
         const values = [photoModified.galery_id, photoModified.content, photoModified.is_active, id];
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Impossible de modifier la photo');
-        }
+        
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async deletePhoto(id) {
         const query = 'DELETE FROM photo WHERE id = $1';
         const values = [id];
-        try {
-            const response = await client.query(query,values);
-            const result = !!response.rowCount;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas de photo à supprimer');
-        }
+
+        return datamapperUtil.executeQuery(query, values);
     }
 };
 
-logger('Photo datamapper initialized');
 export default photoDatamapper;

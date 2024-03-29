@@ -1,50 +1,37 @@
 import debug from 'debug';
 const logger = debug('app:datamapper');
-import client from '../models/client.js';
+import datamapperUtil from '../service/util/datamapper.js';
 
 const sponsorDatamapper = {
+
     async findAllSponsor(){
+
         const query = 'SELECT * FROM "sponsor"';
-        try {
-            const response = await client.query(query);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas de sponsor !');
-        }
+
+        return datamapperUtil.executeQuery(query);
     },
 
     async findOneSponsor(id) {
+
         const query = 'SELECT * FROM sponsor WHERE id = $1';
         const values = [id]
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas de sponsor correspondant !')
-        }
+
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async insertSponsor(newSponsor, image) {
+
         const query = `INSERT INTO sponsor
         (name, link_url, photo_url)
         VALUES
         ($1,$2,$3)`
-        const values = [newSponsor.name, newSponsor.link_url, image]
-        try {
-            const response = await client.query(query,values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error(`Un truc super méga horrible s'est produit`);
-        }
+        const values = [newSponsor.name, newSponsor.link_url, image];
+
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async modifySponsor(id, sponsorModified) {
+
         const query = `UPDATE sponsor SET
             name = $1,
             link_url = $2,
@@ -52,30 +39,18 @@ const sponsorDatamapper = {
             is_active = $4,
             updated_at = NOW()
             WHERE id = $5`;
-        const values = [sponsorModified.name, sponsorModified.link_url, sponsorModified.photo_url, sponsorModified.is_active, id]
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Impossible de modifier le sponsor');
-        }
+        const values = [sponsorModified.name, sponsorModified.link_url, sponsorModified.photo_url, sponsorModified.is_active, id];
+        
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async deleteSponsor(id) {
+
         const query = 'DELETE FROM sponsor WHERE id = $1';
         const values = [id];
-        try {
-            const response = await client.query(query,values);
-            const result = !!response.rowCount;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas de sponsor à supprimer');
-        }
+
+        return datamapperUtil.executeQuery(query, values);
     }
 }
 
-logger('Sponsor datamapper initialized');
 export default sponsorDatamapper;

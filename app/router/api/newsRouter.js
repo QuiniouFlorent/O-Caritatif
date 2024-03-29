@@ -15,5 +15,4 @@ newsRouter.patch('/news/:id', newsController.updateNews);
 
 newsRouter.delete('/news/:id', newsController.removeNews);
 
-logger('news router initialized');
 export default newsRouter;

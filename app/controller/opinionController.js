@@ -1,42 +1,42 @@
 import debug from 'debug';
 const logger = debug('app:controller');
 import { opinionDatamapper } from '../datamapper/index.js';
+import controllerUtil from '../service/util/controller.js';
 
 const opinionController = {
-    async getAllOpinion(req,res) {
+    async getAllOpinion( req, res, next ) {
         logger('Opinion getAll controller called');
-        const opinions = await opinionDatamapper.findAllOpinion();
-        res.json(opinions);
+        const { result, error } = await opinionDatamapper.findAllOpinion();
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async getOneOpinion(req,res) {
+    async getOneOpinion( req, res, next ) {
         logger('Opinion getOne controller called');
         const id = req.params.id;
-        const opinion = await opinionDatamapper.findOneOpinion(id);
-        res.json(opinion);
+        const { result, error } = await opinionDatamapper.findOneOpinion(id);
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async createOpinion(req, res) {
+    async createOpinion( req, res, next ) {
         logger('Opinion create controller called');
         const newOpinion = req.body;
-        const opinion = await opinionDatamapper.insertOpinion(newOpinion)
-        res.json(opinion);
+        const { result, error } = await opinionDatamapper.insertOpinion(newOpinion)
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async updateOpinion(req, res) {
+    async updateOpinion( req, res, next ) {
         logger('Opinion modify controller called');
         const id = req.params.id;
         const opinionModified = req.body;
-        const opinion = await opinionDatamapper.modifyOpinion(id, opinionModified);
-        res.json(opinion);
+        const { result, error } = await opinionDatamapper.modifyOpinion(id, opinionModified);
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async removeOpinion(req,res) {
+    async removeOpinion( req, res, next ) {
         const id = req.params.id;
-        const opinion = await opinionDatamapper.deleteOpinion(id);
-        res.json(opinion);
+        const { result, error } = await opinionDatamapper.deleteOpinion(id);
+        controllerUtil.manageResponse(error, result, res, next);
     }
 }
 
-logger('Opinion controller initialized');
 export default opinionController;

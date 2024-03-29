@@ -11,6 +11,4 @@ commentRouter.patch('/comment', commentController.updateComment);
 
 commentRouter.delete('/comment', commentController.removeComment);
 
-
-logger('Comment router initialized');
 export default commentRouter;
