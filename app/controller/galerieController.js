@@ -1,43 +1,43 @@
 import debug from 'debug';
 const logger = debug('app:controller');
 import { galeryDatamapper } from '../datamapper/index.js';
+import controllerUtil from '../service/util/controller.js';
 
 const galeryController = {
 
-    async getAllGalerie(req, res) {
+    async getAllGalerie( req, res, next ) {
         logger('Galerie getAll controller called');
-        const galeries = await galeryDatamapper.findAllGalery();
-        res.json(galeries);
+        const { result, error } = await galeryDatamapper.findAllGalery();
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async getOneGalerie(req,res) {
+    async getOneGalerie( req, res, next ) {
         logger('Galerie getOne controller called');
         const id = req.params.id;
-        const galery = await galeryDatamapper.findOneGalery(id);
-        res.json(galery);
+        const { result, error } = await galeryDatamapper.findOneGalery(id);
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async createGalerie(req, res) {
+    async createGalerie( req, res, next ) {
         logger('Galerie create controller called');
         const newGalery = req.body;
-        const galery = await galeryDatamapper.insertGalery(newGalery)
-        res.json(galery);
+        const { result, error } = await galeryDatamapper.insertGalery(newGalery)
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async updateGalerie(req, res) {
+    async updateGalerie( req, res, next ) {
         logger('Galerie modify controller called');
         const id = req.params.id;
         const galeryModified = req.body;
-        const galery = await galeryDatamapper.modifyGalery(id, galeryModified);
-        res.json(galery);
+        const { result, error } = await galeryDatamapper.modifyGalery(id, galeryModified);
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async removeGalerie(req,res) {
+    async removeGalerie( req, res, next ) {
         const id = req.params.id;
-        const galery = await galeryDatamapper.deleteGalery(id);
-        res.json(galery);
+        const { result, error } = await galeryDatamapper.deleteGalery(id);
+        controllerUtil.manageResponse(error, result, res, next);
     }
 }
 
-logger('Galerie controller initialized');
 export default galeryController;

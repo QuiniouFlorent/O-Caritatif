@@ -1,32 +1,20 @@
 import debug from 'debug';
 const logger = debug('app:datamapper');
-import client from '../models/client.js';
+import datamapperUtil from '../service/util/datamapper.js';
 
 const newsDatamapper = {
+
     async findAllNews() {
         const query = 'SELECT * FROM view_all_news';
-        try {
-            const response = await client.query(query); 
-            const result = response.rows;
-            return result;
-            
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas de news !');
-        } 
+        
+        return datamapperUtil.executeQuery(query);
     },
 
     async findOneNews(id) {
         const query = 'SELECT * FROM view_one_news WHERE id = $1';
-        const values = [id]
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas de news correspondante !')
-        }
+        const values = [id];
+
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async insertNews(newNews, image) {
@@ -35,14 +23,8 @@ const newsDatamapper = {
         VALUES
         ($1,$2,$3,$4,$5,$6)`
         const values = [newNews.title, newNews.category, image, newNews.summary, newNews.content, newNews.author]
-        try {
-            const response = await client.query(query,values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error(`Un truc horrible s'est produit`);
-        }
+        
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async modifyNews(id, newsModified) {
@@ -56,29 +38,16 @@ const newsDatamapper = {
             updated_at = NOW()
             WHERE id = $7`;
         const values = [newsModified.title, newsModified.category, newsModified.photo_url, newsModified.summary, newsModified.content, newsModified.is_active, id]
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Impossible de modifier la news');
-        }
+        
+        return datamapperUtil.executeQuery(query, values);
     },
     
     async deleteNews(id) {
         const query = 'DELETE FROM news WHERE id = $1';
         const values = [id];
-        try {
-            const response = await client.query(query,values);
-            const result = !!response.rowCount;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas de news à supprimer');
-        }
+        
+        return datamapperUtil.executeQuery(query, values);
     }
 };
 
-logger('News datamapper initialized');
 export default newsDatamapper;

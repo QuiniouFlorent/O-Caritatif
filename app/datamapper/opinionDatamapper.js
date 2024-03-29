@@ -1,32 +1,19 @@
 import debug from 'debug';
 const logger = debug('app:datamapper');
-import client from '../models/client.js';
+import datamapperUtil from '../service/util/datamapper.js';
 
 const opinionDatamapper = {
     async findAllOpinion() {
         const query = 'SELECT * FROM opinion';
-        try {
-            const response = await client.query(query);
-            const result = response.rows;
-            return result;
 
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas d\'opinion trouvé !');
-        }
+        return datamapperUtil.executeQuery(query);
     },
 
     async findOneOpinion(id) {
         const query = 'SELECT * FROM opinion WHERE id = $1';
         const values = [id]
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas d\'opinion correspondante !')
-        }
+       
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async insertOpinion(newOpinion) {
@@ -35,14 +22,8 @@ const opinionDatamapper = {
         VALUES
         ($1,$2,$3)`
         const values = [newOpinion.firstname, newOpinion.content, newOpinion.number_star];
-        try {
-            const response = await client.query(query,values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error(`Un truc un peu horrible s'est produit`);
-        }
+        
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async modifyOpinion(id, opinionModified) {
@@ -53,29 +34,16 @@ const opinionDatamapper = {
             updated_at = NOW()
             WHERE id = $4`;
         const values = [opinionModified.firstname, opinionModified.content, opinionModified.number_star, id]
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Impossible de modifier l\'opinion');
-        }
+        
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async deleteOpinion(id) {
         const query = 'DELETE FROM opinion WHERE id = $1';
         const values = [id];
-        try {
-            const response = await client.query(query,values);
-            const result = !!response.rowCount;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas d\'opinion à supprimer');
-        }
+        
+        return datamapperUtil.executeQuery(query, values);
     }
 }
 
-logger('Opinion datamapper initialized');
 export default opinionDatamapper;

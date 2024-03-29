@@ -7,5 +7,4 @@ const homeRouter = Router();
 
 homeRouter.get('/home', homeController.getHomeInfos);
 
-logger('Home router initialized');
 export default homeRouter;

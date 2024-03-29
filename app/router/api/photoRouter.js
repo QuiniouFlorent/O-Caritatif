@@ -15,6 +15,4 @@ photoRouter.patch('/photo/:id', photoController.updatePhoto);
 
 photoRouter.delete('/photo/:id', photoController.removePhoto);
 
-
-logger('Photo router initialized');
 export default photoRouter; 

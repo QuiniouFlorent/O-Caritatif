@@ -14,5 +14,4 @@ opinionRouter.patch('/opinion/:id', opinionController.updateOpinion);
 
 opinionRouter.delete('/opinion/:id', opinionController.removeOpinion);
 
-logger('opinion router initialized');
 export default opinionRouter;

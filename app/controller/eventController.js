@@ -1,43 +1,43 @@
 import debug from 'debug';
 const logger = debug('app:controller');
 import { eventDatamapper } from '../datamapper/index.js';
+import controllerUtil from '../service/util/controller.js';
 
 const eventController = {
-    async getAllEvent(req,res) {
+    async getAllEvent( req, res, next ) {
         logger('Event getAll controller called');
-        const events = await eventDatamapper.findAllEvent();
-        res.json(events);
+        const { result , error } = await eventDatamapper.findAllEvent();
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async getOneEvent(req,res) {
+    async getOneEvent( req, res, next ) {
         logger('Event getOne controller called');
         const id = req.params.id;
-        const event = await eventDatamapper.findOneEvent(id);
-        res.json(event);
+        const { result , error } = await eventDatamapper.findOneEvent(id);
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async createEvent(req, res) {
+    async createEvent( req, res, next ) {
         logger('Event create controller called');
         const newEvent = req.body;
         const image = req.file ? req.file.path:null;
-        const event = await eventDatamapper.insertEvent(newEvent, image)
-        res.json(event);
+        const { result , error } = await eventDatamapper.insertEvent(newEvent, image)
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async updateEvent(req, res) {
+    async updateEvent( req, res, next ) {
         logger('Event modify controller called');
         const id = req.params.id;
         const eventModified = req.body;
-        const event = await eventDatamapper.modifyEvent(id, eventModified);
-        res.json(event);
+        const { result , error } = await eventDatamapper.modifyEvent(id, eventModified);
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async removeEvent(req,res) {
+    async removeEvent( req, res,next ) {
         const id = req.params.id;
-        const event = await eventDatamapper.deleteEvent(id);
-        res.json(event);
+        const { result , error } = await eventDatamapper.deleteEvent(id);
+        controllerUtil.manageResponse(error, result, res, next);
     }
 }
 
-logger('Event controller initialized');
 export default eventController;

@@ -2,6 +2,7 @@ import debug from 'debug';
 const logger = debug('app:authentification');
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
+import APIerror from '../error/APIerror.js';
 
 const authentification = {
     isAuthentificated(req, res, next) {
@@ -13,8 +14,7 @@ const authentification = {
             req.user = decoded;
             next();
         } else {
-            throw new Error('Token non valide');
-            //next()
+            next(new APIerror('Votre token n\'est pas valide'));
         }
     }
 };

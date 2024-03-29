@@ -1,44 +1,44 @@
 import debug from 'debug';
 const logger = debug('app:controller');
 import { photoDatamapper } from '../datamapper/index.js';
+import controllerUtil from '../service/util/controller.js';
 
 const photoController = {
 
-    async getAllPhoto(req, res) {
+    async getAllPhoto( req, res, next ) {
         logger('Photo getAll controller called');
-        const photos = await photoDatamapper.findAllPhoto();
-        res.json(photos);
+        const { result, error } = await photoDatamapper.findAllPhoto();
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async getOnePhoto(req,res) {
+    async getOnePhoto( req, res, next ) {
         logger('Photo getOne controller called');
         const id = req.params.id;
-        const photo = await photoDatamapper.findOnePhoto(id);
-        res.json(photo);
+        const { result, error } = await photoDatamapper.findOnePhoto(id);
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async createPhoto(req, res) {
+    async createPhoto( req, res, next ) {
         logger('Photo create controller called');
         const newPhoto = req.body;
-        const image = req.file.path;
-        const photo = await photoDatamapper.insertPhoto(newPhoto, image)
-        res.json(photo);
+        const image = req.file ? req.file.path:null;
+        const { result, error } = await photoDatamapper.insertPhoto(newPhoto, image)
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async updatePhoto(req, res) {
+    async updatePhoto( req, res, next ) {
         logger('Photo modify controller called');
         const id = req.params.id;
         const photoModified = req.body;
-        const photo = await photoDatamapper.modifyPhoto(id, photoModified);
-        res.json(photo);
+        const { result, error } = await photoDatamapper.modifyPhoto(id, photoModified);
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async removePhoto(req,res) {
+    async removePhoto( req, res, next ) {
         const id = req.params.id;
-        const photo = await photoDatamapper.deletePhoto(id);
-        res.json(photo);
+        const { result, error } = await photoDatamapper.deletePhoto(id);
+        controllerUtil.manageResponse(error, result, res, next);
     }
 }
 
-logger('Photo controller initialized');
 export default photoController;

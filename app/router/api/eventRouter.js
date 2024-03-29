@@ -15,5 +15,4 @@ eventRouter.patch('/event/:id', eventController.updateEvent);
 
 eventRouter.delete('/event/:id', eventController.removeEvent);
 
-logger('event router initialized');
 export default eventRouter;

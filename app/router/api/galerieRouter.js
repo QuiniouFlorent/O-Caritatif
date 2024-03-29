@@ -14,6 +14,4 @@ galerieRouter.patch('/galerie/:id', galerieController.updateGalerie);
 
 galerieRouter.delete('/galerie/:id', galerieController.removeGalerie);
 
-
-logger('galerie router initialized');
 export default galerieRouter;

@@ -1,32 +1,20 @@
 import debug from 'debug';
 const logger = debug('app:datamapper');
-import client from '../models/client.js';
+import datamapperUtil from '../service/util/datamapper.js';
 
 const eventDatamapper = {
+    
     async findAllEvent() {
         const query = 'SELECT * FROM view_all_events';
-        try {
-            const response = await client.query(query);
-            const result = response.rows;
-            return result;
-
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas d\'événement trouvé !');
-        }
+       
+        return datamapperUtil.executeQuery(query);
     },
 
     async findOneEvent(id) {
         const query = 'SELECT * FROM event WHERE id = $1';
         const values = [id]
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas d\'événement correspondante !')
-        }
+
+        return datamapperUtil.executeQuery(query,values);
     },
 
     async insertEvent(newEvent, image) {
@@ -35,14 +23,8 @@ const eventDatamapper = {
         VALUES
         ($1,$2,$3,$4,$5,$6,$7,$8)`
         const values = [newEvent.title, newEvent.category, image, newEvent.description, newEvent.date, newEvent.calendar_url, newEvent.place, newEvent.author];
-        try {
-            const response = await client.query(query,values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error(`Un truc super horrible s'est produit`);
-        }
+        
+        return datamapperUtil.executeQuery(query,values);
     },
 
     async modifyEvent(id, eventModified) {
@@ -57,29 +39,16 @@ const eventDatamapper = {
             updated_at = NOW()
             WHERE id = $8`;
         const values = [eventModified.title, eventModified.category, eventModified.photo_url, eventModified.description, eventModified.date, eventModified.calendar_url, eventModified.place, id]
-        try {
-            const response = await client.query(query, values);
-            const result = response.rows;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Impossible de modifier l\'événement');
-        }
+        
+        return datamapperUtil.executeQuery(query,values);
     },
 
     async deleteEvent(id) {
         const query = 'DELETE FROM event WHERE id = $1';
         const values = [id];
-        try {
-            const response = await client.query(query,values);
-            const result = !!response.rowCount;
-            return result;
-        } catch (err) {
-            logger(err);
-            throw new Error('Pas d\'événement à supprimer');
-        }
+
+        return datamapperUtil.executeQuery(query,values);
     }
 }
 
-logger('Event datamapper initialized');
 export default eventDatamapper;

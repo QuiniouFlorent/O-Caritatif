@@ -15,5 +15,4 @@ sponsorRouter.patch('/sponsor/:id', sponsorController.updateSponsor);
 
 sponsorRouter.delete('/sponsor/:id', sponsorController.removeSponsor);
 
-logger('sponsor router initialized');
 export default sponsorRouter;
