@@ -23,8 +23,8 @@ const userController = {
         logger('Login controller called');
         const [result] = await userDatamapper.findUser(req.body);
         const isEqual = await bcrypt.compare(req.body.password, result.password);
-
         if(isEqual) {
+            logger(result)
             delete result.password;
             const token = jwt.sign(result, process.env.JWT_SECRET);
             res.json(token);
