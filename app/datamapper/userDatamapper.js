@@ -31,6 +31,7 @@ const userDatamapper = {
 
     async findUser(user) {
         const query = 'SELECT * FROM "user" WHERE email = $1';
+        logger(user);
         const values = [user.email];
         try {
             const response = await client.query(query, values);

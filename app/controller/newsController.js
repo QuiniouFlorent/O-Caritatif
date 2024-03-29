@@ -19,7 +19,8 @@ const newsController = {
     async createNews(req, res) {
         logger('News create controller called');
         const newNews = req.body;
-        const image = req.file.path;
+        const image = req.file ? req.file.path:null;
+        logger(image);
         const news = await newsDatamapper.insertNews(newNews, image);
         res.json(news);
     },

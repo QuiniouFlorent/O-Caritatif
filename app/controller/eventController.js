@@ -19,7 +19,7 @@ const eventController = {
     async createEvent(req, res) {
         logger('Event create controller called');
         const newEvent = req.body;
-        const image = req.file.path;
+        const image = req.file ? req.file.path:null;
         const event = await eventDatamapper.insertEvent(newEvent, image)
         res.json(event);
     },
