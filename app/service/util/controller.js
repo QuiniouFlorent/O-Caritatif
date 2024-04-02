@@ -1,4 +1,5 @@
-const controllerUtil = { manageResponse(error, result, res, next) {
+const controllerUtil = { 
+    manageResponse(error, result, res, next) {
 
     if(error) {
         next(error);

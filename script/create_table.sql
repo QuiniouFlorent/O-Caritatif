@@ -143,20 +143,25 @@ CREATE VIEW view_one_news AS
         n.is_active,
         u.lastname AS nom_auteur_news,
         u.firstname AS prenom_auteur_news,
-        ARRAY_AGG(
-            JSON_BUILD_OBJECT(
-                'commentaire', c.content,
-                'date_commentaire', c.created_at,
-                'date_modification', c.updated_at,
-                'nom_auteur_commentaire', uc.lastname,
-                'prenom_auteur_commentaire', uc.firstname,
-                'user_id', uc.id
-            ) ORDER BY c.created_at
+        COALESCE(
+            (SELECT ARRAY_AGG(
+                JSON_BUILD_OBJECT(
+                    'commentaire', c.content,
+                    'date_commentaire', c.created_at,
+                    'date_modification', c.updated_at,
+                    'nom_auteur_commentaire', uc.lastname,
+                    'prenom_auteur_commentaire', uc.firstname,
+                    'user_id', uc.id
+                ) ORDER BY c.created_at)
+                FROM comment c 
+                JOIN "user" uc on uc.id = c.user_id
+                WHERE c.news_id= n.id
+                GROUP BY uc.lastname, uc.firstname, uc.id),
+            '{}'::json[]
         ) AS commentaires
     FROM news n
     JOIN "user" u ON u.id = n.author
     LEFT JOIN comment c ON n.id = c.news_id
-    LEFT JOIN "user" uc ON uc.id = c.user_id
     GROUP BY n.id, n.title, n.category, n.photo_url, n.content, u.lastname, u.firstname;
 
 CREATE VIEW view_one_galery AS
