@@ -32,6 +32,14 @@ const sponsorController = {
         controllerUtil.manageResponse(error, result, res, next);
     },
 
+    async updateSponsorPhoto( req, res, next ) {
+        logger('Sponsor modify Photo controller called');
+        const id = req.params.id;
+        const image =  req.file ? req.file.path:null;
+        const { result, error } = await sponsorDatamapper.modifySponsorPhoto(id, image);
+        controllerUtil.manageResponse(error, result, res, next);
+    },
+
     async removeSponsor( req, res, next ) {
         const id = req.params.id;
         const { result, error } = await sponsorDatamapper.deleteSponsor(id);

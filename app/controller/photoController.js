@@ -34,6 +34,14 @@ const photoController = {
         controllerUtil.manageResponse(error, result, res, next);
     },
 
+    async updatePhotoPhoto( req, res, next ) {
+        logger('Photo modify Photo controller called');
+        const id = req.params.id;
+        const image =  req.file ? req.file.path:null;
+        const { result, error } = await photoDatamapper.modifyPhotoPhoto(id, image);
+        controllerUtil.manageResponse(error, result, res, next);
+    },
+
     async removePhoto( req, res, next ) {
         const id = req.params.id;
         const { result, error } = await photoDatamapper.deletePhoto(id);

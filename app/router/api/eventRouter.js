@@ -12,6 +12,7 @@ eventRouter.get('/event/:id', eventController.getOneEvent);
 eventRouter.post('/event', upload('event').single('image'), eventController.createEvent);
 
 eventRouter.patch('/event/:id', eventController.updateEvent);
+eventRouter.patch('/event/:id/photo', upload('event').single('image'), eventController.updateEventPhoto);
 
 eventRouter.delete('/event/:id', eventController.removeEvent);
 

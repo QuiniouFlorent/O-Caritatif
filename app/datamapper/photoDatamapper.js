@@ -42,6 +42,16 @@ const photoDatamapper= {
         return datamapperUtil.executeQuery(query, values);
     },
 
+    async modifyPhotoPhoto(id, image) {
+        const query = `UPDATE photo SET
+            photo_url = $1,
+            updated_at = NOW()
+            WHERE id = $2`;
+        const values = [image, id];
+
+        return datamapperUtil.executeQuery(query, values);
+    },
+
     async deletePhoto(id) {
         const query = 'DELETE FROM photo WHERE id = $1';
         const values = [id];
