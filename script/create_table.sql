@@ -57,7 +57,7 @@ CREATE TABLE galery (
 
 CREATE TABLE photo (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    galery_id INT REFERENCES galery(id),
+    galery_id INT REFERENCES galery(id) ON DELETE CASCADE,
     photo_url TEXT NOT NULL,
     content TEXT,
     is_active BOOLEAN DEFAULT true,
