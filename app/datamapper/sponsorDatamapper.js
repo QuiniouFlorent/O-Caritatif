@@ -47,7 +47,8 @@ const sponsorDatamapper = {
         const query = `UPDATE sponsor SET
             photo_url = $1,
             updated_at = NOW()
-            WHERE id = $2`;
+            WHERE id = $2
+            RETURNING photo_url`;
         const values = [image, id];
 
         return datamapperUtil.executeQuery(query, values);
