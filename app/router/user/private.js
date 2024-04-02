@@ -7,7 +7,7 @@ import { userController } from '../../controller/index.js';
 import authentification from '../../service/authentification/auth.js';
 const privateRouter = Router();
 
-privateRouter.get('/user',/* authentification.isAuthentificated,*/ userController.getAllUser);
+privateRouter.get('/user', authentification.isAuthentificated, userController.getAllUser);
 privateRouter.get('/user/:id', userController.getOneUser);
 
 privateRouter.patch('/user/:id', userController.updateUser);
