@@ -21,7 +21,6 @@ const newsController = {
         logger('News create controller called');
         const newNews = req.body;
         const image = req.file ? req.file.path:null;
-        logger(image);
         const { result, error } = await newsDatamapper.insertNews(newNews, image);
         controllerUtil.manageResponse(error, result, res, next);
     },
