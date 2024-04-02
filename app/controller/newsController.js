@@ -33,6 +33,14 @@ const newsController = {
         controllerUtil.manageResponse(error, result, res, next);
     },
 
+    async updateNewsPhoto( req, res, next ) {
+        logger('News modify Photo controller called');
+        const id = req.params.id;
+        const image =  req.file ? req.file.path:null;
+        const { result, error } = await newsDatamapper.modifyNewsPhoto(id, image);
+        controllerUtil.manageResponse(error, result, res, next);
+    },
+
     async removeNews( req, res, next ) {
         const id = req.params.id;
         const { result, error } = await newsDatamapper.deleteNews(id);

@@ -40,6 +40,16 @@ const newsDatamapper = {
         
         return datamapperUtil.executeQuery(query, values);
     },
+
+    async modifyNewsPhoto(id, image) {
+        const query = `UPDATE news SET
+            photo_url = $1,
+            updated_at = NOW()
+            WHERE id = $2`;
+        const values = [image, id];
+
+        return datamapperUtil.executeQuery(query, values);
+    },
     
     async deleteNews(id) {
         const query = 'DELETE FROM news WHERE id = $1';

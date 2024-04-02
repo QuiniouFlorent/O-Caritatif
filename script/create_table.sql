@@ -138,6 +138,7 @@ CREATE VIEW view_one_news AS
     SELECT n.id,
     n.title,
     n.category,
+    n.summary,
     n.photo_url,
     n.content,
     n.is_active,
