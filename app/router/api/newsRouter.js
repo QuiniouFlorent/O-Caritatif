@@ -11,7 +11,7 @@ newsRouter.get('/news/:id', newsController.getOneNews);
 
 newsRouter.post('/news', upload('news').single('image'), newsController.createNews);
 
-newsRouter.patch('/news/:id', upload('news').single('image'), newsController.updateNews);
+newsRouter.patch('/news/:id', newsController.updateNews);
 
 newsRouter.delete('/news/:id', newsController.removeNews);
 

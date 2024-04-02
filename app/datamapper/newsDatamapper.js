@@ -31,13 +31,12 @@ const newsDatamapper = {
         const query = `UPDATE news SET
             title = $1,
             category = $2,
-            photo_url = $3,
-            summary = $4,
-            content = $5,
-            is_active = $6,
+            summary = $3,
+            content = $4,
+            is_active = $5,
             updated_at = NOW()
-            WHERE id = $7`;
-        const values = [newsModified.title, newsModified.category, newsModified.photo_url, newsModified.summary, newsModified.content, newsModified.is_active, id];
+            WHERE id = $6`;
+        const values = [newsModified.title, newsModified.category, newsModified.summary, newsModified.content, newsModified.is_active, id];
         return datamapperUtil.executeQuery(query, values);
     },
     
