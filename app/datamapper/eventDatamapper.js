@@ -31,16 +31,25 @@ const eventDatamapper = {
         const query = `UPDATE event SET
             title = $1,
             category = $2,
-            photo_url = $3,
-            description = $4,
-            date = $5,
-            calendar_url = $6,
-            place = $7,
+            description = $3,
+            date = $4,
+            calendar_url = $5,
+            place = $6,
             updated_at = NOW()
-            WHERE id = $8`;
-        const values = [eventModified.title, eventModified.category, eventModified.photo_url, eventModified.description, eventModified.date, eventModified.calendar_url, eventModified.place, id]
+            WHERE id = $7`;
+        const values = [eventModified.title, eventModified.category, eventModified.description, eventModified.date, eventModified.calendar_url, eventModified.place, id]
         
         return datamapperUtil.executeQuery(query,values);
+    },
+
+    async modifyEventPhoto(id,image) {
+        const query = `UPDATE event SET
+            photo_url = $1,
+            updated_at = NOW()
+            WHERE id = $2`;
+        const values = [image, id];
+
+        return datamapperUtil.executeQuery(query, values);
     },
 
     async deleteEvent(id) {

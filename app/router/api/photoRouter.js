@@ -12,6 +12,7 @@ photoRouter.get('/photo/:id', photoController.getOnePhoto);
 photoRouter.post('/photo', upload('photo').single('image'), photoController.createPhoto);
 
 photoRouter.patch('/photo/:id', photoController.updatePhoto);
+photoRouter.patch('/photo/:id/photo', upload('photo').single('image'), photoController.updatePhotoPhoto);
 
 photoRouter.delete('/photo/:id', photoController.removePhoto);
 

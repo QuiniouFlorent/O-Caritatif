@@ -59,6 +59,14 @@ const userController = {
         controllerUtil.manageResponse(error, result, res, next);
     },
 
+    async updateUserPhoto( req, res, next ) {
+        logger('User modify Photo controller called');
+        const id = req.params.id;
+        const image =  req.file ? req.file.path:null;
+        const { result, error } = await userDatamapper.modifyUserPhoto(id, image);
+        controllerUtil.manageResponse(error, result, res, next);
+    },
+
     async removeUser( req, res, next ) {
 
         const id = req.params.id;

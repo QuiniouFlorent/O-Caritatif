@@ -53,6 +53,17 @@ const userDatamapper = {
         
         return datamapperUtil.executeQuery(query, values);
     },
+
+    async modifyUserPhoto(id, image) {
+        const query = `UPDATE "user" SET
+            photo_url = $1,
+            updated_at = NOW()
+            WHERE id = $2`;
+        const values = [image, id];
+
+        return datamapperUtil.executeQuery(query, values);
+    },
+
 //TODO ! PK - FK ??
     async deleteUser(id) {
         

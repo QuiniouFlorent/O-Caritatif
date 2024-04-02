@@ -35,12 +35,21 @@ const sponsorDatamapper = {
         const query = `UPDATE sponsor SET
             name = $1,
             link_url = $2,
-            photo_url = $3,
-            is_active = $4,
+            is_active = $3,
             updated_at = NOW()
-            WHERE id = $5`;
-        const values = [sponsorModified.name, sponsorModified.link_url, sponsorModified.photo_url, sponsorModified.is_active, id];
+            WHERE id = $4`;
+        const values = [sponsorModified.name, sponsorModified.link_url, sponsorModified.is_active, id];
         
+        return datamapperUtil.executeQuery(query, values);
+    },
+
+    async modifySponsorPhoto(id, image) {
+        const query = `UPDATE sponsor SET
+            photo_url = $1,
+            updated_at = NOW()
+            WHERE id = $2`;
+        const values = [image, id];
+
         return datamapperUtil.executeQuery(query, values);
     },
 

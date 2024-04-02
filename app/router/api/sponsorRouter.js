@@ -12,6 +12,7 @@ sponsorRouter.get('/sponsor/:id', sponsorController.getOneSponsor);
 sponsorRouter.post('/sponsor', upload('sponsor').single('image'), sponsorController.createSponsor);
 
 sponsorRouter.patch('/sponsor/:id', sponsorController.updateSponsor);
+sponsorRouter.patch('/sponsor/:id/photo', upload('sponsor').single('image'), sponsorController.updateSponsorPhoto);
 
 sponsorRouter.delete('/sponsor/:id', sponsorController.removeSponsor);
 
