@@ -37,6 +37,7 @@ const newsDatamapper = {
             updated_at = NOW()
             WHERE id = $6`;
         const values = [newsModified.title, newsModified.category, newsModified.summary, newsModified.content, newsModified.is_active, id];
+        
         return datamapperUtil.executeQuery(query, values);
     },
     
