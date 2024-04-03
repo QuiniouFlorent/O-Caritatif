@@ -105,6 +105,7 @@ CREATE TABLE comment (
 );
 
 CREATE TABLE registration (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id INT REFERENCES "user"(id),
     event_id INT REFERENCES event(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),

@@ -10,6 +10,7 @@ import homedataDatamapper from './homedataDatamapper.js';
 import newsDatamapper from './newsDatamapper.js';
 import opinionDatamapper from './opinionDatamapper.js';
 import photoDatamapper from './photoDatamapper.js';
+import registrationDatamapper from './registrationDatamapper.js';
 import sponsorDatamapper from './sponsorDatamapper.js';
 import userDatamapper from './userDatamapper.js';
 
@@ -24,6 +25,7 @@ export {commentDatamapper,
         newsDatamapper,
         opinionDatamapper,
         photoDatamapper, 
+        registrationDatamapper,
         sponsorDatamapper, 
         userDatamapper 
 };

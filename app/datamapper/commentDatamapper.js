@@ -21,14 +21,14 @@ const commentDatamapper= {
         return datamapperUtil.executeQuery(query, values);
     },
 
-    async modifyComment(commentModified) {
+    async modifyComment(id, commentModified) {
 
         const query = `UPDATE comment SET
             content = $1,
             is_active = $2,
             updated_at = NOW()
-            WHERE user_id = $3 AND news_id = $4 AND created_at = $5`;
-        const values = [commentModified.content, commentModified.is_active, commentModified.user_id, commentModified.news_id, commentModified.created_at];
+            WHERE id = $3`;
+        const values = [commentModified.content, commentModified.is_active, id];
         
         return datamapperUtil.executeQuery(query, values);
     },
