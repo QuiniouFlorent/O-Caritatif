@@ -117,16 +117,30 @@ CREATE TABLE homedata (
     association_logo_url TEXT,
     image_header_content TEXT,
     adress TEXT,
-    facebook_link TEXT,
-    instagram_link TEXT,
-    tiktok_link TEXT,
+    first_media_link TEXT,
+    second_media_link TEXT,
+    third_media_link TEXT,
+    boutique_is_active BOOLEAN DEFAULT true,
+    galery_is_active BOOLEAN DEFAULT true,
+    event_is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
 
---image_header_url TEXT,
-
 ALTER TABLE homedata 
+    ADD CONSTRAINT limite_line CHECK ( id = 1 );
+
+CREATE TABLE photodata (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    image_home_header_url TEXT,
+    about_home_image_url TEXT,
+    about_us_image TEXT,
+    first_paragraph_image_url TEXT,
+    second_paragraph_image_url TEXT,
+    third_paragraph_image_url TEXT
+);
+
+ALTER TABLE photodata 
     ADD CONSTRAINT limite_line CHECK ( id = 1 );
 
 CREATE TABLE executivemember (
@@ -143,16 +157,11 @@ CREATE TABLE executivemember (
 CREATE TABLE aboutdata (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     about_title TEXT,
-    about_home_image TEXT,
     about_home_summary TEXT,
-    about_us_image TEXT,
     about_us_content TEXT,
     first_paragraph_title TEXT,
     second_paragraph_title TEXT,
     third_paragraph_title TEXT,
-    first_paragraph_image_url TEXT,
-    second_paragraph_image_url TEXT,
-    third_paragraph_image_url TEXT,
     first_paragraph_content TEXT,
     second_paragraph_content TEXT,
     third_paragraph_content TEXT,
@@ -161,7 +170,7 @@ CREATE TABLE aboutdata (
 );
 
 ALTER TABLE aboutdata
-    ADD CONSTRAINT limite_line CHECK ( id = 1 OR id IS NULL );
+    ADD CONSTRAINT limite_line CHECK ( id = 1 );
 
 CREATE VIEW view_all_events AS
     SELECT e.id, e.title, e.category, e.photo_url, e.description, e.date, e.calendar_url, e.place, u.lastname, u.firstname
@@ -213,15 +222,6 @@ CREATE VIEW view_one_galery AS
     JOIN photo p ON g.id = p.galery_id
 	GROUP BY g.id;
     
-
-CREATE VIEW view_last_galery AS
-    SELECT g.id, g.title, g.category, g.galery_date, g.description, ARRAY_AGG(json_build_object('id', p.id, 'photo_url', p.photo_url, 'content', p.content) ORDER BY p.id) AS photos
-    FROM galery g
-    JOIN photo p ON p.galery_id = g.id
-	GROUP BY g.id
-    ORDER BY g.galery_date DESC
-    LIMIT 1;
-
 CREATE VIEW view_last_news AS
     SELECT n.id, 
         n.title, 
