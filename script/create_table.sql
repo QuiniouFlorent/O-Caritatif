@@ -115,7 +115,6 @@ CREATE TABLE homedata (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     association_name TEXT NOT NULL,
     association_logo_url TEXT,
-    image_header_url TEXT,
     image_header_content TEXT,
     adress TEXT,
     facebook_link TEXT,
@@ -124,6 +123,8 @@ CREATE TABLE homedata (
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
+
+--image_header_url TEXT,
 
 ALTER TABLE homedata 
     ADD CONSTRAINT limite_line CHECK ( id = 1 );
@@ -197,7 +198,7 @@ CREATE VIEW view_one_news AS
     u.lastname AS nom_auteur_news,
     u.firstname AS prenom_auteur_news,
         CASE
-            WHEN count(c.content) > 0 THEN array_agg(json_build_object('commentaire', c.content, 'date_commentaire', c.created_at, 'date_modification', c.updated_at, 'nom_auteur_commentaire', uc.lastname, 'prenom_auteur_commentaire', uc.firstname, 'user_id', uc.id) ORDER BY c.created_at)
+            WHEN count(c.content) > 0 THEN ARRAY_AGG(json_build_object('commentaire', c.content, 'date_commentaire', c.created_at, 'date_modification', c.updated_at, 'nom_auteur_commentaire', uc.lastname, 'prenom_auteur_commentaire', uc.firstname, 'user_id', uc.id) ORDER BY c.created_at)
             ELSE '{}'::json[]
         END AS commentaires
     FROM news n
@@ -207,12 +208,14 @@ CREATE VIEW view_one_news AS
     GROUP BY n.id, n.title, n.category, n.photo_url, n.content, u.lastname, u.firstname;
 
 CREATE VIEW view_one_galery AS
-    SELECT p.id, p.galery_id, p.photo_url, p.content, g.title, g.description, g.category, g.galery_date
-    FROM photo p
-    JOIN galery g ON p.galery_id = g.id;
+    SELECT g.id, g.title, g.description, g.category, g.galery_date, ARRAY_AGG(json_build_object('id', p.id, 'photo_url', p.photo_url, 'content', p.content) ORDER BY p.id) AS photos
+    FROM galery g
+    JOIN photo p ON g.id = p.galery_id
+	GROUP BY g.id;
+    
 
 CREATE VIEW view_last_galery AS
-    SELECT g.id, g.title, g.category, g.galery_date, g.description, ARRAY_AGG(p.photo_url) AS photos
+    SELECT g.id, g.title, g.category, g.galery_date, g.description, ARRAY_AGG(json_build_object('id', p.id, 'photo_url', p.photo_url, 'content', p.content) ORDER BY p.id) AS photos
     FROM galery g
     JOIN photo p ON p.galery_id = g.id
 	GROUP BY g.id

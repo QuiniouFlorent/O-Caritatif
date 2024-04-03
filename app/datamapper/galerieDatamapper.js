@@ -11,7 +11,7 @@ const galeryDatamapper= {
     },
 
     async findOneGalery(id) {
-        const query = 'SELECT * FROM view_one_galery WHERE galery_id = $1';
+        const query = 'SELECT * FROM view_one_galery WHERE id = $1';
         const values = [id]
         
         return datamapperUtil.executeQuery(query, values);
