@@ -5,6 +5,12 @@ import controllerUtil from '../service/util/controller.js';
 
 const commentController = {
 
+    async getAllComment( req, res, next ) {
+        logger('Comment getAll Controller called');
+        const { result, error } = await commentDatamapper.findAllComment();
+        controllerUtil.manageResponse(error, result, res, next);
+    },
+
     async createComment( req, res, next ) {
         logger('Comment create controller called');
         const newComment = req.body;

@@ -3,6 +3,12 @@ const logger = debug('app:datamapper');
 import datamapperUtil from '../service/util/datamapper.js';
 
 const commentDatamapper= {
+
+    async findAllComment() {
+        const query = 'SELECT * FROM comment';
+
+        return datamapperUtil.executeQuery(query);
+    },
    
     async insertComment(newComment) {
 
