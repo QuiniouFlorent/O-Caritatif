@@ -14,7 +14,7 @@ const sponsorDatamapper = {
     async findOneSponsor(id) {
 
         const query = 'SELECT * FROM sponsor WHERE id = $1';
-        const values = [id]
+        const values = [id];
 
         return datamapperUtil.executeQuery(query, values);
     },
