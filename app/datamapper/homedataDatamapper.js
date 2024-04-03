@@ -14,7 +14,7 @@ const homedataDatamapper = {
     async insertHomedata(newHomedata, image) {
 
         const query = `INSERT INTO homedata
-        (association_name, image_header_url, image_header_content, adress, facebook_link, instagram_link, tiktok_link)
+        (association_name, association_logo_url, image_header_content, adress, facebook_link, instagram_link, tiktok_link)
         VALUES
         ($1, $2, $3, $4, $5, $6, $7)`;
 
@@ -47,19 +47,6 @@ const homedataDatamapper = {
         updated_at = NOW()
         WHERE id = 1
         RETURNING association_logo_url `;
-
-        const values = [image];
-
-        return datamapperUtil.executeQuery(query, values);
-    },
-
-    async modifyHomedataPhoto(image) {
-
-        const query = `UPDATE homedata SET
-        image_header_url = $1,
-        updated_at = NOW()
-        WHERE id = 1
-        RETURNING image_header_url `;
 
         const values = [image];
 
