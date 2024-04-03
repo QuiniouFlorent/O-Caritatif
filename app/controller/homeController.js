@@ -5,10 +5,10 @@ import { homeDatamapper } from '../datamapper/index.js';
 const homeController = {
     async getHomeInfos(req,res) {
         logger('Home controller called');
-        const galeries = await homeDatamapper.findLastGalery();
+        const galery = await homeDatamapper.findLastGalery();
         const news = await homeDatamapper.findLastNews();
         const events = await homeDatamapper.findNextEvent();
-        res.json({galeries,news, events});
+        res.json({ galery, news, events });
     }
 }
 
