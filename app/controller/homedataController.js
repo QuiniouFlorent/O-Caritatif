@@ -25,7 +25,7 @@ const homedataController = {
 
         logger('Homedata modify controller called');
         const homedataModified = req.body;
-        const { result, error } = await homedataModified.modifyHomedata(homedataModified);
+        const { result, error } = await homedataDatamapper.modifyHomedata(homedataModified);
         controllerUtil.manageResponse(error, result, res, next);
     },
 

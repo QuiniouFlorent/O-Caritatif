@@ -29,13 +29,16 @@ const homedataDatamapper = {
             association_name = $1,
             image_header_content = $2,
             adress = $3,
-            facebook_link = $4,
-            instagram_link = $5,
-            tiktok_link = $6,
+            first_media_link = $4,
+            second_media_link = $5,
+            third_media_link = $6,
+            boutique_is_active = $7,
+            galery_is_active = $8, 
+            event_is_active = $9,
             updated_at = NOW()
             WHERE id = 1`;
 
-        const values = [homedataModified.association_name, homedataModified.image_header_content, homedataModified.adress, homedataModified.facebook_link, homedataModified.instagram_link, homedataModified.tiktok_link];
+        const values = [homedataModified.association_name, homedataModified.image_header_content, homedataModified.adress, homedataModified.first_media_link, homedataModified.second_media_link, homedataModified.third_media_link, homedataModified.boutique_is_active, homedataModified.galery_is_active, homedataModified.event_is_active];
         
         return datamapperUtil.executeQuery(query, values);
     },

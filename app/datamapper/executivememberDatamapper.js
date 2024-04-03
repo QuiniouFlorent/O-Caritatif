@@ -26,46 +26,47 @@ const executivememberDatamapper = {
             VALUES
             ($1, $2, $3, $4, $5, $6)`;
 
-        const values = [newHomedata.association_name, image, newHomedata.image_header_content, newHomedata.adress, newHomedata.facebook_link, newHomedata.instagram_link, newHomedata.tiktok_link];
+        const values = [newExecutivemember.firstname, newExecutivemember.lastname, newExecutivemember.role, newExecutivemember.description, image, newExecutivemember.since];
     
         return datamapperUtil.executeQuery(query, values);
     },
 
-    async modifyHomedata(homedataModified) {
+    async modifyExecutivemember(id, executivememberModified) {
 
-        const query = `UPDATE sponsor SET
-            association_name = $1,
-            image_header_content = $2,
-            adress = $3,
-            facebook_link = $4,
-            instagram_link = $5,
-            tiktok_link = $6,
+        const query = `UPDATE executivemember SET
+            firstname = $1, 
+            lastname = $2, 
+            role = $3, 
+            description = $4, 
+            since = $5
             updated_at = NOW()
-            WHERE id = 1`;
+            WHERE id = $6`;
 
-        const values = [homedataModified.association_name, homedataModified.image_header_content, homedataModified.adress, homedataModified.facebook_link, homedataModified.instagram_link, homedataModified.tiktok_link];
+        const values = [executivememberModified.firstname, executivememberModified.lastname, executivememberModified.role, executivememberModified.description, executivememberModified.since, id];
         
         return datamapperUtil.executeQuery(query, values);
     },
 
-    async modifyHomedataLogo(image) {
+    async modifyExecutivememberPhoto(id, image) {
 
-        const query = `UPDATE homedata SET
-        association_logo_url = $1,
+        const query = `UPDATE executivemember SET
+        photo_url = $1,
         updated_at = NOW()
-        WHERE id = 1
-        RETURNING association_logo_url `;
+        WHERE id = $2
+        RETURNING photo_url `;
 
-        const values = [image];
+        const values = [image, id];
 
         return datamapperUtil.executeQuery(query, values);
     },
 
-    async deleteHomedata() {
+    async deleteExecutivemember(id) {
 
-        const query = 'TRUNCATE TABLE homedata RESTART IDENTITY';
+        const query = 'DELETE FROM executivemember WHERE id = $1';
+
+        const values = [id];
         
-        return datamapperUtil.executeQuery(query);
+        return datamapperUtil.executeQuery(query, values);
     }
 }
 
