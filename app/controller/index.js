@@ -5,6 +5,7 @@ import commentController from './commentController.js';
 import eventController from './eventController.js';
 import galerieController from './galerieController.js';
 import homeController from './homeController.js';
+import homedataController from './homedataController.js';
 import newsController from './newsController.js';
 import opinionController from './opinionController.js';
 import photoController from './photoController.js';
@@ -16,7 +17,8 @@ logger('Main controller initialized');
 export {commentController, 
         eventController, 
         galerieController, 
-        homeController, 
+        homeController,
+        homedataController, 
         newsController,
         opinionController,
         photoController, 

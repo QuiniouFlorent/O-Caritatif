@@ -5,10 +5,10 @@ import APIerror from './APIerror.js';
 
 const errorService = {
     manageError(err, req, res, _) {
-        logger(err);
-        res.status(err.infos.statusCode).json({
+        logger(err); 
+        res.status(err.code).json({
             status: 'error', data: {
-                name: err.name, message: err.message,},});
+                name: err.name, message: err.message, code: err.code},});
     },
     _404(req, res, next) {
         next(new APIerror('URL non trouvée', 404));

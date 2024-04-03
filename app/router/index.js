@@ -3,6 +3,7 @@ const logger = debug('app:router');
 
 import { Router } from 'express';
 const router = Router();
+import customizeRouter from './customize/index.js';
 import apiRouter from './api/index.js';
 import userRouter from './user/index.js';
 import errorService from '../service/error/index.js';

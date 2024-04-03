@@ -11,6 +11,6 @@ commentRouter.post('/comment', commentController.createComment);
 
 commentRouter.patch('/comment', commentController.updateComment);
 
-commentRouter.delete('/comment', commentController.removeComment);
+commentRouter.delete('/comment/:id', commentController.removeComment);
 
 export default commentRouter;
