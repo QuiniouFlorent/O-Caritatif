@@ -5,12 +5,14 @@ import datamapperUtil from '../service/util/datamapper.js';
 const newsDatamapper = {
 
     async findAllNews() {
+        
         const query = 'SELECT * FROM view_all_news';
         
         return datamapperUtil.executeQuery(query);
     },
 
     async findOneNews(id) {
+
         const query = 'SELECT * FROM view_one_news WHERE id = $1';
         const values = [id];
 
@@ -18,6 +20,7 @@ const newsDatamapper = {
     },
 
     async insertNews(newNews, image) {
+
         const query = `INSERT INTO news
         (title, category, photo_url, summary, content, author)
         VALUES
@@ -28,6 +31,7 @@ const newsDatamapper = {
     },
 
     async modifyNews(id, newsModified) {
+
         const query = `UPDATE news SET
             title = $1,
             category = $2,
@@ -42,6 +46,7 @@ const newsDatamapper = {
     },
 
     async modifyNewsPhoto(id, image) {
+
         const query = `UPDATE news SET
             photo_url = $1,
             updated_at = NOW()
@@ -53,6 +58,7 @@ const newsDatamapper = {
     },
     
     async deleteNews(id) {
+
         const query = 'DELETE FROM news WHERE id = $1';
         const values = [id];
         

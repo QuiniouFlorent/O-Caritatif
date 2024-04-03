@@ -9,7 +9,7 @@ commentRouter.get('/comment', commentController.getAllComment);
 
 commentRouter.post('/comment', commentController.createComment);
 
-commentRouter.patch('/comment', commentController.updateComment);
+commentRouter.patch('/comment/:id', commentController.updateComment);
 
 commentRouter.delete('/comment/:id', commentController.removeComment);
 
