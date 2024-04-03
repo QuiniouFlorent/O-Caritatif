@@ -4,6 +4,7 @@ import { newsDatamapper } from '../datamapper/index.js';
 import controllerUtil from '../service/util/controller.js';
 
 const newsController = {
+    
     async getAllNews( req, res, next ) {
         logger('News getAll controller called');
         const { result, error } = await newsDatamapper.findAllNews();

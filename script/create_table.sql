@@ -110,6 +110,21 @@ CREATE TABLE registration (
     updated_at TIMESTAMPTZ
 );
 
+CREATE TABLE homedata (
+    name_asso
+    image_header_url
+    image_header_content
+    about_home_title
+    about_home_image
+    about_home_content
+);
+
+CREATE TABLE aboutdata (
+    about_header_title
+    about_header_image
+    about_header_content
+);
+
 CREATE VIEW view_all_events AS
     SELECT e.id, e.title, e.category, e.photo_url, e.description, e.date, e.calendar_url, e.place, u.lastname, u.firstname
     FROM event e
