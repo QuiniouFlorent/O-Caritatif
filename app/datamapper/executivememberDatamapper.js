@@ -2,21 +2,29 @@ import debug from 'debug';
 const logger = debug('app:datamapper');
 import datamapperUtil from '../service/util/datamapper.js';
 
-const homedataDatamapper = {
+const executivememberDatamapper = {
 
-    async findHomedata() {
+    async findAllExecutivemember() {
 
-        const query = 'SELECT * FROM homedata';
+        const query = 'SELECT * FROM executivememeber';
 
         return datamapperUtil.executeQuery(query);
     },
 
-    async insertHomedata(newHomedata, image) {
+    async findOneExecutivemember(id) {
 
-        const query = `INSERT INTO homedata
-            (association_name, association_logo_url, image_header_content, adress, facebook_link, instagram_link, tiktok_link)
+        const query = 'SELECT * FROM executivememeber WHERE id =$1';
+        const values = [id];
+
+        return datamapperUtil.executeQuery(query, values);
+    },
+
+    async insertExecutivemember(newExecutivemember, image) {
+
+        const query = `INSERT INTO executivemember
+            (firstname, lastname, role, description, photo_url, since)
             VALUES
-            ($1, $2, $3, $4, $5, $6, $7)`;
+            ($1, $2, $3, $4, $5, $6)`;
 
         const values = [newHomedata.association_name, image, newHomedata.image_header_content, newHomedata.adress, newHomedata.facebook_link, newHomedata.instagram_link, newHomedata.tiktok_link];
     
@@ -61,4 +69,4 @@ const homedataDatamapper = {
     }
 }
 
-export default homedataDatamapper;
+export default executivememberDatamapper;

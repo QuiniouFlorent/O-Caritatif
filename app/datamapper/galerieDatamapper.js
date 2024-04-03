@@ -5,7 +5,7 @@ import datamapperUtil from '../service/util/datamapper.js';
 const galeryDatamapper= {
 
     async findAllGalery() {
-        const query = 'SELECT * FROM "galery"';
+        const query = 'SELECT * FROM view_all_galery';
 
         return datamapperUtil.executeQuery(query);
     },
