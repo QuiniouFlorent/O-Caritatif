@@ -12,7 +12,6 @@ homedataRouter.post('/homedata', upload('homedata').single('image'), homedataCon
 
 homedataRouter.patch('/homedata', homedataController.updateHomedata);
 homedataRouter.patch('/homedata/logo', upload('homedata').single('image'), homedataController.updateHomedataLogo);
-homedataRouter.patch('/homedata/photo', upload('homedata').single('image'), homedataController.updateHomedataPhoto);
 
 homedataRouter.delete('/homedata', homedataController.removeHomedata);
 
