@@ -33,10 +33,10 @@ const commentDatamapper= {
         return datamapperUtil.executeQuery(query, values);
     },
 
-    async deleteComment(commentValues) {
+    async deleteComment(id) {
         
-        const query = 'DELETE FROM comment WHERE user_id = $1 AND news_id = $2 AND created_at = $3';
-        const values = [commentValues.user_id, commentValues.news_id, commentValues.created_at];
+        const query = 'DELETE FROM comment WHERE id = $1';
+        const values = [id];
         
         return datamapperUtil.executeQuery(query, values);
     }
