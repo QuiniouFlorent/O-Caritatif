@@ -26,8 +26,8 @@ const commentController = {
     },
 
     async removeComment( req, res, next ) {
-        const commentValues = req.body;
-        const { result, error } = await commentDatamapper.deleteComment(commentValues);
+        const id = req.params.id;
+        const { result, error } = await commentDatamapper.deleteComment(id);
         controllerUtil.manageResponse(error, result, res, next);
     }
 }

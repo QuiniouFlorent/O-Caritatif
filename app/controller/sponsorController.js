@@ -4,11 +4,13 @@ import { sponsorDatamapper } from '../datamapper/index.js';
 import controllerUtil from '../service/util/controller.js';
 
 const sponsorController = {
+
     async getAllSponsor( req, res, next ) {
         logger('Sponsor getAll controller called');
         const { result, error } = await sponsorDatamapper.findAllSponsor();
         controllerUtil.manageResponse(error, result, res, next);
     },
+    
     async getOneSponsor( req, res, next ) {
         logger('Sponsor getOne controller called');
         const id = req.params.id;

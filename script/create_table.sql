@@ -95,6 +95,7 @@ CREATE TABLE opinion (
 );
 
 CREATE TABLE comment (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id INT REFERENCES "user"(id),
     news_id INT REFERENCES news(id) ON DELETE CASCADE,
     content TEXT NOT NULL,
@@ -111,19 +112,54 @@ CREATE TABLE registration (
 );
 
 CREATE TABLE homedata (
-    name_asso
-    image_header_url
-    image_header_content
-    about_home_title
-    about_home_image
-    about_home_content
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    association_name TEXT NOT NULL,
+    image_header_url TEXT,
+    image_header_content TEXT,
+    adress TEXT,
+    facebook_link TEXT,
+    instagram_link TEXT,
+    tiktok_link TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
+);
+
+ALTER TABLE homedata 
+    ADD CONSTRAINT limite_line CHECK ( id = 1 OR id IS NULL );
+
+CREATE TABLE executivemember (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    firstname TEXT,
+    lastname TEXT,
+    role TEXT,
+    description TEXT,
+    since TIMESTAMPTZ,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
 );
 
 CREATE TABLE aboutdata (
-    about_header_title
-    about_header_image
-    about_header_content
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    about_title TEXT,
+    about_home_image TEXT,
+    about_home_summary TEXT,
+    about_us_image TEXT,
+    about_us_content TEXT,
+    first_paragraph_title TEXT,
+    second_paragraph_title TEXT,
+    third_paragraph_title TEXT,
+    first_paragraph_image_url TEXT,
+    second_paragraph_image_url TEXT,
+    third_paragraph_image_url TEXT,
+    first_paragraph_content TEXT,
+    second_paragraph_content TEXT,
+    third_paragraph_content TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
 );
+
+ALTER TABLE aboutdata
+    ADD CONSTRAINT limite_line CHECK ( id = 1 OR id IS NULL );
 
 CREATE VIEW view_all_events AS
     SELECT e.id, e.title, e.category, e.photo_url, e.description, e.date, e.calendar_url, e.place, u.lastname, u.firstname
@@ -200,9 +236,14 @@ CREATE VIEW view_last_news AS
     LIMIT 4;
 
 CREATE VIEW view_next_event AS
-    SELECT * 
-    FROM event
-    WHERE date >= CURRENT_DATE
+    SELECT e.id, e.category, 
+        e.title, e.photo_url, 
+        e.description, e.date, 
+        e.calendar_url, e.place,
+        u.lastname, u.firstname
+    FROM event e 
+    JOIN "user" u ON u.id = e.author
+    WHERE e.date >= CURRENT_DATE
     ORDER BY date LIMIT 3;
 
 COMMIT;

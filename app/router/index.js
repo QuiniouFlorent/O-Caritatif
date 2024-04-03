@@ -7,6 +7,7 @@ import apiRouter from './api/index.js';
 import userRouter from './user/index.js';
 import errorService from '../service/error/index.js';
 
+router.use('/customize', customizeRouter);
 router.use('/api', apiRouter);
 router.use('/login', userRouter);
 //404
