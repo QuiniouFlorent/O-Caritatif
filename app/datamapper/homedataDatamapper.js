@@ -14,11 +14,11 @@ const homedataDatamapper = {
     async insertHomedata(newHomedata, image) {
 
         const query = `INSERT INTO homedata
-            (association_name, association_logo_url, image_header_content, adress, facebook_link, instagram_link, tiktok_link)
+            (association_name, association_logo_url, image_header_content, adress, first_media_link, second_media_link, third_media_link, boutique_is_active, galery_is_active, event_is_active)
             VALUES
-            ($1, $2, $3, $4, $5, $6, $7)`;
+            ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
 
-        const values = [newHomedata.association_name, image, newHomedata.image_header_content, newHomedata.adress, newHomedata.facebook_link, newHomedata.instagram_link, newHomedata.tiktok_link];
+        const values = [newHomedata.association_name, image, newHomedata.image_header_content, newHomedata.adress, newHomedata.first_media_link, newHomedata.second_media_link, newHomedata.third_media_link, newHomedata.boutique_is_active, newHomedata.galery_is_active, newHomedata.event_is_active];
     
         return datamapperUtil.executeQuery(query, values);
     },
