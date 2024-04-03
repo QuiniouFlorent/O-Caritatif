@@ -114,6 +114,7 @@ CREATE TABLE registration (
 CREATE TABLE homedata (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     association_name TEXT NOT NULL,
+    association_logo_url TEXT,
     image_header_url TEXT,
     image_header_content TEXT,
     adress TEXT,
@@ -125,7 +126,7 @@ CREATE TABLE homedata (
 );
 
 ALTER TABLE homedata 
-    ADD CONSTRAINT limite_line CHECK ( id = 1 OR id IS NULL );
+    ADD CONSTRAINT limite_line CHECK ( id = 1 );
 
 CREATE TABLE executivemember (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,

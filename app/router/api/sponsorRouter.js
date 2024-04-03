@@ -1,5 +1,5 @@
 import debug from 'debug';
-const logger = debug('app:router')
+const logger = debug('app:router');
 
 import { Router } from 'express';
 import upload from '../../service/multer/multer-config.js';
