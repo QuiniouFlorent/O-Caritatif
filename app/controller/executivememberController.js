@@ -32,8 +32,9 @@ const executivememberController = {
     async updateExecutivemember( req, res, next ) {
 
         logger('Executivemember modify controller called');
-        const homedataModified = req.body;
-        const { result, error } = await executivememberDatamapper.modifyHomedata(homedataModified);
+        const id = req.params.id;
+        const executivememberModified = req.body;
+        const { result, error } = await executivememberDatamapper.modifyExecutivemember(executivememberModified, id);
         controllerUtil.manageResponse(error, result, res, next);
     },
 

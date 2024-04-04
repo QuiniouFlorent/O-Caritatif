@@ -29,7 +29,7 @@ const commentDatamapper= {
             updated_at = NOW()
             WHERE id = $3`;
         const values = [commentModified.content, commentModified.is_active, id];
-        
+        logger(values)
         return datamapperUtil.executeQuery(query, values);
     },
 
