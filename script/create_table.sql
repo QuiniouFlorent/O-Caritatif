@@ -133,9 +133,13 @@ ALTER TABLE homedata
 
 CREATE TABLE photodata (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    image_home_header_url TEXT,
+    first_image_home_header_url TEXT,
+    second_image_home_header_url TEXT,
+    third_image_home_header_url TEXT,
     about_home_image_url TEXT,
-    about_us_image TEXT,
+    first_image_about_us_image TEXT,
+    second_image_about_us_image TEXT,
+    third_image_about_us_image TEXT,
     first_paragraph_image_url TEXT,
     second_paragraph_image_url TEXT,
     third_paragraph_image_url TEXT
@@ -175,10 +179,12 @@ ALTER TABLE aboutdata
     ADD CONSTRAINT limite_line CHECK ( id = 1 );
 
 CREATE VIEW view_all_events AS
-    SELECT e.id, e.title, e.category, e.photo_url, e.description, e.date, e.calendar_url, e.place, u.lastname, u.firstname
+    SELECT e.id, e.title, e.category, e.photo_url, e.description, e.date, e.calendar_url, e.place, u.lastname, u.firstname, count(r.user_id) AS nombre_inscrit
     FROM event e
     JOIN "user" u
     ON u.id = e.author
+	LEFT JOIN registration r ON e.id = r.event_id
+	GROUP BY e.id, u.lastname, u.firstname
     ORDER BY e.date;
 
 CREATE VIEW view_all_news AS
