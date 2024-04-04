@@ -11,6 +11,7 @@ import homeRouter from './homeRouter.js';
 import newsRouter from './newsRouter.js';
 import opinionRouter from './opinionRouter.js';
 import photoRouter from './photoRouter.js';
+import registrationRouter from './registrationRouter.js';
 import sponsorRouter from './sponsorRouter.js';
 
 apiRouter.use(homeRouter);
@@ -20,6 +21,7 @@ apiRouter.use(galerieRouter);
 apiRouter.use(newsRouter);
 apiRouter.use(photoRouter);
 apiRouter.use(opinionRouter);
+apiRouter.use(registrationRouter);
 apiRouter.use(sponsorRouter);
 
 logger('API router initialized');
