@@ -25,7 +25,7 @@ const homedataDatamapper = {
 
     async modifyHomedata(homedataModified) {
 
-        const query = `UPDATE sponsor SET
+        const query = `UPDATE homedata SET
             association_name = $1,
             image_header_content = $2,
             adress = $3,

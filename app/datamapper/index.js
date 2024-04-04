@@ -1,6 +1,7 @@
 import debug from 'debug';
 const logger = debug('app:datamapper');
 
+import aboutdataDatamapper from './aboutdataDatamapper.js';
 import commentDatamapper from './commentDatamapper.js';
 import eventDatamapper from './eventDatamapper.js';
 import executivememberDatamapper from './executivememberDatamapper.js';
@@ -16,7 +17,8 @@ import userDatamapper from './userDatamapper.js';
 
 logger('main datamapper initialized');
 
-export {commentDatamapper, 
+export {aboutdataDatamapper,
+        commentDatamapper, 
         eventDatamapper, 
         executivememberDatamapper,
         galeryDatamapper,
