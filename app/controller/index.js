@@ -1,6 +1,7 @@
 import debug from 'debug';
 const logger = debug('app:controller');
 
+import aboutdataController from './aboutdataController.js';
 import commentController from './commentController.js';
 import eventController from './eventController.js';
 import executivememberController from './executivememberController.js';
@@ -16,7 +17,8 @@ import userController from './userController.js';
 
 logger('Main controller initialized');
 
-export {commentController, 
+export {aboutdataController,
+        commentController, 
         eventController, 
         executivememberController,
         galerieController, 
