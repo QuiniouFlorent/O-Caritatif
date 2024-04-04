@@ -230,7 +230,7 @@ CREATE VIEW view_one_news AS
 CREATE VIEW view_all_galery AS
     SELECT g.id, g.title, g.description, g.category, g.galery_date, g.is_active, ARRAY_AGG(json_build_object('id', p.id, 'photo_url', p.photo_url, 'content', p.content) ORDER BY p.id) AS photos
     FROM galery g
-    JOIN photo p ON g.id = p.galery_id
+    LEFT JOIN photo p ON g.id = p.galery_id
 	GROUP BY g.id;
 
 CREATE VIEW view_one_galery AS
