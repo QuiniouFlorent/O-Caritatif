@@ -191,7 +191,7 @@ CREATE VIEW view_all_news AS
         n.created_at,
         u.lastname,
         u.firstname,
-        count(c.news_id) AS nombre_commentaires
+        COUNT(c.news_id) FILTER (WHERE c.is_active = true) AS nombre_commentaires
     FROM news n
     JOIN "user" u ON u.id = n.author
     LEFT JOIN comment c ON n.id = c.news_id
