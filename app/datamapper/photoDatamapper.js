@@ -24,7 +24,7 @@ const photoDatamapper= {
         (galery_id, photo_url, content)
         VALUES
         ($1,$2,$3)`;
-        const values = [null, image, newPhoto.content];
+        const values = [newPhoto.galery_id, image, newPhoto.content];
             
         return datamapperUtil.executeQuery(query, values);
     },
