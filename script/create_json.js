@@ -8,6 +8,7 @@ const FILENAME4 = './data/fakesponsor.json';
 const FILENAME5 = './data/fakegalery.json';
 const FILENAME6 = './data/fakecomment.json';
 const FILENAME7 = './data/fakephoto.json';
+const FILENAME8 = './data/fakeregistration.json';
 
 /*
 (async () => {
@@ -135,6 +136,7 @@ fakerFR.image.urlLoremFlickr({ category: 'association' })
 }) ();
 
 */
+/*
 (async () => {
     await writeFile(FILENAME7, '[');
     for( let photoIndex = 0; photoIndex < 50; photoIndex ++ ) {
@@ -149,4 +151,20 @@ fakerFR.image.urlLoremFlickr({ category: 'association' })
         }
     await appendFile(FILENAME7, ']');
     console.log('photos created');
+}) ();
+*/
+
+(async () => {
+    await writeFile(FILENAME8, '[');
+    for( let registrationIndex = 0; registrationIndex < 100; registrationIndex ++ ) {
+        if(registrationIndex > 0) {
+            await appendFile(FILENAME8, ',\n');
+        }
+        const user_id = fakerFR.number.int(50);
+        const event_id = fakerFR.number.int(30);
+        const registration = {user_id, event_id};
+        await appendFile(FILENAME8, JSON.stringify(registration))
+        }
+    await appendFile(FILENAME8, ']');
+    console.log('registration created');
 }) ();
