@@ -209,7 +209,7 @@ CREATE VIEW view_one_news AS
     u.lastname AS nom_auteur_news,
     u.firstname AS prenom_auteur_news,
         CASE
-            WHEN count(c.content) > 0 THEN ARRAY_AGG(json_build_object('commentaire', c.content, 'date_commentaire', c.created_at, 'date_modification', c.updated_at, 'nom_auteur_commentaire', uc.lastname, 'prenom_auteur_commentaire', uc.firstname, 'user_id', uc.id) ORDER BY c.created_at)
+            WHEN count(c.content) > 0 THEN ARRAY_AGG(json_build_object('id', c.id, 'commentaire', c.content, 'date_commentaire', c.created_at, 'date_modification', c.updated_at, 'nom_auteur_commentaire', uc.lastname, 'prenom_auteur_commentaire', uc.firstname, 'user_id', uc.id) ORDER BY c.created_at)
             ELSE '{}'::json[]
         END AS commentaires
     FROM news n
