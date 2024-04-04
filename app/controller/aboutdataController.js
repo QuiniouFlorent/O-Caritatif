@@ -16,8 +16,7 @@ const aboutdataController = {
 
         logger('Aboutdata create controller called');
         const newAboutdata = req.body;
-        const image = req.file ? req.file.path:null;
-        const { result, error } = await aboutdataDatamapper.insertAboutdata(newAboutdata, image);
+        const { result, error } = await aboutdataDatamapper.insertAboutdata(newAboutdata);
         controllerUtil.manageResponse(error, result, res, next);
     },
 
