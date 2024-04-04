@@ -1,0 +1,17 @@
+[
+    {
+    "association_name": "O'caritatif" ,
+    "association_logo_url": "",
+	"first_home_image_content": "" ,
+    "second_home_image_content": "" ,
+    "third_home_image_content": "" ,
+	"about_summary_content": "O'Caritatif est une association dédiée à tisser des liens d'entraide entre individus face aux défis de la vie quotidienne. Fondée sur les valeurs de solidarité et de partage, elle met en relation des personnes en situation de précarité avec des bénévoles prêts à offrir leur temps et leurs compétences.",
+	"adress": "",
+	"first_media_link": "",
+	"second_media_link": "",
+	"third_media_link": "",
+	"boutique_is_active": true,
+	"galery_is_active": true, 
+	"event_is_active": true
+    }
+]
