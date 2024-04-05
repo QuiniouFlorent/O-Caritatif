@@ -1,0 +1,11 @@
+[{
+	"association_name": "o'caritatif",
+	"association_logo_url": null,
+	"primary_color": "#f27131",
+	"adress": "Rue de la Paix",
+	"email_asso": "ocaritatif@gmail.com",
+	"email_password": null,
+	"boutique_is_active": true,
+	"galery_is_active": true, 
+	"event_is_active": true
+}]
