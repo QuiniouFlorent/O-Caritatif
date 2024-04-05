@@ -122,7 +122,9 @@ CREATE TABLE setting (
     email_password TEXT,
     boutique_is_active BOOLEAN DEFAULT true,
     galery_is_active BOOLEAN DEFAULT true,
-    event_is_active BOOLEAN DEFAULT true
+    event_is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
 );
 
 ALTER TABLE setting 
@@ -155,7 +157,9 @@ CREATE TABLE photodata (
     third_image_about_us_image TEXT,
     first_paragraph_image_url TEXT,
     second_paragraph_image_url TEXT,
-    third_paragraph_image_url TEXT
+    third_paragraph_image_url TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
 );
 
 ALTER TABLE photodata 
