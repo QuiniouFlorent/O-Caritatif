@@ -1,4 +1,4 @@
-[{"lastName":"Renard","firstName":"Aloïse","email":"Aloise_Renard5@yahoo.fr","password":"XcVO5uVaD8BE_It","role":"utilisateur","photo_url":"https://loremflickr.com/640/480?lock=1805578189930496"},
+[{"lastName":"Admin","firstName":"Admin","email":"admin@admin.fr","password":"$2b$10$Rj0ke1AMDZaCxuE.hcgDj.Di4egYY2ZVg9/uUBQoCUuBxDTxfv3C.","role":"administrateur","photo_url":"https://picsum.photos/435"},
 {"lastName":"Dumont","firstName":"Esther","email":"Esther.Dumont17@gmail.com","password":"VR7J7O1cq5ascm7","role":"utilisateur","photo_url":"https://picsum.photos/seed/JElhGq/640/480"},
 {"lastName":"Dufour","firstName":"Perrine","email":"Perrine.Dufour@yahoo.fr","password":"OnmjjW5rLrwzsz7","role":"utilisateur","photo_url":"https://picsum.photos/seed/P2lp2t/640/480"},
 {"lastName":"Renard","firstName":"Muriel","email":"Muriel_Renard@gmail.com","password":"hdgSFDYIcJ5S4Wd","role":"utilisateur","photo_url":"https://loremflickr.com/640/480?lock=1997853794762752"},
