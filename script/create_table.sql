@@ -112,21 +112,31 @@ CREATE TABLE registration (
     updated_at TIMESTAMPTZ
 );
 
-CREATE TABLE homedata (
+CREATE TABLE setting (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     association_name TEXT NOT NULL,
     association_logo_url TEXT,
+    primary_color TEXT,
+    adress TEXT,
+    mail_asso TEXT,
+    email_password TEXT,
+    boutique_is_active BOOLEAN DEFAULT true,
+    galery_is_active BOOLEAN DEFAULT true,
+    event_is_active BOOLEAN DEFAULT true
+);
+
+ALTER TABLE setting 
+    ADD CONSTRAINT limite_line CHECK ( id = 1 );
+
+CREATE TABLE homedata (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     first_home_image_content TEXT,
     second_home_image_content TEXT,
     third_home_image_content TEXT,
     about_summary_content TEXT,
-    adress TEXT,
     first_media_link TEXT,
     second_media_link TEXT,
     third_media_link TEXT,
-    boutique_is_active BOOLEAN DEFAULT true,
-    galery_is_active BOOLEAN DEFAULT true,
-    event_is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
@@ -159,6 +169,7 @@ CREATE TABLE boardmember (
     description TEXT,
     photo_url TEXT,
     since TIMESTAMPTZ,
+    position INT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );

@@ -6,7 +6,7 @@ const boardmemberDatamapper = {
 
     async findAllBoardmember() {
 
-        const query = 'SELECT * FROM boardmember';
+        const query = 'SELECT * FROM boardmember ORDER BY position';
 
         return datamapperUtil.executeQuery(query);
     },
@@ -22,11 +22,11 @@ const boardmemberDatamapper = {
     async insertBoardmember(newBoardmember, image) {
 
         const query = `INSERT INTO boardmember
-            (firstname, lastname, role, description, photo_url, since)
+            (firstname, lastname, role, description, photo_url, since, position)
             VALUES
-            ($1, $2, $3, $4, $5, $6)`;
+            ($1, $2, $3, $4, $5, $6, $7)`;
 
-        const values = [newBoardmember.firstname, newBoardmember.lastname, newBoardmember.role, newBoardmember.description, image, newBoardmember.since];
+        const values = [newBoardmember.firstname, newBoardmember.lastname, newBoardmember.role, newBoardmember.description, image, newBoardmember.since, newBoardmember.position];
     
         return datamapperUtil.executeQuery(query, values);
     },
@@ -39,10 +39,11 @@ const boardmemberDatamapper = {
             role = $3, 
             description = $4, 
             since = $5,
+            position = $6,
             updated_at = NOW()
-            WHERE id = $6`;
+            WHERE id = $7`;
 
-        const values = [boardmemberModified.firstname, boardmemberModified.lastname, boardmemberModified.role, boardmemberModified.description, boardmemberModified.since, id];
+        const values = [boardmemberModified.firstname, boardmemberModified.lastname, boardmemberModified.role, boardmemberModified.description, boardmemberModified.since, boardmemberModified.position, id];
         
         return datamapperUtil.executeQuery(query, values);
     },
