@@ -5,23 +5,61 @@ import 'dotenv/config';
 import APIerror from '../error/APIerror.js';
 
 const authentification = {
+
     isAuthentificated(req, res, next) {
 
-        if(req.headers.authorization){
-            
-            const token = req.headers.authorization.split(' ')[1];
-            logger('authorization', req.headers.authorization);
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            logger('decoded', decoded);
+        const token = req.headers.authorization;
 
-            if(decoded){
-                req.user = decoded;
-                next();
-            } else {
-                next(new APIerror('Votre token n\'est pas valide'));
-            }
+        if(!token) {
+            return next(new APIerror('Aucun token fourni', 403));
+        }
+        const verifytoken = token.split(' ')[1];
+        const decoded = jwt.verify(verifytoken, process.env.JWT_SECRET);
+        if(decoded) {
+            req.user = decoded;
+            next();
         } else {
-            next(new APIerror('Votre token n\'est pas valide'));
+            return next(new APIerror('Votre token n\'est pas valide', 401));
+        }
+    },
+
+    isResponsableOrAdmin(req, res, next) {
+
+        const token = req.headers.authorization;
+
+        if(!token) {
+            return next(new APIerror('Aucun token fourni', 403));
+        }
+        const verifytoken = token.split(' ')[1];
+        const decoded = jwt.verify(verifytoken, process.env.JWT_SECRET);
+
+        if(decoded.role === 'responsable' || decoded.role ==='administrateur') {
+            req.user = decoded;
+            next();
+        } else {
+            return next(new APIerror('Accès refusé. Vous devez être responsable ou administrateur', 403))
+        }
+    },
+
+    isAdmin(req, res, next) {
+
+        const token = req.headers.authorization;
+
+        if(!token) {
+
+            return next(new APIerror('Aucun token fourni', 403));
+
+        } else {
+            const verifytoken = token.split(' ')[1];
+            const decoded = jwt.verify(verifytoken, process.env.JWT_SECRET);
+        
+            if(decoded.role ==='administrateur') {
+
+            next();
+
+            } else {
+                return next(new APIerror('Accès refusé. Vous devez être administrateur', 403))
+            }
         }
     }
 };

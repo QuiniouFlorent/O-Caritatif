@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import 'dotenv/config';
 import controllerUtil from '../service/util/controller.js';
+import APIerror from '../service/error/APIerror.js';
 
 const userController = {
     async getAllUser( req, res, next ) {
@@ -30,11 +31,12 @@ const userController = {
         controllerUtil.manageResponse(error, result, res, next);
     },
 
-//TODO ! Else throw new error ???
     async loginUser( req, res, next ) {
 
         logger('Login controller called');
         const { result, error } = await userDatamapper.findUser(req.body);
+
+        //TODO : Ajout vérification email existe ou pas ? (sinon password undefined)
         
         const isEqual = await bcrypt.compare(req.body.password, result[0].password);
 
@@ -43,7 +45,7 @@ const userController = {
             const token = jwt.sign(result[0], process.env.JWT_SECRET);
             controllerUtil.manageResponse(error, token, res, next);
         } else {
-            throw new Error('Y a un soucis là !!')
+            next(new APIerror('Utilisateur ou mot de passe incorrect', 401))
         }
     },
 

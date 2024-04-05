@@ -11,7 +11,7 @@ const homeDatamapper = {
             const result = response.rows;
             return result;
         } catch (err) {
-            logger(err);
+            logger(err); //TODO gérer erreur
             throw new Error('Pas de news récentes !');
         }
     },
