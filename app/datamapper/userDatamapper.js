@@ -1,46 +1,40 @@
 import debug from 'debug';
-const logger = debug('app:datamapper');
 import datamapperUtil from '../service/util/datamapper.js';
+const logger = debug('app:datamapper');
 
 const userDatamapper = {
+  async findAllUser() {
+    const query = 'SELECT * FROM "user"';
 
-    async findAllUser() {
+    return datamapperUtil.executeQuery(query);
+  },
 
-        const query = 'SELECT * FROM "user"';
-        
-        return datamapperUtil.executeQuery(query);
-    },
+  async findOneUser(id) {
+    const query = 'SELECT * FROM "user" WHERE id = $1';
+    const values = [id];
 
-    async findOneUser(id) {
+    return datamapperUtil.executeQuery(query, values);
+  },
 
-        const query = 'SELECT * FROM "user" WHERE id = $1';
-        const values = [id]
-        
-        return datamapperUtil.executeQuery(query, values);
-    },
+  async findUser(user) {
+    const query = 'SELECT * FROM "user" WHERE email = $1';
+    const values = [user.email];
 
-    async findUser(user) {
+    return datamapperUtil.executeQuery(query, values);
+  },
 
-        const query = 'SELECT * FROM "user" WHERE email = $1';
-        const values = [user.email];
-
-        return datamapperUtil.executeQuery(query, values);
-    },
-
-    async insertUser(newUser, image) {
-
-        const query = `INSERT INTO "user"
+  async insertUser(newUser, image) {
+    const query = `INSERT INTO "user"
         (lastname, firstname, email, password, role, photo_url)
         VALUES
         ($1,$2,$3,$4,$5,$6)`;
-        const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.password, "utilisateur", image];
-        
-        return datamapperUtil.executeQuery(query, values);
-    },
+    const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.password, 'utilisateur', image];
 
-    async modifyUser(id, userModified) {
+    return datamapperUtil.executeQuery(query, values);
+  },
 
-        const query = `UPDATE "user" SET
+  async modifyUser(id, userModified) {
+    const query = `UPDATE "user" SET
             lastname = $1,
             firstname = $2,
             email = $3,
@@ -49,31 +43,30 @@ const userDatamapper = {
             is_active = $6,
             updated_at = NOW()
             WHERE id = $7 `;
-        const values = [userModified.lastname, userModified.firstname, userModified.email, userModified.role, userModified.photo_url, userModified.is_active, id];
-        
-        return datamapperUtil.executeQuery(query, values);
-    },
+    const values = [userModified.lastname, userModified.firstname, userModified.email, userModified.role, userModified.photo_url, userModified.is_active, id];
 
-    async modifyUserPhoto(id, image) {
-        const query = `UPDATE "user" SET
+    return datamapperUtil.executeQuery(query, values);
+  },
+
+  async modifyUserPhoto(id, image) {
+    const query = `UPDATE "user" SET
             photo_url = $1,
             updated_at = NOW()
             WHERE id = $2
             RETURNING photo_url`;
-        const values = [image, id];
+    const values = [image, id];
 
-        return datamapperUtil.executeQuery(query, values);
-    },
+    return datamapperUtil.executeQuery(query, values);
+  },
 
-//TODO ! PK - FK ??
-    async deleteUser(id) {
-        
-        const query = 'DELETE FROM "user" WHERE id = $1';
-        const values = [id];
-        
-        return datamapperUtil.executeQuery(query, values);
-    }
-}
+  //TODO ! PK - FK ??
+  async deleteUser(id) {
+    const query = 'DELETE FROM "user" WHERE id = $1';
+    const values = [id];
+
+    return datamapperUtil.executeQuery(query, values);
+  },
+};
 
 logger('User datamapper initialized');
 export default userDatamapper;
