@@ -118,7 +118,7 @@ CREATE TABLE setting (
     association_logo_url TEXT,
     primary_color TEXT,
     adress TEXT,
-    mail_asso TEXT,
+    email_asso TEXT,
     email_password TEXT,
     boutique_is_active BOOLEAN DEFAULT true,
     galery_is_active BOOLEAN DEFAULT true,

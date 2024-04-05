@@ -12,6 +12,7 @@ import newsController from './newsController.js';
 import opinionController from './opinionController.js';
 import photoController from './photoController.js';
 import registrationController from './registrationController.js';
+import settingController from './settingController.js';
 import sponsorController from './sponsorController.js';
 import userController from './userController.js';
 
@@ -28,6 +29,7 @@ export {aboutdataController,
         opinionController,
         photoController, 
         registrationController,
+        settingController,
         sponsorController, 
         userController 
 };

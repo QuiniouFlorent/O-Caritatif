@@ -29,14 +29,6 @@ const homedataController = {
         controllerUtil.manageResponse(error, result, res, next);
     },
 
-    async updateHomedataLogo( req, res, next ) {
-
-        logger('Homedata modify Logo controller called');
-        const image = req.file ? req.file.path:null;
-        const { result, error } = await homedataDatamapper.modifyHomedataLogo(image);
-        controllerUtil.manageResponse(error, result, res, next);
-    },
-
     async removeHomedata( req, res, next ) {
 
         const id = req.params.id;
