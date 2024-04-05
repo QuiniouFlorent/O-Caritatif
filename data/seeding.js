@@ -13,6 +13,7 @@ const fakeDataSponsor = './data/fakesponsor.json';
 const fakeDataComment = './data/fakecomment.json';
 const fakeDataPhoto = './data/fakephoto.json';
 const fakeDataRegistration = './data/fakeregistration.json';
+const fakeDataBoardmember = './data/fakeboardmember.json';
 
 function pgQuoteEscape(value) {
   if (typeof value !== 'string') {
@@ -37,20 +38,16 @@ async function insertData(fileName, tableName) {
       const query = `INSERT INTO ${tableName} (${keys}) VALUES (${values});`;
       await client.query(query);
     }
-    logger(`Données insérées dans la table ${tableName} avec succès.`);
-  } catch (error) {
-    console.error("Erreur lors de l'insertion des données:", error);
-  }
-}
+};
 
-(async () => {
-  await insertData(fakeDataUser, `"user"`);
-  await insertData(fakeDataNews, `news`);
-  await insertData(fakeDataEvent, `event`);
-  await insertData(fakeDataGalery, `galery`);
-  await insertData(fakeDataSponsor, `sponsor`);
-
-  await insertData(fakeDataPhoto, `photo`);
-
-  client.end();
+(async()=>{
+    await insertData(fakeDataUser, `"user"`);
+    await insertData(fakeDataNews, `news`);
+    await insertData(fakeDataEvent, `event`);
+    await insertData(fakeDataGalery, `galery`);
+    await insertData(fakeDataSponsor, `sponsor`);
+    await insertData(fakeDataPhoto, `photo`);
+    await insertData(fakeDataBoardmember, 'boardmember')
+    client.end();
 })();
+
