@@ -156,12 +156,12 @@ fakerFR.image.urlLoremFlickr({ category: 'association' })
 
 (async () => {
     await writeFile(FILENAME8, '[');
-    for( let registrationIndex = 0; registrationIndex < 100; registrationIndex ++ ) {
+    for( let registrationIndex = 0; registrationIndex < 20; registrationIndex ++ ) {
         if(registrationIndex > 0) {
             await appendFile(FILENAME8, ',\n');
         }
         const user_id = fakerFR.number.int(50);
-        const event_id = fakerFR.number.int(30);
+        const event_id = fakerFR.number.int(5);
         const registration = {user_id, event_id};
         await appendFile(FILENAME8, JSON.stringify(registration))
         }

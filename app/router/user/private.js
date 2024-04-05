@@ -9,6 +9,7 @@ const privateRouter = Router();
 
 privateRouter.get('/user', authentification.isAuthentificated, userController.getAllUser);
 privateRouter.get('/user/:id', userController.getOneUser);
+privateRouter.get('/user/:id/registration', userController.getRegistrationByUser);
 
 privateRouter.patch('/user/:id', userController.updateUser);
 privateRouter.patch('/user/:id/photo', upload('user').single('image'), userController.updateUserPhoto);
