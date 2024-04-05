@@ -6,11 +6,11 @@ const customizeRouter = Router();
 
 import aboutdataRouter from './aboutdataRouter.js';
 import homedataRouter from './homedataRouter.js';
-import executivememberRouter from './executivememberRouter.js';
+import boardmemberRouter from './boardmemberRouter.js';
 
 customizeRouter.use(aboutdataRouter);
 customizeRouter.use(homedataRouter);
-customizeRouter.use(executivememberRouter);
+customizeRouter.use(boardmemberRouter);
 
 logger('User Router initialized');
 export default customizeRouter;

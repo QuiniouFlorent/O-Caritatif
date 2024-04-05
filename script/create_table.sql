@@ -151,7 +151,7 @@ CREATE TABLE photodata (
 ALTER TABLE photodata 
     ADD CONSTRAINT limite_line CHECK ( id = 1 );
 
-CREATE TABLE executivemember (
+CREATE TABLE boardmember (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     firstname TEXT,
     lastname TEXT,
