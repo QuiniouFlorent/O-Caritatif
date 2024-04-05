@@ -7,10 +7,12 @@ const customizeRouter = Router();
 import aboutdataRouter from './aboutdataRouter.js';
 import homedataRouter from './homedataRouter.js';
 import boardmemberRouter from './boardmemberRouter.js';
+import settingRouter from './settingRouter.js';
 
 customizeRouter.use(aboutdataRouter);
 customizeRouter.use(homedataRouter);
 customizeRouter.use(boardmemberRouter);
+customizeRouter.use(settingRouter);
 
 logger('User Router initialized');
 export default customizeRouter;

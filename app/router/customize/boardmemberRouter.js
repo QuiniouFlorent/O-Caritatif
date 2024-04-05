@@ -9,7 +9,7 @@ boardmemberRouter.get('/boardmember/:id', boardmemberController.getOneBoardmembe
 boardmemberRouter.post('/boardmember', upload('boardmember').single('image'), boardmemberController.createBoardmember);
 
 boardmemberRouter.patch('/boardmember/:id', boardmemberController.updateBoardmember);
-boardmemberRouter.patch('/boardmember/photo', upload('boardmember').single('image'), boardmemberController.updateBoardmemberPhoto);
+boardmemberRouter.patch('/boardmember/:id/photo', upload('boardmember').single('image'), boardmemberController.updateBoardmemberPhoto);
 
 boardmemberRouter.delete('/boardmember/:id', boardmemberController.removeBoardmember);
 

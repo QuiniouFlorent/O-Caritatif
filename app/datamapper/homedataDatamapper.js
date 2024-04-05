@@ -11,38 +11,28 @@ const homedataDatamapper = {
         return datamapperUtil.executeQuery(query);
     },
 
-    async insertHomedata(newHomedata, image) {
+    async insertHomedata(newHomedata) {
 
         const query = `INSERT INTO homedata
-            (association_name, 
-            association_logo_url, 
-            first_home_image_content, 
+            (first_home_image_content, 
             second_home_image_content, 
             third_home_image_content, 
-            about_summary_content, 
-            adress, 
+            about_summary_content,  
             first_media_link, 
             second_media_link, 
-            third_media_link, 
-            boutique_is_active, 
-            galery_is_active, 
-            event_is_active)
+            third_media_link)
             VALUES
-            ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12; $13)`;
+            ($1, $2, $3, $4, $5, $6, $7)`;
 
-        const values = [newHomedata.association_name, 
-            image, 
+        const values = [             
             newHomedata.first_home_image_content, 
             newHomedata.second_home_image_content, 
             newHomedata.third_home_image_content, 
             newHomedata.about_summary_content,
-            newHomedata.adress, 
             newHomedata.first_media_link, 
             newHomedata.second_media_link, 
             newHomedata.third_media_link, 
-            newHomedata.boutique_is_active, 
-            newHomedata.galery_is_active, 
-            newHomedata.event_is_active];
+        ];
     
         return datamapperUtil.executeQuery(query, values);
     },
@@ -50,47 +40,26 @@ const homedataDatamapper = {
     async modifyHomedata(homedataModified) {
 
         const query = `UPDATE homedata SET
-            association_name = $1,
-            first_home_image_content = $2, 
-            second_home_image_content = $3, 
-            third_home_image_content = $4, 
-            about_summary_content = $5,
-            adress = $6,
-            first_media_link = $7,
-            second_media_link = $8,
-            third_media_link = $9,
-            boutique_is_active = $10,
-            galery_is_active = $11, 
-            event_is_active = $12,
+            first_home_image_content = $1, 
+            second_home_image_content = $2, 
+            third_home_image_content = $3, 
+            about_summary_content = $4,
+            first_media_link = $5,
+            second_media_link = $6,
+            third_media_link = $7,
             updated_at = NOW()
             WHERE id = 1`;
 
-        const values = [homedataModified.association_name,
+        const values = [
             homedataModified.first_home_image_content, 
             homedataModified.second_home_image_content, 
-            homedataModified.third_home_image_content, 
-            homedataModified.image_header_content, 
-            homedataModified.adress, 
+            homedataModified.third_home_image_content,  
+            homedataModified.about_summary_content, 
             homedataModified.first_media_link, 
             homedataModified.second_media_link, 
-            homedataModified.third_media_link, 
-            homedataModified.boutique_is_active, 
-            homedataModified.galery_is_active, 
-            homedataModified.event_is_active];
+            homedataModified.third_media_link
+        ];
         
-        return datamapperUtil.executeQuery(query, values);
-    },
-
-    async modifyHomedataLogo(image) {
-
-        const query = `UPDATE homedata SET
-        association_logo_url = $1,
-        updated_at = NOW()
-        WHERE id = 1
-        RETURNING association_logo_url `;
-
-        const values = [image];
-
         return datamapperUtil.executeQuery(query, values);
     },
 
