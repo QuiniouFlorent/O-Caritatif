@@ -22,6 +22,14 @@ const userController = {
         controllerUtil.manageResponse(error, result, res, next);
     },
 
+    async getRegistrationByUser( req, res, next ) {
+
+        logger('Registration by user controller called');
+        const id = req.params.id;
+        const { result, error } = await userDatamapper.findRegistrationByUser(id);
+        controllerUtil.manageResponse(error, result, res, next);
+    },
+
 //TODO ! Else throw new error ???
     async loginUser( req, res, next ) {
 

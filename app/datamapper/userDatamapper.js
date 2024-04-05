@@ -4,13 +4,23 @@ const logger = debug('app:datamapper');
 
 const userDatamapper = {
   async findAllUser() {
+
     const query = 'SELECT * FROM "user"';
 
     return datamapperUtil.executeQuery(query);
   },
 
   async findOneUser(id) {
+
     const query = 'SELECT * FROM "user" WHERE id = $1';
+    const values = [id];
+
+    return datamapperUtil.executeQuery(query, values);
+  },
+
+  async findRegistrationByUser(id) {
+
+    const query = 'SELECT * FROM view_registration WHERE user_id = $1';
     const values = [id];
 
     return datamapperUtil.executeQuery(query, values);
