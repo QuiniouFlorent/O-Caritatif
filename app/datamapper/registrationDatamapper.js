@@ -15,11 +15,11 @@ const registrationDatamapper= {
     async insertRegistration(newRegistration) {
 
         const sql = `SELECT * FROM registration WHERE user_id = ${newRegistration.user_id} AND event_id = ${newRegistration.event_id}`;
-        const verification = datamapperUtil.executeQuery(sql);
-        logger(sql);
-        if (verification.length < 0) {
+        const verification = await datamapperUtil.executeQuery(sql);
 
-            return error = new APIerror('Vous ne pouvez pas vous inscrire deux fois au même événement', 500)
+        if (verification.result.length > 0) {
+            let error = new APIerror('Vous ne pouvez pas vous inscrire deux fois au même événement', 500);
+            return {error};
 
         } else {
             const query = `INSERT INTO registration
