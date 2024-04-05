@@ -10,9 +10,7 @@ const fakeDataEvent = './data/fakeevent.json';
 const fakeDataNews = './data/fakenews.json';
 const fakeDataGalery = './data/fakegalery.json';
 const fakeDataSponsor = './data/fakesponsor.json';
-const fakeDataComment = './data/fakecomment.json';
 const fakeDataPhoto = './data/fakephoto.json';
-const fakeDataRegistration = './data/fakeregistration.json';
 const fakeDataBoardmember = './data/fakeboardmember.json';
 
 function pgQuoteEscape(value) {
@@ -37,6 +35,11 @@ async function insertData(fileName, tableName) {
         .join(',');
       const query = `INSERT INTO ${tableName} (${keys}) VALUES (${values});`;
       await client.query(query);
+    }
+    logger(`Données insérées dans la table ${tableName} avec succès.`);
+        
+    } catch (error) {
+        console.error("Erreur lors de l'insertion des données:", error);
     }
 };
 

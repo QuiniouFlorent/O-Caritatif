@@ -1,6 +1,5 @@
 [
     {
-      "id": 1,
       "firstname": "Jessica",
       "lastname": "Romery",
       "role": "Président",
@@ -11,7 +10,6 @@
       "updated_at": "2024-04-04T18:29:14.852Z"
     },
     {
-      "id": 2,
       "firstname": "Julien",
       "lastname": "Stone",
       "role": "Bénévole",
@@ -22,7 +20,6 @@
       "updated_at": "2024-04-04T18:29:14.852Z"
     },
     {
-      "id": 3,
       "firstname": "Marie",
       "lastname": "Maria",
       "role": "Bénévole",
@@ -33,7 +30,6 @@
       "updated_at": "2024-04-04T18:29:14.852Z"
     },
     {
-      "id": 4,
       "firstname": "Lyndsey",
       "lastname": "Loaan",
       "role": "Bénévole",
@@ -44,7 +40,6 @@
       "updated_at": "2024-04-04T18:29:14.852Z"
     },
     {
-      "id": 5,
       "firstname": "Richard",
       "lastname": "Loaan",
       "role": "Bénévole",
@@ -55,7 +50,6 @@
       "updated_at": "2024-04-04T18:29:14.852Z"
     },
     {
-      "id": 6,
       "firstname": "RichardBis",
       "lastname": "",
       "role": "Bénévole",
