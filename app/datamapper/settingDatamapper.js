@@ -1,19 +1,16 @@
 import debug from 'debug';
-const logger = debug('app:datamapper');
 import datamapperUtil from '../service/util/datamapper.js';
+const logger = debug('app:datamapper');
 
 const settingDatamapper = {
+  async findSetting() {
+    const query = 'SELECT * FROM setting';
 
-    async findSetting() {
+    return datamapperUtil.executeQuery(query);
+  },
 
-        const query = 'SELECT * FROM setting';
-
-        return datamapperUtil.executeQuery(query);
-    },
-
-    async insertSetting(newSetting, image) {
-
-        const query = `INSERT INTO setting
+  async insertSetting(newSetting, image) {
+    const query = `INSERT INTO setting
             (association_name, 
             association_logo_url, 
             primary_color,
@@ -26,22 +23,23 @@ const settingDatamapper = {
             VALUES
             ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
 
-        const values = [newSetting.association_name, 
-            image, 
-            newSetting.primary_color,
-            newSetting.adress, 
-            newSetting.email_asso,
-            newSetting.email_password,
-            newSetting.boutique_is_active, 
-            newSetting.galery_is_active, 
-            newSetting.event_is_active];
-    
-        return datamapperUtil.executeQuery(query, values);
-    },
+    const values = [
+      newSetting.association_name,
+      image,
+      newSetting.primary_color,
+      newSetting.adress,
+      newSetting.email_asso,
+      newSetting.email_password,
+      newSetting.boutique_is_active,
+      newSetting.galery_is_active,
+      newSetting.event_is_active,
+    ];
 
-    async modifySetting(settingModified) {
+    return datamapperUtil.executeQuery(query, values);
+  },
 
-        const query = `UPDATE setting SET
+  async modifySetting(settingModified) {
+    const query = `UPDATE setting SET
             association_name = $1,  
             primary_color = $2,
             adress = $3,
@@ -53,39 +51,37 @@ const settingDatamapper = {
             updated_at = NOW()
             WHERE id = 1`;
 
-        const values = [
-            settingModified.association_name,
-            settingModified.primary_color, 
-            settingModified.adress, 
-            settingModified.email_asso, 
-            settingModified.email_password,  
-            settingModified.boutique_is_active, 
-            settingModified.galery_is_active, 
-            settingModified.event_is_active
-        ];
-        
-        return datamapperUtil.executeQuery(query, values);
-    },
+    const values = [
+      settingModified.association_name,
+      settingModified.primary_color,
+      settingModified.adress,
+      settingModified.email_asso,
+      settingModified.email_password,
+      settingModified.boutique_is_active,
+      settingModified.galery_is_active,
+      settingModified.event_is_active,
+    ];
 
-    async modifySettingLogo(image) {
+    return datamapperUtil.executeQuery(query, values);
+  },
 
-        const query = `UPDATE setting SET
+  async modifySettingLogo(image) {
+    const query = `UPDATE setting SET
         association_logo_url = $1,
         updated_at = NOW()
         WHERE id = 1
         RETURNING association_logo_url `;
 
-        const values = [image];
+    const values = [image];
 
-        return datamapperUtil.executeQuery(query, values);
-    },
+    return datamapperUtil.executeQuery(query, values);
+  },
 
-    async deleteSetting() {
+  async deleteSetting() {
+    const query = 'TRUNCATE TABLE setting RESTART IDENTITY';
 
-        const query = 'TRUNCATE TABLE setting RESTART IDENTITY';
-        
-        return datamapperUtil.executeQuery(query);
-    }
-}
+    return datamapperUtil.executeQuery(query);
+  },
+};
 
 export default settingDatamapper;
