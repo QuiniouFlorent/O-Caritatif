@@ -43,7 +43,7 @@ const boardmemberDatamapper = {
             WHERE id = $6`;
 
         const values = [boardmemberModified.firstname, boardmemberModified.lastname, boardmemberModified.role, boardmemberModified.description, boardmemberModified.since, id];
-        logger(values);
+        
         return datamapperUtil.executeQuery(query, values);
     },
 
