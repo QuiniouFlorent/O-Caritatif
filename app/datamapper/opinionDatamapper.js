@@ -18,10 +18,10 @@ const opinionDatamapper = {
 
     async insertOpinion(newOpinion) {
         const query = `INSERT INTO opinion
-        (firstname, content, number_star)
+        (firstname, content, number_star, position)
         VALUES
-        ($1,$2,$3)`
-        const values = [newOpinion.firstname, newOpinion.content, newOpinion.number_star];
+        ($1,$2,$3, $4)`;
+        const values = [newOpinion.firstname, newOpinion.content, newOpinion.number_star, newOpinion.position];
         
         return datamapperUtil.executeQuery(query, values);
     },
@@ -31,9 +31,10 @@ const opinionDatamapper = {
             firstname = $1,
             content = $2,
             number_star = $3,
+            position = $4,
             updated_at = NOW()
-            WHERE id = $4`;
-        const values = [opinionModified.firstname, opinionModified.content, opinionModified.number_star, id]
+            WHERE id = $5`;
+        const values = [opinionModified.firstname, opinionModified.content, opinionModified.number_star, opinionModified.position, id]
         
         return datamapperUtil.executeQuery(query, values);
     },
