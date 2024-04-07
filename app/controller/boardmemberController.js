@@ -38,6 +38,13 @@ const boardmemberController = {
         controllerUtil.manageResponse(error, result, res, next);
     },
 
+    async updateBoardmemberPosition( req, res, next ) {
+        logger('Boardmember modify Position called');
+        const boardmemberPositionModified = req.body;
+        const { result , error } = await boardmemberDatamapper.modifyBoardmemberPosition(boardmemberPositionModified);
+        controllerUtil.manageResponse(error, result, res, next);
+    },
+
     async updateBoardmemberPhoto( req, res, next ) {
 
         logger('Boardmember modify Photo controller called');

@@ -48,6 +48,21 @@ const boardmemberDatamapper = {
         return datamapperUtil.executeQuery(query, values);
     },
 
+    async modifyBoardmemberPosition(boardmemberPositionModified) {
+        
+        const promises = boardmemberPositionModified.map(boardmember => {
+
+            const query = `UPDATE boardmember SET
+            position = $1
+            WHERE id = $2`;
+
+            const values = [boardmember.position, boardmember.id];
+
+            return datamapperUtil.executeQuery(query,values);
+        });
+        return await Promise.all(promises);
+    },
+
     async modifyBoardmemberPhoto(id, image) {
 
         const query = `UPDATE boardmember SET
@@ -63,7 +78,7 @@ const boardmemberDatamapper = {
 
     async deleteBoardmember(id) {
 
-        const query = 'DELETE FROM boardmember WHERE id = $1';
+        const query = 'DELETE FROM boardmember WHERE id = $1 RETURNING id';
 
         const values = [id];
         
