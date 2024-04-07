@@ -1,0 +1,51 @@
+[
+    {
+        "firstname": "Martine L.",
+        "content": "Grâce à cette association, j'ai reçu le soutien nécessaire durant une période difficile. Un immense merci pour leur générosité et leur écoute.",
+        "number_star": 5,
+        "is_active": true,
+        "position": 1
+    },
+    {
+        "firstname": "Julien S.",
+        "content": "Une équipe formidable qui fait un travail remarquable. Leur aide a été précieuse pour ma famille et moi.",
+        "number_star": 5,
+        "is_active": true,
+        "position": 2
+    },
+    {
+        "firstname": "Amandine G.",
+        "content": "L'aide reçue par cette association a été un véritable tournant dans ma vie. Leur soutien inconditionnel m'a aidé à surmonter les obstacles et à envisager un avenir meilleur.",
+        "number_star": 5,
+        "is_active": true,
+        "position": 3
+    },
+    {
+        "firstname": "Éric T.",
+        "content": "Des personnes d'une grande bienveillance. Leur écoute et leur soutien m'ont permis de retrouver espoir et dignité dans des moments difficiles.",
+        "number_star": 5,
+        "is_active": true,
+        "position": 4
+    },
+    {
+        "firstname": "Nadia F.",
+        "content": "Une équipe incroyablement dévouée. Merci pour tout ce que vous faites pour les personnes en besoin. Votre travail change des vies.",
+        "number_star": 5,
+        "is_active": true,
+        "position": 5
+    },
+    {
+        "firstname": "Olivier P.",
+        "content": "Recevoir l'aide de cette association a été une bénédiction. Grâce à eux, je me sens moins seul et plus fort pour affronter les défis quotidiens.",
+        "number_star": 4,
+        "is_active": true,
+        "position": 6
+    },
+    {
+        "firstname": "Léa K.",
+        "content": "Cette association m'a apporté un soutien crucial à un moment où je n'avais nulle part où aller. Leur générosité et leur compassion sont sans égal.",
+        "number_star": 5,
+        "is_active": true,
+        "position": 7
+    }
+]

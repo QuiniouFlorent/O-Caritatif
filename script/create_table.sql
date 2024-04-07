@@ -90,6 +90,8 @@ CREATE TABLE opinion (
     firstname TEXT NOT NULL,
     content TEXT NOT NULL,
     number_star INT NOT NULL,
+    is_active BOOLEAN DEFAULT true,
+    position INT ,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
