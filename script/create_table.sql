@@ -195,6 +195,28 @@ CREATE TABLE aboutdata (
     updated_at TIMESTAMPTZ
 );
 
+CREATE TABLE photohome (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    about_us_photo_url TEXT,
+    first_photo_url TEXT,
+    second_photo_url TEXT,
+    third_photo_url TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
+);
+
+CREATE TABLE photoabout (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    first_paragraph_photo_url TEXT,
+    second_paragraph_photo_url TEXT,
+    third_paragraph_photo_url TEXT,
+    first_photo_header_url TEXT,
+    second_photo_header_url TEXT,
+    third_photo_header_url TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
+);
+
 ALTER TABLE aboutdata
     ADD CONSTRAINT limite_line CHECK ( id = 1 );
 

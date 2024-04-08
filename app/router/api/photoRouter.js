@@ -5,6 +5,7 @@ import { Router } from 'express';
 import upload from '../../service/multer/multer-config.js';
 import { photoController } from '../../controller/index.js';
 import authentification from '../../service/authentification/auth.js';
+
 const photoRouter = Router();
 
 photoRouter.get('/photo', photoController.getAllPhoto);

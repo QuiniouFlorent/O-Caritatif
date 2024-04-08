@@ -4,4 +4,14 @@ const logger = debug('app:password');
 
 import nodemailer from 'nodemailer';
 
-const transporter = nodemailer.createTransport
+const transporter = nodemailer.createTransport({
+    host: "",
+    port: 12345,
+    secure: false,
+    auth:{
+        user: "",
+        pass: ""
+    }
+});
+
+transporter.sendMail(data);

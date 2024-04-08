@@ -30,8 +30,7 @@ const aboutdataController = {
 
     async removeAboutdata( req, res, next ) {
 
-        const id = req.params.id;
-        const { result, error } = await aboutdataDatamapper.deleteAboutdata(id);
+        const { result, error } = await aboutdataDatamapper.deleteAboutdata();
         controllerUtil.manageResponse(error, result, res, next);
     }
 }
