@@ -34,8 +34,9 @@ const opinionController = {
 
     async updateOpinionPosition( req, res, next ) {
         logger('Opinion modify Position controller called');
-        const opinionPosition = req.body;
+        const opinionModifiedPosition = req.body;
         const { result , error } = await opinionDatamapper.modifyOpinionPosition(opinionModifiedPosition);
+        controllerUtil.manageResponse(error, result, res, next);
     },
 
     async removeOpinion( req, res, next ) {
