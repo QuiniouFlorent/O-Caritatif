@@ -40,6 +40,21 @@ const opinionDatamapper = {
         return datamapperUtil.executeQuery(query, values);
     },
 
+    async modifyOpinionPosition(opinionPositionModified) {
+
+        const promises = opinionPositionModified.map(opinion => {
+
+            const query = `UPDATE opinion SET
+            position = $1
+            WHERE id = $2`;
+            
+            const values = [opinion.position, opinion.id];
+
+            return datamapperUtil.executeQuery(query, values);
+        });
+        return await Promise.all(promises);
+    },
+
     async deleteOpinion(id) {
         const query = 'DELETE FROM opinion WHERE id = $1';
         const values = [id];

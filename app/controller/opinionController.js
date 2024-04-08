@@ -32,6 +32,12 @@ const opinionController = {
         controllerUtil.manageResponse(error, result, res, next);
     },
 
+    async updateOpinionPosition( req, res, next ) {
+        logger('Opinion modify Position controller called');
+        const opinionPosition = req.body;
+        const { result , error } = await opinionDatamapper.modifyOpinionPosition(opinionModifiedPosition);
+    },
+
     async removeOpinion( req, res, next ) {
         const id = req.params.id;
         const { result, error } = await opinionDatamapper.deleteOpinion(id);
