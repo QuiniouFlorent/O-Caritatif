@@ -32,9 +32,10 @@ const opinionDatamapper = {
             content = $2,
             number_star = $3,
             position = $4,
+            is_active = $5,
             updated_at = NOW()
-            WHERE id = $5`;
-        const values = [opinionModified.firstname, opinionModified.content, opinionModified.number_star, opinionModified.position, id]
+            WHERE id = $6`;
+        const values = [opinionModified.firstname, opinionModified.content, opinionModified.number_star, opinionModified.position, opinionModified.is_active, id]
         
         return datamapperUtil.executeQuery(query, values);
     },
