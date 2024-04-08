@@ -9,7 +9,7 @@ const opinionRouter = Router();
 opinionRouter.get('/opinion', opinionController.getAllOpinion);
 opinionRouter.get('/opinion/:id', opinionController.getOneOpinion);
 
-opinionRouter.post('/opinion', authentification.isAdmin, opinionController.createOpinion);
+opinionRouter.post('/opinion', authentification.isAuthentificated, opinionController.createOpinion);
 
 opinionRouter.patch('/opinion/updatePosition', authentification.isAdmin, opinionController.updateOpinionPosition )
 opinionRouter.patch('/opinion/:id', authentification.isAdmin, opinionController.updateOpinion);
