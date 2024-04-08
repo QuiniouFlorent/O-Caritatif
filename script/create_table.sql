@@ -285,7 +285,7 @@ CREATE VIEW view_next_event AS
     ORDER BY date LIMIT 3;
 
 CREATE VIEW view_registration AS
-    SELECT r.user_id, r.event_id, e.title, e.date, e.place
+    SELECT r.id, r.user_id, r.event_id, e.title, e.date, e.place
     FROM registration r
     JOIN event e ON r.event_id = e.id;
 
