@@ -1,8 +1,8 @@
 [{
 	"association_name": "O'Caritatif",
-	"association_logo_url": null,
+	"association_logo_url": "/Logo/logo_new.png",
 	"primary_color": "#f27131",
-	"adress": "Rue de la Paix",
+	"adress": "78B rue d'etigny, 64000 Pau",
 	"email_asso": "ocaritatif@gmail.com",
 	"email_password": null,
 	"boutique_is_active": true,
