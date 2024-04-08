@@ -4,15 +4,15 @@ import { Router } from 'express';
 import authentification from '../../service/authentification/auth.js';
 const boardmemberRouter = Router();
 
-boardmemberRouter.get('/boardmember', /*authentification.isAdmin,*/ boardmemberController.getAllBoardmember);
+boardmemberRouter.get('/boardmember', boardmemberController.getAllBoardmember);
 boardmemberRouter.get('/boardmember/:id', boardmemberController.getOneBoardmember);
 
-boardmemberRouter.post('/boardmember', upload('boardmember').single('image'), boardmemberController.createBoardmember);
+boardmemberRouter.post('/boardmember', authentification.isAdmin, upload('boardmember').single('image'), boardmemberController.createBoardmember);
 
-boardmemberRouter.patch('/boardmember/updateposition', boardmemberController.updateBoardmemberPosition);
-boardmemberRouter.patch('/boardmember/:id', boardmemberController.updateBoardmember);
-boardmemberRouter.patch('/boardmember/:id/photo', upload('boardmember').single('image'), boardmemberController.updateBoardmemberPhoto);
+boardmemberRouter.patch('/boardmember/updateposition', authentification.isAdmin, boardmemberController.updateBoardmemberPosition);
+boardmemberRouter.patch('/boardmember/:id', authentification.isAdmin, boardmemberController.updateBoardmember);
+boardmemberRouter.patch('/boardmember/:id/photo', authentification.isAdmin, upload('boardmember').single('image'), boardmemberController.updateBoardmemberPhoto);
 
-boardmemberRouter.delete('/boardmember/:id', boardmemberController.removeBoardmember);
+boardmemberRouter.delete('/boardmember/:id', authentification.isAdmin, boardmemberController.removeBoardmember);
 
 export default boardmemberRouter;
