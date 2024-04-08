@@ -3,14 +3,15 @@ const logger = debug('app:router');
 
 import { Router } from 'express';
 import { commentController } from '../../controller/index.js';
+import authentification from '../../service/authentification/auth.js';
 const commentRouter = Router();
 
 commentRouter.get('/comment', commentController.getAllComment);
 
-commentRouter.post('/comment', commentController.createComment);
+commentRouter.post('/comment', authentification.isAuthentificated, commentController.createComment);
 
-commentRouter.patch('/comment/:id', commentController.updateComment);
+commentRouter.patch('/comment/:id', authentification.isAuthentificated, commentController.updateComment);
 
-commentRouter.delete('/comment/:id', commentController.removeComment);
+commentRouter.delete('/comment/:id', authentification.isAuthentificated, commentController.removeComment);
 
 export default commentRouter;

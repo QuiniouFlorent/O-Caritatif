@@ -12,7 +12,7 @@ privateRouter.get('/user/:id', authentification.isAuthentificated, userControlle
 privateRouter.get('/user/:id/registration', authentification.isAuthentificated, userController.getRegistrationByUser);
 
 privateRouter.patch('/user/:id', authentification.isAuthentificated, userController.updateUser);
-privateRouter.patch('/user/:id/photo', upload('user').single('image'), authentification.isAuthentificated, userController.updateUserPhoto);
+privateRouter.patch('/user/:id/photo', authentification.isAuthentificated, upload('user').single('image'), userController.updateUserPhoto);
 
 privateRouter.delete('/user/:id', authentification.isAdmin, userController.removeUser);
 
