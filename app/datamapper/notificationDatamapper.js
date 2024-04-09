@@ -36,10 +36,11 @@ const notificationDatamapper = {
         const query = `UPDATE notification SET
             user_id = $1,
             message = $2,
+            is_read = $3,
             updated_at = NOW()
             WHERE id = $3`;
 
-        const values = [notificationModified.user_id, notificationModified.message, id];
+        const values = [notificationModified.user_id, notificationModified.message, notificationModified.is_read, id];
         
         return datamapperUtil.executeQuery(query, values);
     },
