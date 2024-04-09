@@ -1,14 +1,17 @@
 [
     {
         "photo_url": "/Header/Header_01.webp",
-        "content": "Solution Web\npour les\nassociations\ncaritatives"
+        "content": "Solution Web\npour les\nassociations\ncaritatives",
+        "align": "left"
     },
     {
         "photo_url": "/Header/Header_02.webp",
-        "content": "Mise à disposition\nd'un site web\nparamétrable\net adaptable à\nvotre image!"
+        "content": "Mise à disposition\nd'un site web\nparamétrable\net adaptable à\nvotre image!",
+        "align": "left"
     },
     {
         "photo_url": "/Header/Header_03.webp",
-        "content": "Mettez en avant\nvotre équipe,\nvos valeurs\net vos actions\nrapidement\net simplement."
+        "content": "Mettez en avant\nvotre équipe,\nvos valeurs\net vos actions\nrapidement\net simplement.",
+        "align": "right"
     }
 ]

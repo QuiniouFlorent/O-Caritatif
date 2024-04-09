@@ -22,11 +22,11 @@ const photohomeDatamapper = {
     async insertPhotohome(newPhotohome, image) {
 
         const query = `INSERT INTO photohome
-            (content, photo_url)
+            (content, photo_url, align)
             VALUES
-            ($1, $2)`;
+            ($1, $2, $3)`;
 
-        const values = [newPhotohome.content,image];
+        const values = [newPhotohome.content,image, newPhotohome.align];
     
         return datamapperUtil.executeQuery(query, values);
     },
@@ -35,10 +35,11 @@ const photohomeDatamapper = {
 
         const query = `UPDATE photohome SET
             content = $1,
+            align = $2,
             updated_at = NOW()
-            WHERE id = $2`;
+            WHERE id = $3`;
 
-        const values = [photohomeModified.content, id];
+        const values = [photohomeModified.content, photohomeModified.align, id];
         
         return datamapperUtil.executeQuery(query, values);
     },

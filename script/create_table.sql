@@ -191,6 +191,7 @@ CREATE TABLE photohome (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     content TEXT,
     photo_url TEXT,
+    align TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
