@@ -5,6 +5,7 @@ import { Router } from 'express';
 import upload from '../../service/multer/multer-config.js';
 import { sponsorController } from '../../controller/index.js';
 import authentification from '../../service/authentification/auth.js';
+
 const sponsorRouter = Router();
 
 sponsorRouter.get('/sponsor', sponsorController.getAllSponsor);
