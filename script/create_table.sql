@@ -265,10 +265,13 @@ CREATE VIEW view_next_event AS
         e.title, e.photo_url, 
         e.description, e.date, 
         e.calendar_url, e.place,
-        u.lastname, u.firstname
+        u.lastname, u.firstname,
+        count(r.user_id) AS nombre_inscrit
     FROM event e 
     JOIN "user" u ON u.id = e.author
+    LEFT JOIN registration r ON e.id = r.event_id
     WHERE e.date >= CURRENT_DATE
+	GROUP BY e.id, u.lastname, u.firstname
     ORDER BY date LIMIT 3;
 
 CREATE VIEW view_registration AS
