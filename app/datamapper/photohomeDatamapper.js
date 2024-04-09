@@ -13,7 +13,7 @@ const photohomeDatamapper = {
     
     async findOnePhotohome(id) {
 
-        const query = 'SELECT * FROM photohome';
+        const query = 'SELECT * FROM photohome WHERE id = $1';
         const values = [id];
 
         return datamapperUtil.executeQuery(query, values);

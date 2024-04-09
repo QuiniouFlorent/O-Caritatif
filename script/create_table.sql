@@ -115,12 +115,22 @@ CREATE TABLE registration (
     updated_at TIMESTAMPTZ
 );
 
+CREATE TABLE notification (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id INT REFERENCES "user"(id),
+    message TEXT,
+    is_read BOOLEAN DEFAULT false,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
+);
+
 CREATE TABLE setting (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     association_name TEXT NOT NULL,
     association_logo_url TEXT,
     primary_color TEXT,
     adress TEXT,
+    number_phone TEXT,
     email_asso TEXT,
     email_password TEXT,
     boutique_is_active BOOLEAN DEFAULT true,
