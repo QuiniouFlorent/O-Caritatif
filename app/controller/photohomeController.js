@@ -42,7 +42,7 @@ const photohomeController = {
 
         logger('Photohome modify photo controller called');
         const id = req.params.id;
-        const image = req.file ? req.file:null;
+        const image = req.file ? req.file.path:null;
         const { result, error } = await photohomeDatamapper.modifyPhotohomePhoto(id, image);
         controllerUtil.manageResponse(error, result, res, next);
     },
