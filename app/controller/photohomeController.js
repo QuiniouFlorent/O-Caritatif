@@ -8,7 +8,7 @@ const photohomeController = {
     async getAllPhotohome( req, res, next ) {
 
         logger('Photohome getAll controller called');
-        const { result, error } = await photohomeDatamapper.findPhotohome();
+        const { result, error } = await photohomeDatamapper.findAllPhotohome();
         controllerUtil.manageResponse(error, result, res, next);
     },
 
