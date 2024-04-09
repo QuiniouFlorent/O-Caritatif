@@ -9,6 +9,7 @@ import galerieController from './galerieController.js';
 import homeController from './homeController.js';
 import homedataController from './homedataController.js';
 import newsController from './newsController.js';
+import notificationController from './notificationController.js';
 import opinionController from './opinionController.js';
 import photoController from './photoController.js';
 import photohomeController from './photohomeController.js';
@@ -27,6 +28,7 @@ export {aboutdataController,
         homeController,
         homedataController, 
         newsController,
+        notificationController,
         opinionController,
         photoController, 
         photohomeController,

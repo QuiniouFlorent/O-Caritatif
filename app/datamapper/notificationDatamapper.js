@@ -26,41 +26,27 @@ const notificationDatamapper = {
         VALUES
         ($1,$2)`;
 
-        const values = [newNotification.name, newSponsor.link_url, image];
+        const values = [newNotification.user_id, newNotification.message];
 
         return datamapperUtil.executeQuery(query, values);
     },
 
-    async modifySponsor(id, sponsorModified) {
+    async modifyNotification(id, notificationModified) {
 
-        const query = `UPDATE sponsor SET
-            name = $1,
-            link_url = $2,
-            is_active = $3,
+        const query = `UPDATE notification SET
+            user_id = $1,
+            message = $2,
             updated_at = NOW()
-            WHERE id = $4`;
+            WHERE id = $3`;
 
-        const values = [sponsorModified.name, sponsorModified.link_url, sponsorModified.is_active, id];
+        const values = [notificationModified.user_id, notificationModified.message, id];
         
         return datamapperUtil.executeQuery(query, values);
     },
 
-    async modifySponsorPhoto(id, image) {
-        
-        const query = `UPDATE sponsor SET
-            photo_url = $1,
-            updated_at = NOW()
-            WHERE id = $2
-            RETURNING photo_url`;
+    async deleteNotification(id) {
 
-        const values = [image, id];
-
-        return datamapperUtil.executeQuery(query, values);
-    },
-
-    async deleteSponsor(id) {
-
-        const query = 'DELETE FROM sponsor WHERE id = $1';
+        const query = 'DELETE FROM notification WHERE id = $1';
         const values = [id];
 
         return datamapperUtil.executeQuery(query, values);
