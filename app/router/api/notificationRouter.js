@@ -12,7 +12,7 @@ notificationRouter.get('/notification/:id', notificationController.getOneNotific
 
 notificationRouter.post('/notification', notificationController.createNotification);
 
-notificationRouter.patch('/notification/:id', authentification.isResponsableOrAdmin, notificationController.updateNotification);
+notificationRouter.patch('/notification/:id', authentification.isAuthentificated, notificationController.updateNotification);
 
 notificationRouter.delete('/notification/:id', authentification.isAuthentificated, notificationController.removeNotification);
 
