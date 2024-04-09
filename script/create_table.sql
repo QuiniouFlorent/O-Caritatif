@@ -4,6 +4,7 @@ CREATE TYPE ROLE AS ENUM ('administrateur', 'responsable', 'utilisateur');
 --CREATE DOMAIN mail AS TEXT CHECK(VALUE);
 --CREATE DOMAIN url AS TEXT CHECK(VALUE);
 
+
 CREATE TABLE "user" (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     lastname TEXT NOT NULL,
@@ -134,9 +135,6 @@ ALTER TABLE setting
 
 CREATE TABLE homedata (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    first_home_image_content TEXT,
-    second_home_image_content TEXT,
-    third_home_image_content TEXT,
     about_summary_content TEXT,
     first_media_link TEXT,
     second_media_link TEXT,
@@ -146,25 +144,6 @@ CREATE TABLE homedata (
 );
 
 ALTER TABLE homedata 
-    ADD CONSTRAINT limite_line CHECK ( id = 1 );
-
-CREATE TABLE photodata (
-    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    first_image_home_header_url TEXT,
-    second_image_home_header_url TEXT,
-    third_image_home_header_url TEXT,
-    about_home_image_url TEXT,
-    first_image_about_us_image TEXT,
-    second_image_about_us_image TEXT,
-    third_image_about_us_image TEXT,
-    first_paragraph_image_url TEXT,
-    second_paragraph_image_url TEXT,
-    third_paragraph_image_url TEXT,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    updated_at TIMESTAMPTZ
-);
-
-ALTER TABLE photodata 
     ADD CONSTRAINT limite_line CHECK ( id = 1 );
 
 CREATE TABLE boardmember (
@@ -195,30 +174,16 @@ CREATE TABLE aboutdata (
     updated_at TIMESTAMPTZ
 );
 
-CREATE TABLE photohome (
-    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    about_us_photo_url TEXT,
-    first_photo_url TEXT,
-    second_photo_url TEXT,
-    third_photo_url TEXT,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    updated_at TIMESTAMPTZ
-);
-
-CREATE TABLE photoabout (
-    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    first_paragraph_photo_url TEXT,
-    second_paragraph_photo_url TEXT,
-    third_paragraph_photo_url TEXT,
-    first_photo_header_url TEXT,
-    second_photo_header_url TEXT,
-    third_photo_header_url TEXT,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    updated_at TIMESTAMPTZ
-);
-
 ALTER TABLE aboutdata
     ADD CONSTRAINT limite_line CHECK ( id = 1 );
+
+CREATE TABLE photohome (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    content TEXT,
+    photo_url TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
+);
 
 CREATE VIEW view_all_events AS
     SELECT e.id, e.title, e.category, e.photo_url, e.description, e.date, e.calendar_url, e.place, u.lastname, u.firstname, count(r.user_id) AS nombre_inscrit

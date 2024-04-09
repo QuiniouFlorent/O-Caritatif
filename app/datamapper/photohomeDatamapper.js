@@ -4,45 +4,63 @@ import datamapperUtil from '../service/util/datamapper.js';
 
 const photohomeDatamapper = {
 
-    async findPhotohome() {
+    async findAllPhotohome() {
 
         const query = 'SELECT * FROM photohome';
 
         return datamapperUtil.executeQuery(query);
     },
+    
+    async findOnePhotohome(id) {
 
-    async insertPhotohome(newPhotohome) {
+        const query = 'SELECT * FROM photohome';
+        const values = [id];
+
+        return datamapperUtil.executeQuery(query, values);
+    },
+
+    async insertPhotohome(newPhotohome, image) {
 
         const query = `INSERT INTO photohome
-            (about_us_photo_url, first_photo_url, second_photo_url, third_photo_url)
+            (content, photo_url)
             VALUES
-            ($1, $2, $3, $4)`;
+            ($1, $2)`;
 
-        const values = [newPhotohome.about_us_photo_url, newPhotohome.first_photo_url, newPhotohome.second_photo_url, newPhotohome.third_photo_url];
+        const values = [newPhotohome.content,image];
     
         return datamapperUtil.executeQuery(query, values);
     },
 
-    async modifyPhotohome(photohomeModified) {
+    async modifyPhotohome(id, photohomeModified) {
 
         const query = `UPDATE photohome SET
-            about_us_photo_url = $1,
-            first_photo_url = $2,
-            second_photo_url = $3,
-            third_photo_url = $4,
+            content = $1,
             updated_at = NOW()
-            WHERE id = 1`;
+            WHERE id = $2`;
 
-        const values = [photohomeModified.about_us_photo_url, photohomeModified.first_photo_url, photohomeModified.second_photo_url, photohomeModified.third_photo_url];
+        const values = [photohomeModified.content, id];
         
         return datamapperUtil.executeQuery(query, values);
     },
 
-    async deletePhotohome() {
+    async modifyPhotohomePhoto(id, image) {
 
-        const query = 'TRUNCATE TABLE photohome RESTART IDENTITY';
+        const query = `UPDATE photohome SET
+            photo_url = $1,
+            updated_at = NOW()
+            WHERE id = $2
+            RETURNING photo_url`;
+        const values = [image, id];
+
+        return datamapperUtil.executeQuery(query, values);
+    },
+
+    async deletePhotohome(id) {
+
+        const query = 'DELETE FROM sponsor WHERE id = $1';
+        const values = [id];
         
-        return datamapperUtil.executeQuery(query);
+        return datamapperUtil.executeQuery(query, values);
     }
 }
 

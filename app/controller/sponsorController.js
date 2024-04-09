@@ -6,12 +6,14 @@ import controllerUtil from '../service/util/controller.js';
 const sponsorController = {
 
     async getAllSponsor( req, res, next ) {
+
         logger('Sponsor getAll controller called');
         const { result, error } = await sponsorDatamapper.findAllSponsor();
         controllerUtil.manageResponse(error, result, res, next);
     },
     
     async getOneSponsor( req, res, next ) {
+
         logger('Sponsor getOne controller called');
         const id = req.params.id;
         const { result, error } = await sponsorDatamapper.findOneSponsor(id);
@@ -19,6 +21,7 @@ const sponsorController = {
     },
 
     async createSponsor( req, res, next ) {
+
         logger('Sponsor create controller called');
         const newSponsor = req.body;
         const image = req.file ? req.file.path:null;
@@ -27,6 +30,7 @@ const sponsorController = {
     },
 
     async updateSponsor( req, res, next ) {
+
         logger('Sponsor modify controller called');
         const id = req.params.id;
         const sponsorModified = req.body;
@@ -35,6 +39,7 @@ const sponsorController = {
     },
 
     async updateSponsorPhoto( req, res, next ) {
+
         logger('Sponsor modify Photo controller called');
         const id = req.params.id;
         const image =  req.file ? req.file.path:null;
@@ -43,6 +48,7 @@ const sponsorController = {
     },
 
     async removeSponsor( req, res, next ) {
+        
         const id = req.params.id;
         const { result, error } = await sponsorDatamapper.deleteSponsor(id);
         controllerUtil.manageResponse(error, result, res, next);

@@ -8,12 +8,14 @@ import authentification from '../../service/authentification/auth.js';
 
 const photohomeRouter = Router();
 
-photohomeRouter.get('/aboutdata', photohomeController.getPhotohome);
+photohomeRouter.get('/photohome', photohomeController.getAllPhotohome);
+photohomeRouter.get('/photohome/:id', photohomeController.getOnePhotohome);
 
-photohomeRouter.post('/aboutdata', authentification.isAdmin, upload('photohome').array('image'), photohomeController.createPhotohome);
+photohomeRouter.post('/photohome', authentification.isAdmin, upload('photohome').single('image'), photohomeController.createPhotohome);
 
-photohomeRouter.patch('/aboutdata', authentification.isAdmin, upload('photohome').array('image'), photohomeController.updatePhotohome);
+photohomeRouter.patch('/photohome/:id', authentification.isAdmin, photohomeController.updatePhotohome);
+photohomeRouter.patch('/photohome/:id/photo', authentification.isAdmin, upload('photohome').single('image'), photohomeController.updatePhotohomePhoto);
 
-photohomeRouter.delete('/aboutdata', authentification.isAdmin, photohomeController.removePhotohome);
+photohomeRouter.delete('/photohome/:id', authentification.isAdmin, photohomeController.removePhotohome);
 
 export default photohomeRouter;
