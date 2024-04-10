@@ -3,7 +3,14 @@ import debug from 'debug';
 const logger = debug('app:password');
 
 import nodemailer from 'nodemailer';
+import jwt from 'jsonwebtoken';
 
+function resetToken(email) {
+    const payload = {email: email};
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+    return token;
+};
+/*
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth:{
@@ -20,4 +27,5 @@ const data = {
 };
 
 transporter.sendMail(data);
-
+*/
+export {resetToken};

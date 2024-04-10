@@ -48,7 +48,7 @@ const userController = {
             next(new APIerror('Utilisateur ou mot de passe incorrect', 401))
         }
     },
-
+//TODO = image
     async createUser( req, res, next ) {
 
         logger('User create controller called');
@@ -70,10 +70,19 @@ const userController = {
     },
 
     async updateUserPhoto( req, res, next ) {
+
         logger('User modify Photo controller called');
         const id = req.params.id;
         const image =  req.file ? req.file.path:null;
         const { result, error } = await userDatamapper.modifyUserPhoto(id, image);
+        controllerUtil.manageResponse(error, result, res, next);
+    },
+
+    async resetPassword( req, res, next ) {
+
+        logger('User reset pw controller called');
+        const email = req.body.email;
+        const { result, error } = await userDatamapper.modifyPassword(email);
         controllerUtil.manageResponse(error, result, res, next);
     },
 

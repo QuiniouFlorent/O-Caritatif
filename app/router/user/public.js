@@ -7,7 +7,8 @@ import upload from '../../service/multer/multer-config.js';
 const publicRouter = Router();
 
 publicRouter.post('/register', upload('user').single('image'), userController.createUser);
-publicRouter.post('/login', userController.loginUser)
+publicRouter.post('/login', userController.loginUser);
+publicRouter.post('/resetpassword', userController.resetPassword);
 
 logger('Public router initialized');
 export default publicRouter;

@@ -1,5 +1,8 @@
 import debug from 'debug';
 import datamapperUtil from '../service/util/datamapper.js';
+import APIerror from '../service/error/APIerror.js';
+import client from '../models/client.js';
+import { resetToken } from '../service/mail/resetPassword.js';
 const logger = debug('app:datamapper');
 
 const userDatamapper = {
@@ -27,6 +30,7 @@ const userDatamapper = {
   },
 
   async findUser(user) {
+
     const query = 'SELECT * FROM "user" WHERE email = $1';
     const values = [user.email];
 
@@ -34,6 +38,7 @@ const userDatamapper = {
   },
 
   async insertUser(newUser, image) {
+
     const query = `INSERT INTO "user"
         (lastname, firstname, email, password, role, photo_url)
         VALUES
@@ -44,6 +49,7 @@ const userDatamapper = {
   },
 
   async modifyUser(id, userModified) {
+
     const query = `UPDATE "user" SET
             lastname = $1,
             firstname = $2,
@@ -59,6 +65,7 @@ const userDatamapper = {
   },
 
   async modifyUserPhoto(id, image) {
+
     const query = `UPDATE "user" SET
             photo_url = $1,
             updated_at = NOW()
@@ -69,8 +76,32 @@ const userDatamapper = {
     return datamapperUtil.executeQuery(query, values);
   },
 
+  async modifyPassword(email) {
+
+    const query = `SELECT * FROM "user" WHERE email = $1`;
+    const values = [email];
+    let result;
+    let error;
+    
+    try {
+        const response = await client.query(query, values);
+        result = response.rows;
+        if (result.length === 0) {
+          error = new APIerror('Email incorrect', 500);
+        } else {
+          const token = resetToken(result[0].email);
+          
+        }
+    } catch (err) {
+        error = new APIerror(err, 500);
+    }
+    return { result, error }
+
+  },
+
   //TODO ! PK - FK ??
   async deleteUser(id) {
+
     const query = 'DELETE FROM "user" WHERE id = $1';
     const values = [id];
 
