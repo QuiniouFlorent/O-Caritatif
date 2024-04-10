@@ -88,20 +88,20 @@ const userController = {
 
     async resetPassword( req, res, next ) {
 
-        logger('User reset pw controller called');
+        logger('User reset password controller called');
         const email = req.body.email;
         const { result, error } = await userDatamapper.rebootPassword(email);
         controllerUtil.manageResponse(error, result, res, next);
     },
-/*
-    async checkToken( req, res, next ) {
 
-        logger('Check Token controller called');
-        const token = req.params.token;
-        logger(token);
-        const { result, error } = await userDatamapper.controlToken(token);
+    async changePassword( req, res, next ) {
+
+        logger('Change password controller called');
+        const { email, password } = req.body;
+        const token = req.params.token;        
+        const { result, error } = await userDatamapper.modifyPassword(email, password, token);
         controllerUtil.manageResponse(error, result, res, next);
-    },*/
+    },
 
     async removeUser( req, res, next ) {
 
