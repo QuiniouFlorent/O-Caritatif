@@ -38,7 +38,7 @@ const notificationDatamapper = {
             message = $2,
             is_read = $3,
             updated_at = NOW()
-            WHERE id = $3`;
+            WHERE id = $4`;
 
         const values = [notificationModified.user_id, notificationModified.message, notificationModified.is_read, id];
         
