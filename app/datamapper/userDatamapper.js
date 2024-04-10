@@ -29,6 +29,14 @@ const userDatamapper = {
     return datamapperUtil.executeQuery(query, values);
   },
 
+  async findNotificationByUser(id) {
+
+    const query = 'SELECT * FROM notification WHERE user_id = $1';
+    const values = [id];
+
+    return datamapperUtil.executeQuery(query, values);
+  },
+
   async findUser(user) {
 
     const query = 'SELECT * FROM "user" WHERE email = $1';
@@ -101,8 +109,8 @@ const userDatamapper = {
           const resetvalues = [mail,token];
           const resetresult = await client.query(sql, resetvalues);
           const subject = 'Réinitialisation du mot de passe';
-          const text = `Vous recevez cet email car vous avez demandé la réinitialisation de votre mot de passe. \n
-          Veuillez cliquez sur le lien suivant pour enregistrer votre nouveau mot de passe : \n
+          const text = `Vous recevez cet email car vous avez demandé la réinitialisation de votre mot de passe.\n
+          Veuillez cliquez sur le lien suivant pour enregistrer votre nouveau mot de passe :\n
           http://localhost:5173/login/resetpassword/${token}`;
           sendMail(mail, subject, text);
           logger(sendMail);
@@ -114,6 +122,27 @@ const userDatamapper = {
     return { result, error }
 
   },
+
+  /*async controlToken(token) {
+
+    let result;
+    let error;
+    const query = `SELECT * FROM resetpassword WHERE token = $1`;
+    const values = [token];
+
+    try {
+      const response = await client.query(query, values);
+      result = response.rows[0];
+      logger(result);
+      if (!result) {
+        return new APIerror('Token invalide ou token expiré', 500);
+      }
+
+    } catch (err) {
+      error = new APIerror(err, 500);
+    }
+    return { result, error }
+  },*/
 
   //TODO ! PK - FK ??
   async deleteUser(id) {

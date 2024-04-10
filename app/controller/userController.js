@@ -31,6 +31,14 @@ const userController = {
         controllerUtil.manageResponse(error, result, res, next);
     },
 
+    async getNotificationByUser( req, res, next ) {
+
+        logger('Notification by user controller called');
+        const id = req.params.id;
+        const { result, error } = await userDatamapper.findNotificationByUser(id);
+        controllerUtil.manageResponse(error, result, res, next);
+    },
+
     async loginUser( req, res, next ) {
 
         logger('Login controller called');
@@ -85,6 +93,15 @@ const userController = {
         const { result, error } = await userDatamapper.rebootPassword(email);
         controllerUtil.manageResponse(error, result, res, next);
     },
+/*
+    async checkToken( req, res, next ) {
+
+        logger('Check Token controller called');
+        const token = req.params.token;
+        logger(token);
+        const { result, error } = await userDatamapper.controlToken(token);
+        controllerUtil.manageResponse(error, result, res, next);
+    },*/
 
     async removeUser( req, res, next ) {
 
