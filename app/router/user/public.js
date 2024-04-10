@@ -12,7 +12,7 @@ publicRouter.post('/register', upload('user').single('image'), userController.cr
 publicRouter.post('/login', userController.loginUser);
 publicRouter.post('/resetpassword', userController.resetPassword);
 publicRouter.get('/resetpassword/:token', authentification.isValidToken);
-//publicRouter.post('/resetpassword/:token', );
+publicRouter.post('/resetpassword/:token', userController.changePassword);
 
 logger('Public router initialized');
 export default publicRouter;

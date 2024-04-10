@@ -2,6 +2,9 @@ import debug from 'debug';
 import datamapperUtil from '../service/util/datamapper.js';
 import APIerror from '../service/error/APIerror.js';
 import client from '../models/client.js';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import 'dotenv/config';
 import { resetToken, sendMail } from '../service/mail/resetPassword.js';
 const logger = debug('app:datamapper');
 
@@ -119,30 +122,50 @@ const userDatamapper = {
     } catch (err) {
         error = new APIerror(err, 500);
     }
-    return { result, error }
+    return { result, error };
 
   },
 
-  /*async controlToken(token) {
+  async modifyPassword(email, password, token) {
 
-    let result;
-    let error;
-    const query = `SELECT * FROM resetpassword WHERE token = $1`;
-    const values = [token];
+      let result;
+      let error;
+      const query = 'SELECT * FROM resetpassword WHERE user_email = $1';
+      const values = [email];
 
-    try {
-      const response = await client.query(query, values);
-      result = response.rows[0];
-      logger(result);
-      if (!result) {
-        return new APIerror('Token invalide ou token expiré', 500);
+      try {
+        const response = await client.query(query, values);
+        result = response.rows[0];
+
+        if (!result) {
+          error = new APIerror('Token invalide ou email invalide');
+        } else {
+          if (result.token === token && result.user_email === email) {
+            const isvalid = token;
+            const isvalided = jwt.verify(isvalid, process.env.JWT_SECRET);
+
+            if (isvalided) {
+              const hashedPassword = await bcrypt.hash(password,10)
+              const sql = `UPDATE "user" SET password = $1, updated_at = NOW()
+              WHERE email = $2`
+              const sqlvalues = [hashedPassword, email];
+              const res = await client.query(sql, sqlvalues);
+              //TODO : delete resetpassword where user_email =
+              
+            } else {
+              error = new APIerror('Token invalide');
+            }
+            
+          } else {
+            error = new APIerror('Token expiré ou email invalide');
+          }
+        }
+        
+      } catch (err) {
+        error = new APIerror(err, 500);
       }
-
-    } catch (err) {
-      error = new APIerror(err, 500);
-    }
-    return { result, error }
-  },*/
+      return { result, error };
+  },
 
   //TODO ! PK - FK ??
   async deleteUser(id) {
