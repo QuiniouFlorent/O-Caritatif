@@ -6,8 +6,8 @@ const datamapperUtil = {
         let result ;
         let error;
         try {
-         const response = await client.query(query, values);
-         result = response.rows;
+            const response = await client.query(query, values);
+            result = response.rows;
         } catch (err) {
             error = new APIerror(err, 500);
         }
