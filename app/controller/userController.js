@@ -82,7 +82,7 @@ const userController = {
 
         logger('User reset pw controller called');
         const email = req.body.email;
-        const { result, error } = await userDatamapper.modifyPassword(email);
+        const { result, error } = await userDatamapper.rebootPassword(email);
         controllerUtil.manageResponse(error, result, res, next);
     },
 

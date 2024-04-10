@@ -4,28 +4,54 @@ const logger = debug('app:password');
 
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
+import APIerror from '../error/APIerror.js';
+import oauth2Client from './oauth2.js';
 
-function resetToken(email) {
-    const payload = {email: email};
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-    return token;
-};
-/*
+oauth2Client.setCredentials({refresh_token: process.env.REFRESH_TOKEN});
+const ACCES_TOKEN = oauth2Client.getAccessToken();
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth:{
+        type: 'OAuth2',
         user: process.env.GMAIL_ADRESS,
-        pass: process.env.GMAIL_PW
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
+        accessToken: ACCES_TOKEN
+    },
+    tls:{
+        rejectUnauthorized: true
     }
-});
+    }
+);
 
-const data = {
-    from: process.env.GMAIL_ADRESS,
-    to: "",
-    subject: "Réinitialisation du mot de passe",
-    text: "Bonjour, pour réinitiliser votre mot de passe :"
+function resetToken(email) {
+    const payload =  { email: email };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+    return token;
 };
 
-transporter.sendMail(data);
-*/
-export {resetToken};
+function sendMail(to, subject, text) {
+    const mailOptions = {
+        from: process.env.GMAIL_ADRESS,
+        to: to,
+        subject: subject,
+        text: text
+    };
+    transporter.sendMail(mailOptions, function(err, info) {
+        let error;
+        let result;
+        if (err) {
+            return error = new APIerror('Erreur lors de l\'envoi de l\'email', err);
+        } else {
+            return result = 'Email envoyé'
+        }
+    });
+};
+
+function resetPassword(useremail, newPassword) {
+
+};
+
+
+export {resetToken, sendMail};

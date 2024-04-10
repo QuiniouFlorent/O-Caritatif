@@ -196,6 +196,12 @@ CREATE TABLE photohome (
     updated_at TIMESTAMPTZ
 );
 
+CREATE TABLE resetpassword (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_email TEXT REFERENCES "user"(email),
+    token TEXT NOT NULL
+);
+
 CREATE VIEW view_all_events AS
     SELECT e.id, e.title, e.category, e.photo_url, e.description, e.date, e.calendar_url, e.place, u.lastname, u.firstname, count(r.user_id) AS nombre_inscrit
     FROM event e
