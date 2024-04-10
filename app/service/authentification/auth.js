@@ -9,7 +9,7 @@ const authentification = {
     isAuthentificated(req, res, next) {
 
         const token = req.headers.authorization;
-
+        
         if(!token) {
             return next(new APIerror('Aucun token fourni', 403));
         }
@@ -60,6 +60,16 @@ const authentification = {
             } else {
                 return next(new APIerror('Accès refusé. Vous devez être administrateur', 403))
             }
+        }
+    },
+
+    isValidToken(req, res, next) {
+        
+        const token = req.params.token;
+        logger(token);
+        const validToken = jwt.verify(token, process.env.JWT_SECRET);
+        if(!validToken) {
+            return next(new APIerror('Token expiré ou token invalide'));
         }
     }
 };

@@ -2,7 +2,7 @@ import debug from 'debug';
 import datamapperUtil from '../service/util/datamapper.js';
 import APIerror from '../service/error/APIerror.js';
 import client from '../models/client.js';
-import { resetToken } from '../service/mail/resetPassword.js';
+import { resetToken, sendMail } from '../service/mail/resetPassword.js';
 const logger = debug('app:datamapper');
 
 const userDatamapper = {
@@ -24,6 +24,14 @@ const userDatamapper = {
   async findRegistrationByUser(id) {
 
     const query = 'SELECT * FROM view_registration WHERE user_id = $1';
+    const values = [id];
+
+    return datamapperUtil.executeQuery(query, values);
+  },
+
+  async findNotificationByUser(id) {
+
+    const query = 'SELECT * FROM notification WHERE user_id = $1';
     const values = [id];
 
     return datamapperUtil.executeQuery(query, values);
@@ -76,21 +84,37 @@ const userDatamapper = {
     return datamapperUtil.executeQuery(query, values);
   },
 
-  async modifyPassword(email) {
-
-    const query = `SELECT * FROM "user" WHERE email = $1`;
-    const values = [email];
+  async rebootPassword(email) {
+  
     let result;
     let error;
     
     try {
+        const query = `SELECT * FROM "user" WHERE email = $1`;
+        const values = [email];
         const response = await client.query(query, values);
-        result = response.rows;
-        if (result.length === 0) {
+        result = response.rows[0];
+
+        if (!result) {
           error = new APIerror('Email incorrect', 500);
+
         } else {
-          const token = resetToken(result[0].email);
-          
+
+          const mail = result.email
+          const token = resetToken(mail);
+          const sql = `INSERT INTO resetpassword 
+          (user_email, token) 
+          VALUES
+          ($1, $2)`;
+          const resetvalues = [mail,token];
+          const resetresult = await client.query(sql, resetvalues);
+          const subject = 'Réinitialisation du mot de passe';
+          const text = `Vous recevez cet email car vous avez demandé la réinitialisation de votre mot de passe.\n
+          Veuillez cliquez sur le lien suivant pour enregistrer votre nouveau mot de passe :\n
+          http://localhost:5173/login/resetpassword/${token}`;
+          sendMail(mail, subject, text);
+          logger(sendMail);
+
         }
     } catch (err) {
         error = new APIerror(err, 500);
@@ -98,6 +122,27 @@ const userDatamapper = {
     return { result, error }
 
   },
+
+  /*async controlToken(token) {
+
+    let result;
+    let error;
+    const query = `SELECT * FROM resetpassword WHERE token = $1`;
+    const values = [token];
+
+    try {
+      const response = await client.query(query, values);
+      result = response.rows[0];
+      logger(result);
+      if (!result) {
+        return new APIerror('Token invalide ou token expiré', 500);
+      }
+
+    } catch (err) {
+      error = new APIerror(err, 500);
+    }
+    return { result, error }
+  },*/
 
   //TODO ! PK - FK ??
   async deleteUser(id) {
