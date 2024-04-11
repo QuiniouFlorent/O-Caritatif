@@ -76,16 +76,6 @@ CREATE TABLE sponsor (
     updated_at TIMESTAMPTZ
 );
 
-CREATE TABLE item (
-    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name TEXT NOT NULL,
-    category TEXT NOT NULL,
-    description TEXT,
-    quantity INT,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    updated_at TIMESTAMPTZ
-);
-
 CREATE TABLE opinion (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     firstname TEXT NOT NULL,
@@ -174,6 +164,7 @@ CREATE TABLE aboutdata (
     title TEXT,
     content TEXT,
     photo_url TEXT,
+    position INT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
