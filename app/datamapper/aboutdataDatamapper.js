@@ -36,7 +36,7 @@ const aboutdataDatamapper = {
         const query = `UPDATE aboutdata SET
             title = $1,
             content = $2,
-            position = $3
+            position = $3,
             updated_at = NOW()
             WHERE id = $4`;
 
