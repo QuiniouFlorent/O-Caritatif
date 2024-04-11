@@ -39,7 +39,7 @@ const aboutdataDatamapper = {
             updated_at = NOW()
             WHERE id = $3`;
 
-        const values = [aboutdataModified.paragraph_title, aboutdataModified.paragraph_content,id];
+        const values = [aboutdataModified.paragraph_title, aboutdataModified.paragraph_content, id];
         
         return datamapperUtil.executeQuery(query, values);
     },
