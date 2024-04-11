@@ -38,13 +38,13 @@ function sendMail(to, subject, text) {
         subject: subject,
         text: text
     };
-    transporter.sendMail(mailOptions, function(err, info) {
+     transporter.sendMail(mailOptions, function(err, info) {
         let error;
         let result;
         if (err) {
             return error = new APIerror('Erreur lors de l\'envoi de l\'email', err);
         } else {
-            return result = 'Email envoyé'
+            return result = 'Email envoyé',info.response
         }
     });
 };

@@ -116,8 +116,7 @@ const userDatamapper = {
           Veuillez cliquez sur le lien suivant pour enregistrer votre nouveau mot de passe :\n
           http://localhost:5173/login/resetpassword/${token}`;
           sendMail(mail, subject, text);
-          logger(sendMail);
-
+          
         }
     } catch (err) {
         error = new APIerror(err, 500);
