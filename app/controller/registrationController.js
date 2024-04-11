@@ -2,6 +2,8 @@ import debug from 'debug';
 const logger = debug('app:controller');
 import { registrationDatamapper } from '../datamapper/index.js';
 import controllerUtil from '../service/util/controller.js';
+import { sendMail } from '../service/mail/resetPassword.js';
+import APIerror from '../service/error/APIerror.js';
 
 const registrationController = {
 
@@ -18,6 +20,39 @@ const registrationController = {
         const newRegistration = req.body;
         const { result, error } = await registrationDatamapper.insertRegistration(newRegistration);
         controllerUtil.manageResponse(error, result, res, next);
+    },
+
+    async askRegistration( req, res, next ) {
+
+        logger('Ask registration controller called');
+        let result ;
+        let error;
+        const mail = req.body.email;
+        const firstname = req.body.firstname;
+        const lastname = req.body.lastname;
+        const event = req.body.event;
+        const date = req.body.date;
+        const subject = `Demande d\'inscription à l\'événement : ${event} du ${date}`;
+        const text = `Votre demande d\'inscription pour ${event} du ${date} va être prise en compte.\n
+        Merci d'attendre notre retour validant votre inscription.`;
+        const text2 = `Demande d'inscription à l'événement : ${event} du ${date}\n
+        Nom : ${lastname}\n
+        Prénom: ${firstname}\n
+        Mail: ${mail} `
+
+        try {
+            result = await Promise.all([
+                sendMail(mail, subject, text),
+                sendMail(process.env.GMAIL_ADRESS, subject, text2)
+                ]);
+
+        } catch(err) {
+            error = new APIerror(err, 500);
+
+        } finally {
+            controllerUtil.manageResponse(error, result, res, next);
+        }
+        
     },
 
     async updateRegistration( req, res, next ) {
