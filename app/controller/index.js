@@ -3,6 +3,7 @@ const logger = debug('app:controller');
 
 import aboutdataController from './aboutdataController.js';
 import commentController from './commentController.js';
+import contactusController from './contactusController.js'
 import eventController from './eventController.js';
 import boardmemberController from './boardmemberController.js';
 import galerieController from './galerieController.js';
@@ -22,7 +23,8 @@ import userController from './userController.js';
 logger('Main controller initialized');
 
 export {aboutdataController,
-        commentController, 
+        commentController,
+        contactusController,
         eventController, 
         boardmemberController,
         galerieController, 
