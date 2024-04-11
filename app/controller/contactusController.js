@@ -17,13 +17,13 @@ const contactusController = {
         const message = req.body.message;
         const subject = 'Demande de contact';
         const text = `Nous avons bien reçu votre demande de contact Mr/Mme ${lastname} ${firstname}, dont le message est le suivant :
-        ${message}
+        " ${message} ".
         Nous reviendrons vers vous prochainement . Cordialement `;
         const text2 = `Demande de contact reçue :
-        Nom : ${lastname}
-        Prénom : ${firstname}
-        email : ${mail}
-        message : ${message}`
+        Nom : ${lastname} ,
+        Prénom : ${firstname} ,
+        Email : ${mail} ,
+        Message : ${message} `
 
         try {
             result = await Promise.all([
