@@ -49,9 +49,10 @@ function sendMail(to, subject, text) {
     });
 };
 
-function resetPassword(useremail, newPassword) {
+//TODO factoriser !
+//function resetPassword(useremail, newPassword) {
 
-};
+//};
 
 
 export {resetToken, sendMail};

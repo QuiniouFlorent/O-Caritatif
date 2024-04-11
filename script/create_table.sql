@@ -171,27 +171,25 @@ CREATE TABLE boardmember (
 
 CREATE TABLE aboutdata (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    about_title TEXT,
-    about_home_summary TEXT,
-    about_us_content TEXT,
-    first_paragraph_title TEXT,
-    second_paragraph_title TEXT,
-    third_paragraph_title TEXT,
-    first_paragraph_content TEXT,
-    second_paragraph_content TEXT,
-    third_paragraph_content TEXT,
+    paragraph_title TEXT,
+    paragraph_content TEXT,
+    paragraph_photo_url TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
-
-ALTER TABLE aboutdata
-    ADD CONSTRAINT limite_line CHECK ( id = 1 );
 
 CREATE TABLE photohome (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     content TEXT,
     photo_url TEXT,
     align TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
+);
+
+CREATE TABLE photoabout (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    photo_url TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
