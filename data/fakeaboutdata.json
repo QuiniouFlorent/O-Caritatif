@@ -2,18 +2,20 @@
     {
         "photo_url": "/Benevoles/benevole_001.webp",
         "title": "Qui sommes-nous?",
-        "content": "O'Caritatif est une association dédiée à tisser des liens d'entraide entre individus face aux défis de la vie quotidienne. Fondée sur les valeurs de solidarité et de partage, elle met en relation des personnes en situation de précarité avec des bénévoles prêts à offrir leur temps et leurs compétences."
-        
+        "content": "O'Caritatif est une association dédiée à tisser des liens d'entraide entre individus face aux défis de la vie quotidienne. Fondée sur les valeurs de solidarité et de partage, elle met en relation des personnes en situation de précarité avec des bénévoles prêts à offrir leur temps et leurs compétences.",
+        "position": 1  
     },
     {
         "photo_url": "/Benevoles/benevole_002.webp",
         "title": "Nos Valeurs?",
-        "content": "O'Caritatif est une association dédiée à tisser des liens d'entraide entre individus face aux défis de la vie quotidienne. Fondée sur les valeurs de solidarité et de partage, elle met en relation des personnes en situation de précarité avec des bénévoles prêts à offrir leur temps et leurs compétences. À travers des actions comme le mentorat, le partage de compétences et le soutien mutuel, L'Entraide Solidaire crée une communauté bienveillante où chacun peut trouver écoute, aide et encouragement. Son objectif est de permettre à tous de surmonter les obstacles, ensemble, dans un esprit de fraternité et de respect mutuel." 
+        "content": "O'Caritatif est une association dédiée à tisser des liens d'entraide entre individus face aux défis de la vie quotidienne. Fondée sur les valeurs de solidarité et de partage, elle met en relation des personnes en situation de précarité avec des bénévoles prêts à offrir leur temps et leurs compétences. À travers des actions comme le mentorat, le partage de compétences et le soutien mutuel, L'Entraide Solidaire crée une communauté bienveillante où chacun peut trouver écoute, aide et encouragement. Son objectif est de permettre à tous de surmonter les obstacles, ensemble, dans un esprit de fraternité et de respect mutuel." ,
+        "position": 2
     },
     {
         "photo_url": "/Benevoles/benevole_003.webp",
         "title": "Nos Actions",
-        "content": "O'Caritatif orchestre des ateliers de partage de compétences, des séances de mentorat individuelles et des initiatives de soutien mutuel. Elle favorise l'échange de services et de savoirs entre ses membres, créant un réseau d'assistance polyvalent et réactif. Les bénévoles proposent de l'aide dans des domaines variés, allant de l'accompagnement scolaire à la formation professionnelle, en passant par le conseil en gestion budgétaire. Cette dynamique renforce le tissu social et encourage les membres à devenir à leur tour des vecteurs de changement et d'entraide dans leurs communautés."  
+        "content": "O'Caritatif orchestre des ateliers de partage de compétences, des séances de mentorat individuelles et des initiatives de soutien mutuel. Elle favorise l'échange de services et de savoirs entre ses membres, créant un réseau d'assistance polyvalent et réactif. Les bénévoles proposent de l'aide dans des domaines variés, allant de l'accompagnement scolaire à la formation professionnelle, en passant par le conseil en gestion budgétaire. Cette dynamique renforce le tissu social et encourage les membres à devenir à leur tour des vecteurs de changement et d'entraide dans leurs communautés.",
+        "position": 3
     }
   
 ]
