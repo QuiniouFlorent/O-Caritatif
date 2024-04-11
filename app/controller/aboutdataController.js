@@ -5,9 +5,9 @@ import controllerUtil from '../service/util/controller.js';
 
 const aboutdataController = {
 
-    async getAboutdata( req, res, next ) {
+    async getAllAboutdata( req, res, next ) {
 
-        logger('Aboutdata get controller called');
+        logger('Aboutdata getAll controller called');
         const { result, error } = await aboutdataDatamapper.findAboutdata();
         controllerUtil.manageResponse(error, result, res, next);
     },

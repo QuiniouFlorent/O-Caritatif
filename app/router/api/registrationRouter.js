@@ -12,6 +12,6 @@ registrationtRouter.post('/registration', authentification.isAuthentificated, re
 
 registrationtRouter.patch('/registration/:id', authentification.isResponsableOrAdmin, registrationController.updateRegistration);
 
-registrationtRouter.delete('/registration/:id', authentification.isResponsableOrAdmin, registrationController.removeRegistration);
+registrationtRouter.delete('/registration/:id', authentification.isAuthentificated, registrationController.removeRegistration);
 
 export default registrationtRouter;
