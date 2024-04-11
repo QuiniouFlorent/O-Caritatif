@@ -12,6 +12,7 @@ import newsDatamapper from './newsDatamapper.js';
 import notificationDatamapper from './notificationDatamapper.js';
 import opinionDatamapper from './opinionDatamapper.js';
 import photoDatamapper from './photoDatamapper.js';
+import photoaboutDatamapper from './photoaboutDatamapper.js';
 import photohomeDatamapper from './photohomeDatamapper.js';
 import registrationDatamapper from './registrationDatamapper.js';
 import settingDatamapper from './settingDatamapper.js';
@@ -31,6 +32,7 @@ export {aboutdataDatamapper,
         notificationDatamapper,
         opinionDatamapper,
         photoDatamapper, 
+        photoaboutDatamapper,
         photohomeDatamapper,
         registrationDatamapper,
         settingDatamapper,

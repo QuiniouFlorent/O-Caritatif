@@ -22,11 +22,11 @@ const aboutdataDatamapper = {
     async insertAboutdata(newAboutdata, image) {
 
         const query = `INSERT INTO aboutdata
-            (paragraph_title, paragraph_content, paragraph_photo_url)
+            (title, content, photo_url)
             VALUES
             ($1, $2, $3)`;
 
-        const values = [newAboutdata.paragraph_title, newAboutdata.paragraph_content, image];
+        const values = [newAboutdata.title, newAboutdata.content, image];
     
         return datamapperUtil.executeQuery(query, values);
     },
@@ -34,12 +34,12 @@ const aboutdataDatamapper = {
     async modifyAboutdata(id, aboutdataModified) {
 
         const query = `UPDATE aboutdata SET
-            paragraph_title = $1,
-            paragraph_content = $2,
+            title = $1,
+            content = $2,
             updated_at = NOW()
             WHERE id = $3`;
 
-        const values = [aboutdataModified.paragraph_title, aboutdataModified.paragraph_content, id];
+        const values = [aboutdataModified.title, aboutdataModified.content, id];
         
         return datamapperUtil.executeQuery(query, values);
     },
@@ -47,7 +47,7 @@ const aboutdataDatamapper = {
     async modifyAboutdataPhoto(id, image) {
 
         const query = `UPDATE aboutdata SET
-            paragraph_photo_url = $1,
+            photo_url = $1,
             updated_at = NOW()
             WHERE id = $2
             RETURNING photo_url`;

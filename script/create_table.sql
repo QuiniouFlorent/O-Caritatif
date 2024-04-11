@@ -171,9 +171,9 @@ CREATE TABLE boardmember (
 
 CREATE TABLE aboutdata (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    paragraph_title TEXT,
-    paragraph_content TEXT,
-    paragraph_photo_url TEXT,
+    title TEXT,
+    content TEXT,
+    photo_url TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
