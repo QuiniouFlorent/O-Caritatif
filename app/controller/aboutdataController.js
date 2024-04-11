@@ -43,7 +43,7 @@ const aboutdataController = {
         logger('Aboutdata modify controller called');
         const id = req.params.id;
         const image = req.file ? req.file.path:null;
-        const { result, error } = await aboutdataDatamapper.modifyAboutdata(id, image);
+        const { result, error } = await aboutdataDatamapper.modifyAboutdataPhoto(id, image);
         controllerUtil.manageResponse(error, result, res, next);
     },
 
