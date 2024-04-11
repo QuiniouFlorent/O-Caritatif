@@ -6,7 +6,7 @@ const aboutdataDatamapper = {
 
     async findAllAboutdata() {
 
-        const query = 'SELECT * FROM aboutdata';
+        const query = 'SELECT * FROM aboutdata ORDER BY position ASC';
 
         return datamapperUtil.executeQuery(query);
     },
