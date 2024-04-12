@@ -6,7 +6,7 @@ const sponsorDatamapper = {
 
     async findAllSponsor(){
 
-        const query = 'SELECT * FROM "sponsor"';
+        const query = 'SELECT * FROM sponsor';
 
         return datamapperUtil.executeQuery(query);
     },
