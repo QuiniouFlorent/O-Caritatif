@@ -16,13 +16,15 @@ const settingDatamapper = {
             primary_color,
             adress,
             number_phone,
+            first_media_link,
+            second_media_link,
             email_asso,
             email_password,
             boutique_is_active, 
             galery_is_active, 
             event_is_active)
             VALUES
-            ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
+            ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
 
     const values = [
       newSetting.association_name,
@@ -30,6 +32,8 @@ const settingDatamapper = {
       newSetting.primary_color,
       newSetting.adress,
       newSetting.number_phone,
+      newSetting.first_media_link,
+      newSetting.second_media_link,
       newSetting.email_asso,
       newSetting.email_password,
       newSetting.boutique_is_active,
@@ -46,11 +50,13 @@ const settingDatamapper = {
             primary_color = $2,
             adress = $3,
             number_phone = $4,
-            email_asso = $5,
-            email_password = $6,
-            boutique_is_active = $7, 
-            galery_is_active = $8, 
-            event_is_active = $9,
+            first_media_link = $5,
+            second_media_link = $6,
+            email_asso = $7,
+            email_password = $8,
+            boutique_is_active = $9, 
+            galery_is_active = $10, 
+            event_is_active = $11,
             updated_at = NOW()
             WHERE id = 1`;
 
@@ -59,6 +65,8 @@ const settingDatamapper = {
       settingModified.primary_color,
       settingModified.adress,
       settingModified.number_phone,
+      settingModified.first_media_link,
+      settingModified.second_media_link,
       settingModified.email_asso,
       settingModified.email_password,
       settingModified.boutique_is_active,

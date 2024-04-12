@@ -121,6 +121,8 @@ CREATE TABLE setting (
     primary_color TEXT,
     adress TEXT,
     number_phone TEXT,
+    first_media_link TEXT,
+    second_media_link TEXT,
     email_asso TEXT,
     email_password TEXT,
     boutique_is_active BOOLEAN DEFAULT true,
@@ -133,15 +135,6 @@ CREATE TABLE setting (
 ALTER TABLE setting 
     ADD CONSTRAINT limite_line CHECK ( id = 1 );
 
-CREATE TABLE homedata (
-    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    about_summary_content TEXT,
-    first_media_link TEXT,
-    second_media_link TEXT,
-    third_media_link TEXT,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    updated_at TIMESTAMPTZ
-);
 
 ALTER TABLE homedata 
     ADD CONSTRAINT limite_line CHECK ( id = 1 );
