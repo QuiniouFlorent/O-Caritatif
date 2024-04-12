@@ -46,13 +46,16 @@ const aboutdataDatamapper = {
     },
 
     async modifyAboutdataPosition(aboutdataPositionModified) {
+        logger(aboutdataPositionModified)
 
         const promises = aboutdataPositionModified.map(aboutdata => {
 
             const query = `UPDATE aboutdata SET
             position = $1
             WHERE id = $2`;
+
             const values = [aboutdata.position, aboutdata.id];
+            
 
             return datamapperUtil.executeQuery(query, values);
         });
