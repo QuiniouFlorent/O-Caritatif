@@ -46,7 +46,6 @@ const aboutdataDatamapper = {
     },
 
     async modifyAboutdataPosition(aboutdataPositionModified) {
-        logger(aboutdataPositionModified)
 
         const promises = aboutdataPositionModified.map(aboutdata => {
 
