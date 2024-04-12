@@ -1,11 +1,14 @@
 [
     {
-        "photo_url": "/Benevoles/benevole_001.webp"     
+        "photo_url": "/Benevoles/benevole_001.webp",
+        "position": 1     
     },
     {
-        "photo_url": "/Benevoles/benevole_002.webp"
+        "photo_url": "/Benevoles/benevole_002.webp",
+        "position": 2
     },
     {
-        "photo_url": "/Benevoles/benevole_003.webp"
+        "photo_url": "/Benevoles/benevole_003.webp",
+        "position": 3
     }
 ]
