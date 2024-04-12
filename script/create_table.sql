@@ -135,10 +135,6 @@ CREATE TABLE setting (
 ALTER TABLE setting 
     ADD CONSTRAINT limite_line CHECK ( id = 1 );
 
-
-ALTER TABLE homedata 
-    ADD CONSTRAINT limite_line CHECK ( id = 1 );
-
 CREATE TABLE boardmember (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     firstname TEXT,
@@ -174,6 +170,29 @@ CREATE TABLE photohome (
 CREATE TABLE photoabout (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     photo_url TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
+);
+
+CREATE TABLE item (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT,
+    description TEXT,
+    category TEXT,
+    type TEXT,
+    quantity_available INT,
+    photo_url TEXT,
+    is_active BOOLEAN default true,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
+);
+
+CREATE TABLE itemlog (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    article_id INT REFERENCES item(id),
+    user_id INT REFERENCES "user"(id),
+    quantity INT,
+    return_date TIMESTAMPTZ,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );
