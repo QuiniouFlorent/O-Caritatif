@@ -9,6 +9,7 @@ import boardmemberController from './boardmemberController.js';
 import galerieController from './galerieController.js';
 import homeController from './homeController.js';
 import homedataController from './homedataController.js';
+import itemController from './itemController.js';
 import newsController from './newsController.js';
 import notificationController from './notificationController.js';
 import opinionController from './opinionController.js';
@@ -29,7 +30,8 @@ export {aboutdataController,
         boardmemberController,
         galerieController, 
         homeController,
-        homedataController, 
+        homedataController,
+        itemController,
         newsController,
         notificationController,
         opinionController,

@@ -39,6 +39,7 @@ const boardmemberController = {
     },
 
     async updateBoardmemberPosition( req, res, next ) {
+        
         logger('Boardmember modify Position called');
         const boardmemberPositionModified = req.body;
         const { result , error } = await boardmemberDatamapper.modifyBoardmemberPosition(boardmemberPositionModified);
