@@ -41,9 +41,8 @@ const aboutdataController = {
     async updateAboutdataPosition( req, res, next ) {
 
         logger('Aboutdata modify Position controller called');
-        const id = req.params.id;
         const aboutdataPositionModified = req.body;
-        const { result, error } = await aboutdataDatamapper.modifyAboutdataPosition(id, aboutdataPositionModified);
+        const { result, error } = await aboutdataDatamapper.modifyAboutdataPosition(aboutdataPositionModified);
         controllerUtil.manageResponse(error, result, res, next);
     },
 
