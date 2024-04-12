@@ -188,7 +188,7 @@ CREATE TABLE item (
     updated_at TIMESTAMPTZ
 );
 
-CREATE TABLE itemlog (
+CREATE TABLE itemreservation (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     article_id INT REFERENCES item(id),
     user_id INT REFERENCES "user"(id),

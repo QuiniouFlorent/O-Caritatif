@@ -10,6 +10,7 @@ import galerieController from './galerieController.js';
 import homeController from './homeController.js';
 import homedataController from './homedataController.js';
 import itemController from './itemController.js';
+import itemreservationController from './itemreservation.js';
 import newsController from './newsController.js';
 import notificationController from './notificationController.js';
 import opinionController from './opinionController.js';
@@ -32,6 +33,7 @@ export {aboutdataController,
         homeController,
         homedataController,
         itemController,
+        itemreservationController,
         newsController,
         notificationController,
         opinionController,

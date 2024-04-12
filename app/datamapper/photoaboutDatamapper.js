@@ -24,7 +24,7 @@ const photoaboutDatamapper = {
         const query = `INSERT INTO photoabout
             (photo_url, position)
             VALUES
-            ($1; $2)`;
+            ($1, $2)`;
 
         const values = [image, newPhotoabout.position];
     

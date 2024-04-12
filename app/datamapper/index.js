@@ -9,6 +9,7 @@ import galeryDatamapper from './galerieDatamapper.js';
 import homeDatamapper from './homeDatamapper.js';
 import homedataDatamapper from './homedataDatamapper.js';
 import itemDatamapper from './itemDatamapper.js';
+import itemreservationDatamapper from './itemreservation.js';
 import newsDatamapper from './newsDatamapper.js';
 import notificationDatamapper from './notificationDatamapper.js';
 import opinionDatamapper from './opinionDatamapper.js';
@@ -30,6 +31,7 @@ export {aboutdataDatamapper,
         homeDatamapper,
         homedataDatamapper,
         itemDatamapper,
+        itemreservationDatamapper,
         newsDatamapper,
         notificationDatamapper,
         opinionDatamapper,

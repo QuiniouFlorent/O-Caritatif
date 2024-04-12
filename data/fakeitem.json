@@ -22,7 +22,7 @@
     "description": "Offre de services de jardinage pour un mois",
     "category": "Services",
     "type": "Service",
-    "quantity_available": 0,
+    "quantity_available": 1,
     "is_active": true,
     "photo_url": "/Boutique/boutique_003.webp"
   },
@@ -40,7 +40,7 @@
     "description": "Session de yoga pour débutants, 5 cours inclus",
     "category": "Services",
     "type": "Service",
-    "quantity_available": 0,
+    "quantity_available": 1,
     "is_active": true,
     "photo_url": "/Boutique/boutique_005.webp"
   },
@@ -67,7 +67,7 @@
     "description": "Atelier communautaire pour apprendre à réparer son vélo",
     "category": "Services",
     "type": "Service",
-    "quantity_available": 0,
+    "quantity_available": 1,
     "is_active": true,
     "photo_url": "/Boutique/boutique_008.webp"
   },
