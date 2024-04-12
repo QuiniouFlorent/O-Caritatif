@@ -19,14 +19,14 @@ const photoaboutDatamapper = {
         return datamapperUtil.executeQuery(query, values);
     },
 
-    async insertPhotoabout(image) {
+    async insertPhotoabout(image, newPhotoabout) {
 
         const query = `INSERT INTO photoabout
             (photo_url, position)
             VALUES
             ($1; $2)`;
 
-        const values = [image];
+        const values = [image, newPhotoabout.position];
     
         return datamapperUtil.executeQuery(query, values);
     },
