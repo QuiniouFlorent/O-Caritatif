@@ -37,6 +37,14 @@ const photoaboutController = {
         controllerUtil.manageResponse(error, result, res, next);
     },
 
+    async updatePhotoaboutPosition( req, res, next ) {
+
+        logger('Photoabout modify position controller called');
+        const photoaboutPositionModified = req.body;
+        const { result, error } = await photoaboutDatamapper.modifyPhotoaboutPosition(photoaboutPositionModified);
+        controllerUtil.manageResponse(error, result, res, next);
+    },
+
     async removePhotoabout( req, res, next ) {
 
         const id = req.params.id;

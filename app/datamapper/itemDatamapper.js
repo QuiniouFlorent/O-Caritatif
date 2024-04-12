@@ -39,7 +39,7 @@ const itemDatamapper = {
             category = $3,
             type = $4,
             quantity_available = $5,
-            is_active = $6
+            is_active = $6,
             updated_at = NOW()
             WHERE id = $7`;
 

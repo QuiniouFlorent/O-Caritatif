@@ -1,0 +1,92 @@
+[ 
+  {
+    "name": "Pain Bio",
+    "description": "Pain frais bio, produit localement",
+    "category": "Alimentaire",
+    "type": "Don",
+    "quantity_available": 15,
+    "is_active": true,
+    "photo_url": "/Boutique/boutique_001.webp"
+  },
+  {
+    "name": "Veste en laine",
+    "description": "Veste en laine pour l'hiver, taille M",
+    "category": "Vêtements",
+    "type": "Prêt",
+    "quantity_available": 5,
+    "is_active": true,
+    "photo_url": "/Boutique/boutique_002.webp"
+  },
+  {
+    "name": "Services de jardinage",
+    "description": "Offre de services de jardinage pour un mois",
+    "category": "Services",
+    "type": "Service",
+    "quantity_available": 0,
+    "is_active": true,
+    "photo_url": "/Boutique/boutique_003.webp"
+  },
+  {
+    "name": "Sac à dos de randonnée",
+    "description": "Sac à dos robuste idéal pour les randonnées",
+    "category": "Matériel",
+    "type": "Prêt",
+    "quantity_available": 10,
+    "is_active": true,
+    "photo_url": "/Boutique/boutique_004.webp"
+  },
+  {
+    "name": "Cours de yoga",
+    "description": "Session de yoga pour débutants, 5 cours inclus",
+    "category": "Services",
+    "type": "Service",
+    "quantity_available": 0,
+    "is_active": true,
+    "photo_url": "/Boutique/boutique_005.webp"
+  },
+  {
+    "name": "Confitures maison",
+    "description": "Assortiment de confitures faites maison avec des fruits de saison",
+    "category": "Alimentaire",
+    "type": "Don",
+    "quantity_available": 20,
+    "is_active": true,
+    "photo_url": "/Boutique/boutique_006.webp"
+  },
+  {
+    "name": "Livre de recettes",
+    "description": "Livre de recettes traditionnelles de la région",
+    "category": "Matériel",
+    "type": "Don",
+    "quantity_available": 10,
+    "is_active": true,
+    "photo_url": "/Boutique/boutique_007.webp"
+  },
+  {
+    "name": "Atelier de réparation de vélo",
+    "description": "Atelier communautaire pour apprendre à réparer son vélo",
+    "category": "Services",
+    "type": "Service",
+    "quantity_available": 0,
+    "is_active": true,
+    "photo_url": "/Boutique/boutique_008.webp"
+  },
+  {
+    "name": "Jeux de société",
+    "description": "Jeux de société variés pour tous les âges",
+    "category": "Matériel",
+    "type": "Prêt",
+    "quantity_available": 15,
+    "is_active": true,
+    "photo_url": "/Boutique/boutique_009.webp"
+  },
+  {
+    "name": "Couvertures chaudes",
+    "description": "Couvertures chaudes pour l'hiver, plusieurs tailles disponibles",
+    "category": "Vêtements",
+    "type": "Don",
+    "quantity_available": 30,
+    "is_active": true,
+    "photo_url": "/Boutique/boutique_010.webp"
+  }
+]
