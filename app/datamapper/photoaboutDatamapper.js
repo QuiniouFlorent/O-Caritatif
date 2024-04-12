@@ -21,14 +21,29 @@ const photoaboutDatamapper = {
 
     async insertPhotoabout(image) {
 
-        const query = `INSERT INTO photohome
-            (photo_url)
+        const query = `INSERT INTO photoabout
+            (photo_url, position)
             VALUES
-            ($1)`;
+            ($1; $2)`;
 
         const values = [image];
     
         return datamapperUtil.executeQuery(query, values);
+    },
+
+    async modifyPhotoaboutPosition(photoaboutPositionModified) {
+
+        const promises = photoaboutPositionModified.map(photoabout => {
+
+            const query = `UPDATE photoabout SET
+            position = $1
+            WHERE id = $2`;
+
+            const values = [photoabout.position, photoabout.id];
+
+            return datamapperUtil.executeQuery(query, values);
+        });
+        return await Promise.all(promises);
     },
 
     async modifyPhotoabout(id, image) {

@@ -170,6 +170,7 @@ CREATE TABLE photohome (
 CREATE TABLE photoabout (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     photo_url TEXT,
+    position INT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ
 );

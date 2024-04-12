@@ -13,6 +13,7 @@ photoaboutRouter.get('/photoabout/:id', photoaboutController.getOnePhotoabout);
 
 photoaboutRouter.post('/photoabout', /*authentification.isAdmin,*/ upload('photoabout').single('image'), photoaboutController.createPhotoabout);
 
+photoaboutRouter.patch('/photoabout/updateposition', /*authentification.isAdmin,*/ photoaboutController.updatePhotoaboutPosition);
 photoaboutRouter.patch('/photoabout/:id',/* authentification.isAdmin, */upload('photoabout').single('image'), photoaboutController.updatePhotoabout);
 
 photoaboutRouter.delete('/photoabout/:id',/* authentification.isAdmin,*/ photoaboutController.removePhotoabout);
