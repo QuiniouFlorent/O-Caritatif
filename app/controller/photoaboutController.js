@@ -24,7 +24,8 @@ const photoaboutController = {
 
         logger('Photoabout create controller called');
         const image = req.file ? req.file.path:null;
-        const { result, error } = await photoaboutDatamapper.insertPhotoabout(image);
+        const newPhotoabout = req.body;
+        const { result, error } = await photoaboutDatamapper.insertPhotoabout(image, newPhotoabout);
         controllerUtil.manageResponse(error, result, res, next);
     },
 
