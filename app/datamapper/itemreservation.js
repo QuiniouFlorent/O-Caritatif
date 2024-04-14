@@ -14,7 +14,6 @@ const itemreservationDatamapper= {
     async findOneItemreservation(id) {
 
         const query = 'SELECT * FROM itemreservation WHERE id = $1';
-
         const values = [id]
 
         return datamapperUtil.executeQuery(query, values);
@@ -46,33 +45,34 @@ const itemreservationDatamapper= {
     // },
 
     async modifyItemreservation(id, itemreservationModified) {
-    const setParts = [];
-    const values = [];
-    let valIndex = 1;
 
-    if (itemreservationModified.article_id !== undefined) {
-        setParts.push(`article_id = $${valIndex}`);
-        values.push(itemreservationModified.article_id);
-        valIndex++;
-    }
+        const setParts = [];
+        const values = [];
+        let valIndex = 1;
 
-    if (itemreservationModified.user_id !== undefined) {
-        setParts.push(`user_id = $${valIndex}`);
-        values.push(itemreservationModified.user_id);
-        valIndex++;
-    }
+        if (itemreservationModified.article_id !== undefined) {
+            setParts.push(`article_id = $${valIndex}`);
+            values.push(itemreservationModified.article_id);
+            valIndex++;
+        }
 
-    if (itemreservationModified.quantity !== undefined) {
-        setParts.push(`quantity = $${valIndex}`);
-        values.push(itemreservationModified.quantity);
-        valIndex++;
-    }
+        if (itemreservationModified.user_id !== undefined) {
+            setParts.push(`user_id = $${valIndex}`);
+            values.push(itemreservationModified.user_id);
+            valIndex++;
+        }
 
-    if (itemreservationModified.return_date !== undefined) {
-        setParts.push(`return_date = $${valIndex}`);
-        values.push(itemreservationModified.return_date);
-        valIndex++;
-    }
+        if (itemreservationModified.quantity !== undefined) {
+            setParts.push(`quantity = $${valIndex}`);
+            values.push(itemreservationModified.quantity);
+            valIndex++;
+        }
+
+        if (itemreservationModified.return_date !== undefined) {
+            setParts.push(`return_date = $${valIndex}`);
+            values.push(itemreservationModified.return_date);
+            valIndex++;
+        }
 
     setParts.push(`updated_at = NOW()`);
     values.push(id);

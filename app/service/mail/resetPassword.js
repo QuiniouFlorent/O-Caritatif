@@ -9,6 +9,7 @@ import oauth2Client from './oauth2.js';
 
 oauth2Client.setCredentials({refresh_token: process.env.REFRESH_TOKEN});
 const ACCES_TOKEN = oauth2Client.getAccessToken();
+
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth:{
