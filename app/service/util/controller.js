@@ -9,8 +9,4 @@ const controllerUtil = {
  }
 };
 
-//const response = await client.query(query, values);
-//            const result = !!response.rowCount;
-//            return result;
-
 export default controllerUtil;

@@ -144,7 +144,7 @@ const userDatamapper = {
             const isvalided = jwt.verify(isvalid, process.env.JWT_SECRET);
 
             if (isvalided) {
-              const hashedPassword = await bcrypt.hash(password,10)
+              const hashedPassword = await bcrypt.hash(password,process.env.PASSWORD_SALT)
               const sql = `UPDATE "user" SET password = $1, updated_at = NOW()
               WHERE email = $2`
               const sqlvalues = [hashedPassword, email];
