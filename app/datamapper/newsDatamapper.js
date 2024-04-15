@@ -62,7 +62,7 @@ const newsDatamapper = {
         const query = 'DELETE FROM news WHERE id = $1';
         const values = [id];
         
-        return datamapperUtil.executeQuery(query, values);
+        return datamapperUtil.executeDeleteQuery(query, values);
     }
 };
 

@@ -40,6 +40,14 @@ const userDatamapper = {
     return datamapperUtil.executeQuery(query, values);
   },
 
+  async findItemreservationByUser(id) {
+
+    const query = 'SELECT * FROM itemreservation WHERE user_id = $1';
+    const values = [id];
+
+    return datamapperUtil.executeQuery(query, values);
+  },
+
   async findUser(user) {
 
     const query = 'SELECT * FROM "user" WHERE email = $1';
@@ -172,7 +180,7 @@ const userDatamapper = {
     const query = 'DELETE FROM "user" WHERE id = $1';
     const values = [id];
 
-    return datamapperUtil.executeQuery(query, values);
+    return datamapperUtil.executeDeleteQuery(query, values);
   },
 };
 

@@ -51,7 +51,7 @@ const registrationDatamapper= {
 
         const values = [id];
         
-        return datamapperUtil.executeQuery(query, values);
+        return datamapperUtil.executeDeleteQuery(query, values);
     }
 };
 

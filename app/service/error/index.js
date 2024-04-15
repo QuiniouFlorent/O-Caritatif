@@ -14,11 +14,7 @@ const errorService = {
                 name: err.name, message: err.message, code: err.code},});
     },
     _404(req, res, next) {
-        const err = new APIerror(`URL non trouvée`);
-        err.code = 404;
-        logger2(err);
-        next(err);
-        //next(new APIerror('URL non trouvée', 404));
+        next(new APIerror('URL not found', 404));
     }
 };
 

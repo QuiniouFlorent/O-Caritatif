@@ -59,7 +59,7 @@ const opinionDatamapper = {
         const query = 'DELETE FROM opinion WHERE id = $1';
         const values = [id];
         
-        return datamapperUtil.executeQuery(query, values);
+        return datamapperUtil.executeDeleteQuery(query, values);
     }
 }
 
