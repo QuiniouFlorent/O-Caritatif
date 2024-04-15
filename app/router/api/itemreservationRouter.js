@@ -6,13 +6,13 @@ import { itemreservationController } from '../../controller/index.js';
 import authentification from '../../service/authentification/auth.js';
 const itemreservationRouter = Router();
 
-itemreservationRouter.get('/itemreservation', /*authentification.isAuthentificated,*/ itemreservationController.getAllItemreservation);
-itemreservationRouter.get('/itemreservation/:id',/* authentification.isAuthentificated,*/ itemreservationController.getOneItemReservation);
+itemreservationRouter.get('/itemreservation', authentification.isAuthentificated, itemreservationController.getAllItemreservation);
+itemreservationRouter.get('/itemreservation/:id', authentification.isAuthentificated, itemreservationController.getOneItemReservation);
 
-itemreservationRouter.post('/itemreservation', /*authentification.isAuthentificated,*/ itemreservationController.createItemreservation);
+itemreservationRouter.post('/itemreservation', authentification.isAuthentificated, itemreservationController.createItemreservation);
 
-itemreservationRouter.patch('/itemreservation/:id', /*authentification.isAuthentificated,*/ itemreservationController.updateItemreservation);
+itemreservationRouter.patch('/itemreservation/:id', authentification.isAuthentificated, itemreservationController.updateItemreservation);
 
-itemreservationRouter.delete('/itemreservation/:id', /*authentification.isAdmin,*/ itemreservationController.removeItemreservation);
+itemreservationRouter.delete('/itemreservation/:id', authentification.isAdmin, itemreservationController.removeItemreservation);
 
 export default itemreservationRouter;

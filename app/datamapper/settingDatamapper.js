@@ -92,7 +92,7 @@ const settingDatamapper = {
   async deleteSetting() {
     const query = 'TRUNCATE TABLE setting RESTART IDENTITY';
 
-    return datamapperUtil.executeQuery(query);
+    return datamapperUtil.executeDeleteQuery(query);
   },
 };
 

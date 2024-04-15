@@ -11,6 +11,7 @@ privateRouter.get('/user', authentification.isAdmin, userController.getAllUser);
 privateRouter.get('/user/:id', authentification.isAuthentificated, userController.getOneUser);
 privateRouter.get('/user/:id/registration', authentification.isAuthentificated, userController.getRegistrationByUser);
 privateRouter.get('/user/:id/notification', authentification.isAuthentificated, userController.getNotificationByUser);
+privateRouter.get('/user/:id/itemreservation', authentification.isAuthentificated, userController.getItemReservationByUser);
 
 privateRouter.patch('/user/:id', authentification.isAuthentificated, userController.updateUser);
 privateRouter.patch('/user/:id/photo', authentification.isAuthentificated, upload('user').single('image'), userController.updateUserPhoto);

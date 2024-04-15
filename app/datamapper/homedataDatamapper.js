@@ -67,7 +67,7 @@ const homedataDatamapper = {
 
         const query = 'TRUNCATE TABLE homedata RESTART IDENTITY';
         
-        return datamapperUtil.executeQuery(query);
+        return datamapperUtil.executeDeleteQuery(query);
     }
 }
 

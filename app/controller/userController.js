@@ -39,6 +39,14 @@ const userController = {
         controllerUtil.manageResponse(error, result, res, next);
     },
 
+    async getItemReservationByUser( req, res, next ) {
+
+        logger('Item reservation by user controller called');
+        const id = req.params.id;
+        const { result, error } = await userDatamapper.findItemreservationByUser(id);
+        controllerUtil.manageResponse(error, result, res, next);
+    },
+
     async loginUser( req, res, next ) {
 
         logger('Login controller called');

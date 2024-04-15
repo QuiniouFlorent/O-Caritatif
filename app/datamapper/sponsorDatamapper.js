@@ -63,7 +63,7 @@ const sponsorDatamapper = {
         const query = 'DELETE FROM sponsor WHERE id = $1';
         const values = [id];
 
-        return datamapperUtil.executeQuery(query, values);
+        return datamapperUtil.executeDeleteQuery(query, values);
     }
 }
 

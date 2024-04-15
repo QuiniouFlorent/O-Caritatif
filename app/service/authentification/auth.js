@@ -11,7 +11,7 @@ const authentification = {
         const token = req.headers.authorization;
         
         if(!token) {
-            return next(new APIerror('Aucun token fourni', 403));
+            return next(new APIerror('No token provided', 403));
         }
         const verifytoken = token.split(' ')[1];
         const decoded = jwt.verify(verifytoken, process.env.JWT_SECRET);
@@ -19,7 +19,7 @@ const authentification = {
             req.user = decoded;
             next();
         } else {
-            return next(new APIerror('Votre token n\'est pas valide', 401));
+            return next(new APIerror('Invalid token', 401));
         }
     },
 
@@ -28,7 +28,7 @@ const authentification = {
         const token = req.headers.authorization;
 
         if(!token) {
-            return next(new APIerror('Aucun token fourni', 403));
+            return next(new APIerror('No token provided', 403));
         }
         const verifytoken = token.split(' ')[1];
         const decoded = jwt.verify(verifytoken, process.env.JWT_SECRET);
@@ -37,7 +37,7 @@ const authentification = {
             req.user = decoded;
             next();
         } else {
-            return next(new APIerror('Accès refusé. Vous devez être responsable ou administrateur', 403))
+            return next(new APIerror('Access denied. You must be a manager or administrator ', 403))
         }
     },
 
@@ -47,7 +47,7 @@ const authentification = {
 
         if(!token) {
 
-            return next(new APIerror('Aucun token fourni', 403));
+            return next(new APIerror('No token provided', 403));
 
         } else {
             const verifytoken = token.split(' ')[1];
@@ -58,7 +58,7 @@ const authentification = {
             next();
 
             } else {
-                return next(new APIerror('Accès refusé. Vous devez être administrateur', 403))
+                return next(new APIerror('Access denied. You must be a manager', 403))
             }
         }
     },
@@ -69,7 +69,7 @@ const authentification = {
         logger(token);
         const validToken = jwt.verify(token, process.env.JWT_SECRET);
         if(!validToken) {
-            return next(new APIerror('Token expiré ou token invalide'));
+            return next(new APIerror('Invalid token or token expired'));
         }
     }
 };

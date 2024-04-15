@@ -53,7 +53,7 @@ const photoDatamapper = {
     const query = 'DELETE FROM photo WHERE id = $1';
     const values = [id];
 
-    return datamapperUtil.executeQuery(query, values);
+    return datamapperUtil.executeDeleteQuery(query, values);
   },
 };
 

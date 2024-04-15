@@ -64,7 +64,7 @@ const photoaboutDatamapper = {
         const query = 'DELETE FROM photoabout WHERE id = $1';
         const values = [id];
         
-        return datamapperUtil.executeQuery(query, values);
+        return datamapperUtil.executeDeleteQuery(query, values);
     }
 }
 
