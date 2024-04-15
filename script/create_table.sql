@@ -201,7 +201,9 @@ CREATE TABLE itemreservation (
 CREATE TABLE resetpassword (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_email TEXT REFERENCES "user"(email),
-    token TEXT NOT NULL
+    token TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ
 );
 
 CREATE VIEW view_all_events AS

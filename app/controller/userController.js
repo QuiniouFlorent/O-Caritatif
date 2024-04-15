@@ -6,12 +6,14 @@ import bcrypt from 'bcrypt';
 import 'dotenv/config';
 import controllerUtil from '../service/util/controller.js';
 import APIerror from '../service/error/APIerror.js';
+import { sendMail, resetToken, sendMailReset } from '../service/mail/resetPassword.js';
 
 const userController = {
     async getAllUser( req, res, next ) {
 
         logger('user getAll controller called');
         const { result, error } = await userDatamapper.findAllUser();
+
         controllerUtil.manageResponse(error, result, res, next);
     },
 
@@ -20,6 +22,7 @@ const userController = {
         logger('user getOne controller called');
         const id = req.params.id;
         const { result, error } = await userDatamapper.findOneUser(id);
+
         controllerUtil.manageResponse(error, result, res, next);
     },
 
@@ -28,6 +31,7 @@ const userController = {
         logger('Registration by user controller called');
         const id = req.params.id;
         const { result, error } = await userDatamapper.findRegistrationByUser(id);
+
         controllerUtil.manageResponse(error, result, res, next);
     },
 
@@ -36,6 +40,7 @@ const userController = {
         logger('Notification by user controller called');
         const id = req.params.id;
         const { result, error } = await userDatamapper.findNotificationByUser(id);
+
         controllerUtil.manageResponse(error, result, res, next);
     },
 
@@ -44,15 +49,19 @@ const userController = {
         logger('Item reservation by user controller called');
         const id = req.params.id;
         const { result, error } = await userDatamapper.findItemreservationByUser(id);
+
         controllerUtil.manageResponse(error, result, res, next);
     },
 
     async loginUser( req, res, next ) {
 
         logger('Login controller called');
-        const { result, error } = await userDatamapper.findUser(req.body);
-
-        //TODO : Ajout vérification email existe ou pas ? (sinon password undefined)
+        const mail = req.body.email
+        const { result, error } = await userDatamapper.findUser(mail);
+        
+        if (result.length === 0 ) {
+            return next(new APIerror('Invalid user or password', 401))
+        }
         
         const isEqual = await bcrypt.compare(req.body.password, result[0].password);
 
@@ -61,15 +70,15 @@ const userController = {
             const token = jwt.sign(result[0], process.env.JWT_SECRET);
             controllerUtil.manageResponse(error, token, res, next);
         } else {
-            next(new APIerror('Utilisateur ou mot de passe incorrect', 401))
+            next(new APIerror('Invalid user or password', 401))
         }
     },
-//TODO = image
+
     async createUser( req, res, next ) {
 
         logger('User create controller called');
         const newUser = req.body;
-        const image = /*req.file.path*/null;
+        const image = req.file ? req.file.path:null;
         const hash = await bcrypt.hash(newUser.password, parseInt(process.env.PASSWORD_SALT));
         newUser.password = hash;
         const { result, error } = await userDatamapper.insertUser(newUser, image);
@@ -98,7 +107,19 @@ const userController = {
 
         logger('User reset password controller called');
         const email = req.body.email;
-        const { result, error } = await userDatamapper.rebootPassword(email);
+        const token = resetToken(email);
+
+        const { result: userResult , error: userError } = await userDatamapper.findUser(email);
+        if (userError) {
+            return next(new APIerror('Error executing SQL query', 500))
+        };
+        if (userResult.length === 0) {
+            return next(new APIerror('Invalid user or password', 401));
+        };
+
+        let { result, error } = await userDatamapper.rebootPassword(email, token);
+        
+        await sendMailReset(email, token);
         controllerUtil.manageResponse(error, result, res, next);
     },
 
@@ -106,7 +127,31 @@ const userController = {
 
         logger('Change password controller called');
         const { email, password } = req.body;
-        const token = req.params.token;        
+        const token = req.params.token;
+        
+        const { result: resetResult , error: resetError } = await userDatamapper.findResetPassword(email);
+        if (resetError) {
+            return next(new APIerror('Error executing SQL query', 500))
+        };
+        if (resetResult.lenght === 0) {
+            return next(new APIerror('Invalid user or token'))
+        };
+
+        if (resetResult[0].token === token && resetResult[0].user_email === email) {
+            const isvalid = jwt.verify(token, process.env.JWT_SECRET);
+            logger(isvalid)
+            if(!isvalid) {
+                return new APIerror('Invalid Token');
+            } else {
+                const hashed = await bcrypt.hash(password, parseInt(process.env.PASSWORD_SALT));
+                let { result , error } = await userDatamapper.modifyPassword(email, hashed);
+                controllerUtil.manageResponse(error, result, res, next);
+            };
+            
+        } else {
+            return next(new APIerror('Expired token or invalid mail'))
+        }
+
         const { result, error } = await userDatamapper.modifyPassword(email, password, token);
         controllerUtil.manageResponse(error, result, res, next);
     },

@@ -6,8 +6,12 @@ const homeController = {
     async getHomeInfos(req,res) {
 
         logger('Home controller called');
-        const news = await homeDatamapper.findLastNews();
-        const events = await homeDatamapper.findNextEvent();
+        const findNews = await homeDatamapper.findLastNews();
+        const news = findNews.result; 
+
+        const findEvents = await homeDatamapper.findNextEvent();
+        const events = findEvents.result;
+        
         res.json({ news, events });
     }
 }
