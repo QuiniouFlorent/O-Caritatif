@@ -1,3 +1,6 @@
 {"level":"error","message":"Error : 500, error: la relation « view_all_event » n'existe pas ; additionnalData[object Object]","timestamp":"15-04-2024 00:22:38"}
 {"level":"error","message":"Error : 500, error: la relation « view_all_event » n'existe pas ; additionnalData : [object Object]","timestamp":"15-04-2024 00:23:51"}
 {"level":"error","message":"Error : 500, error: la relation « view_all_event » n'existe pas ; additionnalData : GET, /api/event, [object Object]","timestamp":"15-04-2024 00:26:03"}
+{"level":"error","message":"Error : undefined, jwt malformed ; additionnalData : GET, /login/user/1/notification","timestamp":"15-04-2024 08:59:38"}
+{"level":"error","message":"Error : undefined, jwt malformed ; additionnalData : GET, /login/user/1/notification","timestamp":"15-04-2024 08:59:43"}
+{"level":"error","message":"Error : undefined, jwt malformed ; additionnalData : GET, /login/user/1/notification","timestamp":"15-04-2024 09:00:02"}
