@@ -1,11 +1,10 @@
 import 'dotenv/config';
-import debug from 'debug';
-const logger = debug('app:password');
 
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
 import APIerror from '../error/APIerror.js';
 import oauth2Client from './oauth2.js';
+import logger from '../logs/logger.js';
 
 oauth2Client.setCredentials({refresh_token: process.env.REFRESH_TOKEN});
 const ACCES_TOKEN = oauth2Client.getAccessToken();
@@ -32,14 +31,15 @@ function resetToken(email) {
     return token;
 };
 
-function sendMail(to, subject, text) {
+async function sendMail(to, subject, text) {
+
     const mailOptions = {
         from: process.env.GMAIL_ADRESS,
         to: to,
         subject: subject,
         text: text
     };
-     transporter.sendMail(mailOptions, function(err, info) {
+    transporter.sendMail(mailOptions, function(err, info) {
         let error;
         let result;
         if (err) {
@@ -50,10 +50,35 @@ function sendMail(to, subject, text) {
     });
 };
 
+async function sendMailReset(to, token) {
+    return new Promise((resolve, reject) => {
+        const mailOptions = {
+            from: process.env.GMAIL_ADRESS,
+            to: to,
+            subject: 'Réinitialisation du mot de passe',
+            text : `Vous recevez cet email car vous avez demandé la réinitialisation de votre mot de passe.
+            Veuillez cliquez sur le lien suivant pour enregistrer votre nouveau mot de passe :
+            http://localhost:5173/login/resetpassword/${token}`
+        };
+        transporter.sendMail(mailOptions , function(error, info) {
+            if (error) {
+                error = new APIerror(`Error sending email : ${error.message}`);
+                logger.error(`${error}`);
+                resolve(error);
+            } else {
+                result = info.response;
+                resolve(true);
+            }
+        });
+    })
+}
+    
+
+
 //TODO factoriser !
 //function resetPassword(useremail, newPassword) {
 
 //};
 
 
-export {resetToken, sendMail};
+export {resetToken, sendMail, sendMailReset};

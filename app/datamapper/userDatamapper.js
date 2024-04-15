@@ -5,7 +5,6 @@ import client from '../models/client.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
-import { resetToken, sendMail } from '../service/mail/resetPassword.js';
 const logger = debug('app:datamapper');
 
 const userDatamapper = {
@@ -48,10 +47,10 @@ const userDatamapper = {
     return datamapperUtil.executeQuery(query, values);
   },
 
-  async findUser(user) {
+  async findUser(mail) {
 
     const query = 'SELECT * FROM "user" WHERE email = $1';
-    const values = [user.email];
+    const values = [mail];
 
     return datamapperUtil.executeQuery(query, values);
   },
@@ -95,83 +94,35 @@ const userDatamapper = {
     return datamapperUtil.executeQuery(query, values);
   },
 
-  async rebootPassword(email) {
-  
-    let result;
-    let error;
-    
-    try {
-        const query = `SELECT * FROM "user" WHERE email = $1`;
-        const values = [email];
-        const response = await client.query(query, values);
-        result = response.rows[0];
-
-        if (!result) {
-          error = new APIerror('Email incorrect', 500);
-
-        } else {
-
-          const mail = result.email
-          const token = resetToken(mail);
-          const sql = `INSERT INTO resetpassword 
-          (user_email, token) 
-          VALUES
-          ($1, $2)`;
-          const resetvalues = [mail,token];
-          const resetresult = await client.query(sql, resetvalues);
-          const subject = 'Réinitialisation du mot de passe';
-          const text = `Vous recevez cet email car vous avez demandé la réinitialisation de votre mot de passe.\n
-          Veuillez cliquez sur le lien suivant pour enregistrer votre nouveau mot de passe :\n
-          http://localhost:5173/login/resetpassword/${token}`;
-          sendMail(mail, subject, text);
-          
-        }
-    } catch (err) {
-        error = new APIerror(err, 500);
-    }
-    return { result, error };
-
+  async rebootPassword(email, token) {
+      
+    const query = `INSERT INTO resetpassword 
+      (user_email, token) 
+      VALUES
+      ($1, $2)`;
+    const values = [email, token];
+         
+    return datamapperUtil.executeQuery(query, values);
   },
 
-  async modifyPassword(email, password, token) {
+  async findResetPassword(email) {
 
-      let result;
-      let error;
-      const query = 'SELECT * FROM resetpassword WHERE user_email = $1';
-      const values = [email];
+    const query = `SELECT * FROM resetpassword WHERE user_email = $1 ORDER BY id DESC LIMIT 1`;
+    const values = [email];
 
-      try {
-        const response = await client.query(query, values);
-        result = response.rows[0];
+    return datamapperUtil.executeQuery(query, values);
+  },
 
-        if (!result) {
-          error = new APIerror('Token invalide ou email invalide');
-        } else {
-          if (result.token === token && result.user_email === email) {
-            const isvalid = token;
-            const isvalided = jwt.verify(isvalid, process.env.JWT_SECRET);
+  async modifyPassword(email, hashed) {
 
-            if (isvalided) {
-              const hashedPassword = await bcrypt.hash(password,process.env.PASSWORD_SALT)
-              const sql = `UPDATE "user" SET password = $1, updated_at = NOW()
-              WHERE email = $2`
-              const sqlvalues = [hashedPassword, email];
-              const res = await client.query(sql, sqlvalues);
-              //TODO : delete resetpassword where user_email =
-              
-            } else {
-              error = new APIerror('Token invalide');
-            }
-            
-          } else {
-            error = new APIerror('Token expiré ou email invalide');
-          }
-        }
-        
-      } catch (err) {
-        error = new APIerror(err, 500);
-      }
-      return { result, error };
+    const query = `UPDATE "user" SET password = $1, 
+      updated_at = NOW() 
+      WHERE email = $2`
+    const values = [hashed, email];
+
+    return datamapperUtil.executeQuery(query, values);
+
+    //TODO : delete resetpassword where user_email =
   },
 
   //TODO ! PK - FK ??

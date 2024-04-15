@@ -1,69 +1,68 @@
 [
-    {
-      "firstname": "Jessica",
-      "lastname": "Romery",
-      "role": "Président",
-      "description": "Jessica Romery, Président depuis 2005. Elle est la plus ancienne membre du bureau. Elle est aussi la plus grande fan de Harry Potter.",
-      "photo_url": "/public/Benevoles/benevole_001.webp",
-      "since": "2024-04-03T22:00:00.000Z",
-      "position": 1,
-      "created_at": "2024-04-04T18:16:11.089Z",
-      "updated_at": "2024-04-04T18:29:14.852Z"
-    },
-    {
-      "firstname": "Julien",
-      "lastname": "Stone",
-      "role": "Bénévole",
-      "description": "Julien Stone, Bénévole depuis 2010. Il est le plus ancien membre du bureau. Il est aussi le plus grand fan de Star Wars.",
-      "photo_url": "/public/Benevoles/benevole_002.webp",
-      "since": "2024-04-03T22:00:00.000Z",
-      "position": 5,
-      "created_at": "2024-04-04T18:16:11.089Z",
-      "updated_at": "2024-04-04T18:29:14.852Z"
-    },
-    {
-      "firstname": "Marie",
-      "lastname": "Maria",
-      "role": "Bénévole",
-      "description": "Marie Maria, Bénévole depuis 2015. Elle est la plus jeune membre du bureau. Elle est aussi la plus grande fan de Disney.",
-      "photo_url": "/public/Benevoles/benevole_003.webp",
-      "since": "2024-04-03T22:00:00.000Z",
-      "position": 6,
-      "created_at": "2024-04-04T18:16:11.089Z",
-      "updated_at": "2024-04-04T18:29:14.852Z"
-    },
-    {
-      "firstname": "Lyndsey",
-      "lastname": "Loaan",
-      "role": "Bénévole",
-      "description": "Lyndsey Loaan, Bénévole depuis 2018. Elle est la plus jeune membre du bureau. Elle est aussi la plus grande fan de Marvel.",
-      "photo_url": "/public/Benevoles/benevole_004.webp",
-      "since": "2024-04-03T22:00:00.000Z",
-      "position": 2,
-      "created_at": "2024-04-04T18:16:11.089Z",
-      "updated_at": "2024-04-04T18:29:14.852Z"
-    },
-    {
-      "firstname": "Richard",
-      "lastname": "Loaan",
-      "role": "Bénévole",
-      "description": "Richard Loaan, Bénévole depuis 2018. Il est la plus jeune membre du bureau. Il est aussi le plus grand fan de Marvel.",
-      "photo_url": "/public/Benevoles/benevole_005.webp",
-      "since": "2024-04-03T22:00:00.000Z",
-      "position": 3,
-      "created_at": "2024-04-04T18:16:11.089Z",
-      "updated_at": "2024-04-04T18:29:14.852Z"
-    },
-    {
-      "firstname": "RichardBis",
-      "lastname": "",
-      "role": "Bénévole",
-      "description": "RichardBis, Bénévole depuis 2018. Il est la plus jeune membre du bureau. Il est aussi le plus grand fan de Marvel.",
-      "photo_url": "/public/Benevoles/benevole_006.webp",
-      "since": "2024-04-03T22:00:00.000Z",
-      "position": 4,
-      "created_at": "2024-04-04T18:16:11.089Z",
-      "updated_at": "2024-04-04T18:29:14.852Z"
-    }
-  ]
-  
+  {
+    "firstname": "Jessica",
+    "lastname": "Romery",
+    "role": "Président",
+    "description": "Jessica Romery, Président depuis 2005. Elle est la plus ancienne membre du bureau. Elle est aussi la plus grande fan de Harry Potter.",
+    "photo_url": "/Benevoles/benevole_001.webp",
+    "since": "2024-04-03T22:00:00.000Z",
+    "position": 1,
+    "created_at": "2024-04-04T18:16:11.089Z",
+    "updated_at": "2024-04-04T18:29:14.852Z"
+  },
+  {
+    "firstname": "Julien",
+    "lastname": "Stone",
+    "role": "Bénévole",
+    "description": "Julien Stone, Bénévole depuis 2010. Il est le plus ancien membre du bureau. Il est aussi le plus grand fan de Star Wars.",
+    "photo_url": "/Benevoles/benevole_002.webp",
+    "since": "2024-04-03T22:00:00.000Z",
+    "position": 5,
+    "created_at": "2024-04-04T18:16:11.089Z",
+    "updated_at": "2024-04-04T18:29:14.852Z"
+  },
+  {
+    "firstname": "Marie",
+    "lastname": "Maria",
+    "role": "Bénévole",
+    "description": "Marie Maria, Bénévole depuis 2015. Elle est la plus jeune membre du bureau. Elle est aussi la plus grande fan de Disney.",
+    "photo_url": "/Benevoles/benevole_003.webp",
+    "since": "2024-04-03T22:00:00.000Z",
+    "position": 6,
+    "created_at": "2024-04-04T18:16:11.089Z",
+    "updated_at": "2024-04-04T18:29:14.852Z"
+  },
+  {
+    "firstname": "Lyndsey",
+    "lastname": "Loaan",
+    "role": "Bénévole",
+    "description": "Lyndsey Loaan, Bénévole depuis 2018. Elle est la plus jeune membre du bureau. Elle est aussi la plus grande fan de Marvel.",
+    "photo_url": "/Benevoles/benevole_004.webp",
+    "since": "2024-04-03T22:00:00.000Z",
+    "position": 2,
+    "created_at": "2024-04-04T18:16:11.089Z",
+    "updated_at": "2024-04-04T18:29:14.852Z"
+  },
+  {
+    "firstname": "Richard",
+    "lastname": "Loaan",
+    "role": "Bénévole",
+    "description": "Richard Loaan, Bénévole depuis 2018. Il est la plus jeune membre du bureau. Il est aussi le plus grand fan de Marvel.",
+    "photo_url": "/Benevoles/benevole_005.webp",
+    "since": "2024-04-03T22:00:00.000Z",
+    "position": 3,
+    "created_at": "2024-04-04T18:16:11.089Z",
+    "updated_at": "2024-04-04T18:29:14.852Z"
+  },
+  {
+    "firstname": "RichardBis",
+    "lastname": "",
+    "role": "Bénévole",
+    "description": "RichardBis, Bénévole depuis 2018. Il est la plus jeune membre du bureau. Il est aussi le plus grand fan de Marvel.",
+    "photo_url": "/Benevoles/benevole_006.webp",
+    "since": "2024-04-03T22:00:00.000Z",
+    "position": 4,
+    "created_at": "2024-04-04T18:16:11.089Z",
+    "updated_at": "2024-04-04T18:29:14.852Z"
+  }
+]
