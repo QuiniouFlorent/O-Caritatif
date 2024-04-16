@@ -1,11 +1,7 @@
 import debug from 'debug';
-import datamapperUtil from '../service/util/datamapper.js';
-import APIerror from '../service/error/APIerror.js';
-import client from '../models/client.js';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import 'dotenv/config';
 const logger = debug('app:datamapper');
+import 'dotenv/config';
+import datamapperUtil from '../service/util/datamapper.js';
 
 const userDatamapper = {
   async findAllUser() {
@@ -117,12 +113,18 @@ const userDatamapper = {
 
     const query = `UPDATE "user" SET password = $1, 
       updated_at = NOW() 
-      WHERE email = $2`
+      WHERE email = $2`;
     const values = [hashed, email];
 
     return datamapperUtil.executeQuery(query, values);
+  },
 
-    //TODO : delete resetpassword where user_email =
+  async deleteResetPassword(email) {
+
+    const query = `DELETE FROM resetpassword WHERE user_email = $1`
+    const values = [email];
+
+    return datamapperUtil.executeDeleteQuery(query, values);
   },
 
   //TODO ! PK - FK ??

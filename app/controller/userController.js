@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 import 'dotenv/config';
 import controllerUtil from '../service/util/controller.js';
 import APIerror from '../service/error/APIerror.js';
-import { sendMail, resetToken, sendMailReset } from '../service/mail/resetPassword.js';
+import { resetToken, sendMailReset } from '../service/mail/resetPassword.js';
 
 const userController = {
     async getAllUser( req, res, next ) {
@@ -130,30 +130,28 @@ const userController = {
         const token = req.params.token;
         
         const { result: resetResult , error: resetError } = await userDatamapper.findResetPassword(email);
+        
         if (resetError) {
             return next(new APIerror('Error executing SQL query', 500))
         };
-        if (resetResult.lenght === 0) {
+        if (resetResult.length == 0) {
             return next(new APIerror('Invalid user or token'))
         };
 
         if (resetResult[0].token === token && resetResult[0].user_email === email) {
             const isvalid = jwt.verify(token, process.env.JWT_SECRET);
-            logger(isvalid)
             if(!isvalid) {
                 return new APIerror('Invalid Token');
             } else {
                 const hashed = await bcrypt.hash(password, parseInt(process.env.PASSWORD_SALT));
-                let { result , error } = await userDatamapper.modifyPassword(email, hashed);
+                const { result , error } = await userDatamapper.modifyPassword(email, hashed);
+                await userDatamapper.deleteResetPassword(email);
                 controllerUtil.manageResponse(error, result, res, next);
             };
             
         } else {
             return next(new APIerror('Expired token or invalid mail'))
         }
-
-        const { result, error } = await userDatamapper.modifyPassword(email, password, token);
-        controllerUtil.manageResponse(error, result, res, next);
     },
 
     async removeUser( req, res, next ) {
