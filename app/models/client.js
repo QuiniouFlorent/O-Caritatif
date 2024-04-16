@@ -12,9 +12,9 @@ const pool = new Pool({
     //database: process.env.PGDATABASE,
    // password: process.env.PGPASSWORD,
     //port: process.env.PGPORT,
-    ssl: {
+    /*ssl: {
         rejectUnauthorized: false
-    }
+    }*/
 });
 const client = await pool.connect();
 
