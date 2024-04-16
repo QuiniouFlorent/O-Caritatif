@@ -1,0 +1,7 @@
+{"level":"error","message":"Error : undefined, jwt malformed ; additionnalData : GET, /login/user/1/notification","timestamp":"16-04-2024 09:26:03"}
+{"level":"error","message":"Error : undefined, jwt malformed ; additionnalData : GET, /login/user/1/notification","timestamp":"16-04-2024 09:26:21"}
+{"level":"error","message":"Error : undefined, jwt malformed ; additionnalData : GET, /login/user/1/notification","timestamp":"16-04-2024 09:27:03"}
+{"level":"error","message":"Error : undefined, jwt malformed ; additionnalData : GET, /login/user/1/notification","timestamp":"16-04-2024 09:27:12"}
+{"level":"error","message":"Error : undefined, Invalid user or token ; additionnalData : POST, /login/resetpassword/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmZyIiwiaWF0IjoxNzEzMjUyNTY3LCJleHAiOjE3MTMyNTYxNjd9.CG_P_YFqXjpVl8cWO0eoHMTnzu5ux9Q5tVU2TwD6ftI","timestamp":"16-04-2024 09:44:16"}
+{"level":"error","message":"Error : undefined, Invalid user or token ; additionnalData : POST, /login/resetpassword/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmZyIiwiaWF0IjoxNzEzMjUyNTY3LCJleHAiOjE3MTMyNTYxNjd9.CG_P_YFqXjpVl8cWO0eoHMTnzu5ux9Q5tVU2TwD6ftI","timestamp":"16-04-2024 09:44:31"}
+{"level":"error","message":"Error : undefined, Invalid user or token ; additionnalData : POST, /login/resetpassword/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmZyIiwiaWF0IjoxNzEzMjUyNTY3LCJleHAiOjE3MTMyNTYxNjd9.CG_P_YFqXjpVl8cWO0eoHMTnzu5ux9Q5tVU2TwD6ftI","timestamp":"16-04-2024 09:44:35"}
