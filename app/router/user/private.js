@@ -7,7 +7,7 @@ import { userController } from '../../controller/index.js';
 import authentification from '../../service/authentification/auth.js';
 const privateRouter = Router();
 
-privateRouter.get('/user', authentification.isAdmin, userController.getAllUser);
+privateRouter.get('/user', authentification.isResponsableOrAdmin, userController.getAllUser);
 privateRouter.get('/user/:id', authentification.isAuthentificated, userController.getOneUser);
 privateRouter.get('/user/:id/registration', authentification.isAuthentificated, userController.getRegistrationByUser);
 privateRouter.get('/user/:id/notification', authentification.isAuthentificated, userController.getNotificationByUser);

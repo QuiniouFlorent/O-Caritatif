@@ -73,10 +73,5 @@ async function sendMailReset(to, token) {
     })
 }
     
-//TODO factoriser !
-//function resetPassword(useremail, newPassword) {
-
-//};
-
 
 export {resetToken, sendMail, sendMailReset};

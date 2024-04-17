@@ -10,6 +10,29 @@ import cors from 'cors';
 
 app.use(cors());
 
+/*** AJOUT DE OPENAPI - Documentation de notre API */
+
+// https://sebacode.medium.com/how-to-document-a-node-js-api-with-swagger-554101246a4d
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUI from 'swagger-ui-express';
+
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Documentation de notre API Ocaritatif',
+      version: '1.0.0',
+      description: 'This is a API application made with Express'
+    },
+  },
+  apis: ['./app/router/*.js'], // files containing annotations as above
+};
+
+const openapiSpecification = swaggerJsdoc(options);
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(openapiSpecification));
+
+
 app.use(express.json());
 app.use(urlencoded({extended: true}));
 

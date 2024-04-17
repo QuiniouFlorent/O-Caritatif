@@ -6,9 +6,11 @@ const userRouter = Router();
 
 import privateRouter from './private.js';
 import publicRouter from './public.js';
+import authentification from '../../service/authentification/auth.js';
+
 
 userRouter.use(publicRouter);
-userRouter.use(privateRouter);
+userRouter.use(authentification.isAuthentificated, privateRouter);
 
 logger('User Router initialized');
 export default userRouter;
