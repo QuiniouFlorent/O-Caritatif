@@ -5,36 +5,26 @@ const homeRouter = Router();
 
 /**
  * @swagger
- * components:
- *  schemas:
- *   User:
- *     type: object
- *     required:
- *       
- *     properties:
- *      
- */
-
-/**
- * @openapi
  * /home:
  *   get:
- *     description: Page d'accueil
- *     tags:
- *       - 
- *     requestBody:
- *       required: false
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/User'
- *     produces:
- *        - application/json
+ *     summary: News and events for homepage
+ *     description: Retrieve a list for the lastest news and the next events.
  *     responses:
  *       200:
- *         description: 
- *       400:
- *         description:
+ *         description: A list of news and a list of events
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                data:
+ *                  type: array
+ *                  items:
+ *                      type: object
+ *                      properties:
+ *                        id:
+ *                    
+ *       
  */
 homeRouter.get('/home', homeController.getHomeInfos);
 
