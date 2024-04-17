@@ -127,14 +127,14 @@ const userDatamapper = {
     return datamapperUtil.executeDeleteQuery(query, values);
   },
 
-  //TODO ! PK - FK ??
+/*
   async deleteUser(id) {
 
     const query = 'DELETE FROM "user" WHERE id = $1';
     const values = [id];
 
     return datamapperUtil.executeDeleteQuery(query, values);
-  },
+  },*/
 };
 
 logger('User datamapper initialized');

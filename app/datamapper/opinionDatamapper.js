@@ -4,7 +4,7 @@ import datamapperUtil from '../service/util/datamapper.js';
 
 const opinionDatamapper = {
     async findAllOpinion() {
-        const query = 'SELECT * FROM opinion';
+        const query = 'SELECT * FROM opinion ORDER BY position ASC';
 
         return datamapperUtil.executeQuery(query);
     },
