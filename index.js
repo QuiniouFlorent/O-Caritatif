@@ -22,10 +22,24 @@ const options = {
     info: {
       title: 'Documentation de notre API Ocaritatif',
       version: '1.0.0',
-      description: 'This is a API application made with Express'
+      description: 'This is a API application made with Express',
+      contact: {
+        name: 'O\'caritatif',
+        url: 'https://o-caritatif-deploy.vercel.app/contact'
+      }
     },
+    servers: [
+      {
+        url: 'http://localhost:3000',
+        description: 'Development server'
+      },
+      {
+        url : 'https://app-ocaritatif-e8cb111b5f68.herokuapp.com/',
+        description: 'Production server'
+      }
+    ]
   },
-  apis: ['./app/router/*.js'], // files containing annotations as above
+  apis: ['./app/router/*/*.js'], // files containing annotations as above
 };
 
 const openapiSpecification = swaggerJsdoc(options);
