@@ -6,11 +6,11 @@ import APIerror from '../error/APIerror.js';
 import oauth2Client from './oauth2.js';
 import logger from '../logs/logger.js';
 
-//oauth2Client.setCredentials({refresh_token: process.env.REFRESH_TOKEN});
-//const ACCES_TOKEN = oauth2Client.getAccessToken();
+oauth2Client.setCredentials({refresh_token: process.env.REFRESH_TOKEN});
+const ACCES_TOKEN = oauth2Client.getAccessToken();
 
 const transporter = nodemailer.createTransport({
-   /* service: 'gmail',
+    service: 'gmail',
     auth:{
         type: 'OAuth2',
         user: process.env.GMAIL_ADRESS,
@@ -21,11 +21,9 @@ const transporter = nodemailer.createTransport({
     },
     tls:{
         rejectUnauthorized: true
-    }*/
+    }
     }
 );
-
-// TODO jsujfkzenvlksqnmvl,ml
 
 function resetToken(email) {
     const payload =  { email: email };
