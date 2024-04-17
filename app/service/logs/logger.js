@@ -13,7 +13,6 @@ const logger = winston.createLogger({
         filename: `./app/service/logs/dailylogs/${dailylog}.log`,
         level: `debug`
     })]
-
 });
 
 export default logger;
