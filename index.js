@@ -20,7 +20,7 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Documentation de notre API Ocaritatif',
+      title: 'Documentation for our API Ocaritatif',
       version: '1.0.0',
       description: 'This is a API application made with Express',
       contact: {
@@ -45,7 +45,6 @@ const options = {
 const openapiSpecification = swaggerJsdoc(options);
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(openapiSpecification));
-
 
 app.use(express.json());
 app.use(urlencoded({extended: true}));

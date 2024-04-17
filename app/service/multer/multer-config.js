@@ -1,5 +1,3 @@
-import debug from 'debug';
-const logger = debug('app:multer');
 import 'dotenv/config';
 import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
@@ -33,26 +31,4 @@ const upload = function(folder) {
     return multer({storage: storage(folder)});
 };
 
-/*
-const storage2 = multer.diskStorage({
-    destination: (req, file, callback) => {
-        callback(null, 'image/');
-    },
-    filename: (req, file, callback) => {
-        const name = file.originalname.split(' ').join('_');
-        const extension = MIME_TYPES[file.mimetype];
-        callback(null, name + Date.now()+ '.' + extension);
-    }
-})
-
-destination : (req,file, callback) => {
-            callback(null, 'image/'+ folder)
-        },
-        filename : (req, file, callback) => {
-            const name = file.originalname.split(' ').join('_');
-            const extension = MIME_TYPES[file.mimetype];
-            callback(null, name + Date.now() + '.' + extension);
-        }
-
-*/
 export default upload;
