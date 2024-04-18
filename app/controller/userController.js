@@ -7,7 +7,7 @@ import 'dotenv/config';
 import controllerUtil from '../service/util/controller.js';
 import APIerror from '../service/error/APIerror.js';
 import { resetToken, sendMailReset } from '../service/mail/resetPassword.js';
-import { loginSchema } from '../service/validation/schema.js';
+
 
 const userController = {
     async getAllUser( req, res, next ) {
@@ -119,8 +119,12 @@ const userController = {
         };
 
         let { result, error } = await userDatamapper.rebootPassword(email, token);
+        const mailRequest = await sendMailReset(email, token);
         
-        await sendMailReset(email, token);
+        if(!mailRequest.result) { 
+            error = mailRequest.error };
+        if(!mailRequest.error) { 
+            result = mailRequest.result };
         controllerUtil.manageResponse(error, result, res, next);
     },
 
@@ -142,7 +146,7 @@ const userController = {
         if (resetResult[0].token === token && resetResult[0].user_email === email) {
             const isvalid = jwt.verify(token, process.env.JWT_SECRET);
             if(!isvalid) {
-                return new APIerror('Invalid Token');
+                return new APIerror('Invalid Token', 498);
             } else {
                 const hashed = await bcrypt.hash(password, parseInt(process.env.PASSWORD_SALT));
                 const { result , error } = await userDatamapper.modifyPassword(email, hashed);

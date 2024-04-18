@@ -10,8 +10,8 @@ const newsSchema = vine.object({});
 
 const createuserSchema = vine.object({
         email : vine.string().email(),
-        lastname : vine.string(),
-        firstname : vine.string(),
+        lastname : vine.string().minLength(1),
+        firstname : vine.string().minLength(1),
         password : vine.string().minLength(8).confirmed()     
 });
 

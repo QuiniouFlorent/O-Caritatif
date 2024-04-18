@@ -1,5 +1,6 @@
 import 'dotenv/config';
-
+import debug from 'debug';
+const logger2 = debug('app: mail');
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
 import APIerror from '../error/APIerror.js';
@@ -60,18 +61,19 @@ async function sendMailReset(to, token) {
             Veuillez cliquez sur le lien suivant pour enregistrer votre nouveau mot de passe :
             http://localhost:5173/login/resetpassword/${token}`
         };
-        transporter.sendMail(mailOptions , function(error, info) {
-            if (error) {
-                error = new APIerror(`Error sending email : ${error.message}`);
+        transporter.sendMail(mailOptions , function(err, info) {
+            let result;
+            let error;
+            if (err) {
+                let error = new APIerror(`Error sending email : ${err.message}`, 424);
                 logger.error(`${error}`);
-                resolve(error);
+                resolve({result, error : error});
             } else {
-                result = info.response;
-                resolve(true);
+                let result = info.response;
+                resolve({result: result, error});
             }
         });
     })
 }
-    
 
 export {resetToken, sendMail, sendMailReset};

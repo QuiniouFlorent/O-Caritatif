@@ -30,7 +30,8 @@ const commentDatamapper= {
             is_active = $2,
             updated_at = NOW()
             WHERE id = $3`;
-        const values = [commentModified.content, commentModified.is_active, id];
+        const content = filter.clean(commentModified.content);
+        const values = [content, commentModified.is_active, id];
 
         return datamapperUtil.executeQuery(query, values);
     },

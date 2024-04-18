@@ -1,4 +1,4 @@
-import { loginSchema } from './schema.js';
+import { createuserSchema, loginSchema } from './schema.js';
 import APIerror from '../error/APIerror.js';
 import vine, { SimpleMessagesProvider } from '@vinejs/vine';
 import debug from 'debug';
@@ -41,7 +41,7 @@ const validate = {
         const messagesProvider = new SimpleMessagesProvider(messages, fields);
         
         try {
-            const validator = vine.compile(loginSchema);
+            const validator = vine.compile(createuserSchema);
             const result = await validator.validate(req.body);
             next();
     
