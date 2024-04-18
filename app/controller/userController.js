@@ -7,6 +7,7 @@ import 'dotenv/config';
 import controllerUtil from '../service/util/controller.js';
 import APIerror from '../service/error/APIerror.js';
 import { resetToken, sendMailReset } from '../service/mail/resetPassword.js';
+import { loginSchema } from '../service/validation/schema.js';
 
 const userController = {
     async getAllUser( req, res, next ) {
@@ -54,7 +55,7 @@ const userController = {
     },
 
     async loginUser( req, res, next ) {
-
+       
         logger('Login controller called');
         const mail = req.body.email
         const { result, error } = await userDatamapper.findUser(mail);

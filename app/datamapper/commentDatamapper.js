@@ -1,6 +1,7 @@
 import debug from 'debug';
 const logger = debug('app:datamapper');
 import datamapperUtil from '../service/util/datamapper.js';
+import filter from '../service/validation/profanity.js';
 
 const commentDatamapper= {
 
@@ -16,7 +17,8 @@ const commentDatamapper= {
             (user_id, news_id, content)
             VALUES
             ($1,$2,$3)`;
-        const values = [newComment.user_id, newComment.news_id, newComment.content];
+        const content = filter.clean(newComment.content);
+        const values = [newComment.user_id, newComment.news_id, content];
 
         return datamapperUtil.executeQuery(query, values);
     },
