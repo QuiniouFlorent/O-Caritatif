@@ -2,3 +2,29 @@
 {"level":"error","message":"Error : 404, URL not found ; additionnalData : GET, /favicon.ico","timestamp":"17-04-2024 10:01:14"}
 {"level":"error","message":"Error : 404, URL not found ; additionnalData : GET, /api/api-docs","timestamp":"17-04-2024 10:03:32"}
 {"level":"error","message":"Error : 404, URL not found ; additionnalData : GET, /home","timestamp":"17-04-2024 10:42:42"}
+{"level":"error","message":"Error : 400, ReferenceError: output is not defined ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:27:57"}
+{"level":"error","message":"Error : 400, ReferenceError: output is not defined ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:28:11"}
+{"level":"error","message":"Error : 400, ReferenceError: output is not defined ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:28:12"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:35:32"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:35:41"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:35:45"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:36:15"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:36:22"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:37:01"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:37:26"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:38:57"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:39:02"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:39:12"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:39:13"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:51:16"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:52:07"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:52:36"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:52:38"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:52:38"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:52:39"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:52:39"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:52:39"}
+{"level":"error","message":"Error : 400, [object Object] ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:54:09"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:56:42"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:58:04"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"17-04-2024 23:58:06"}

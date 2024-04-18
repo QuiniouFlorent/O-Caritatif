@@ -1,0 +1,60 @@
+{"level":"error","message":"Error : 400, [object Object] ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:02:01"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:02:21"}
+{"level":"error","message":"Error : 400,  ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:02:43"}
+{"level":"error","message":"Error : 400,  ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:03:22"}
+{"level":"error","message":"Error : 400,  ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:03:29"}
+{"level":"error","message":"Error : 400, ReferenceError: messagesProvider is not defined ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:06:56"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:07:54"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:08:29"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:08:31"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:08:31"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:08:31"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:08:31"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:09:00"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:09:57"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:10:00"}
+{"level":"error","message":"Error : 400,  ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:12:45"}
+{"level":"error","message":"Error : 400,  ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:13:35"}
+{"level":"error","message":"Error : 400,  ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:13:41"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:13:53"}
+{"level":"error","message":"Error : 400, [object Object] ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:14:28"}
+{"level":"error","message":"Error : 400, ReferenceError: messagesProvider is not defined ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:20:27"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 00:20:50"}
+{"level":"error","message":"Error : 404, URL not found ; additionnalData : GET, /api/comment/1","timestamp":"18-04-2024 09:54:09"}
+{"level":"error","message":"Error : 403, No token provided ; additionnalData : POST, /api/comment","timestamp":"18-04-2024 09:54:44"}
+{"level":"error","message":"Error : 500, error: une valeur NULL viole la contrainte NOT NULL de la colonne « content » dans la relation « comment » ; additionnalData : POST, /api/comment","timestamp":"18-04-2024 09:55:10"}
+{"level":"error","message":"Error : 500, error: une valeur NULL viole la contrainte NOT NULL de la colonne « content » dans la relation « comment » ; additionnalData : POST, /api/comment","timestamp":"18-04-2024 09:56:41"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:12:52"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:24:57"}
+{"level":"error","message":"Error : 400, [object Object] ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:26:15"}
+{"level":"error","message":"Error : 400,  ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:26:40"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:36:00"}
+{"level":"error","message":"Error : 400, [object Object] ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:36:21"}
+{"level":"error","message":"Error : 400, getMessage(rawMessage, rule, field, args) {\n    const fieldName = this.#fields[field.name] || field.name;\n    const fieldMessage = this.#messages[`${field.getFieldPath()}.${rule}`];\n    if (fieldMessage) {\n      return this.#interpolate(fieldMessage, {\n        field: fieldName,\n        ...args\n      });\n    }\n    const wildcardMessage = this.#messages[`${field.wildCardPath}.${rule}`];\n    if (wildcardMessage) {\n      return this.#interpolate(wildcardMessage, {\n        field: fieldName,\n        ...args\n      });\n    }\n    const ruleMessage = this.#messages[rule];\n    if (ruleMessage) {\n      return this.#interpolate(ruleMessage, {\n        field: fieldName,\n        ...args\n      });\n    }\n    return this.#interpolate(rawMessage, {\n      field: fieldName,\n      ...args\n    });\n  } ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:36:43"}
+{"level":"error","message":"Error : 400, Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:38:22"}
+{"level":"error","message":"Error : 400, [object Object] ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:44:23"}
+{"level":"error","message":"Error : 400,  ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:45:17"}
+{"level":"error","message":"Error : 400, [object Object] ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:46:47"}
+{"level":"error","message":"Error : 400,  ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:47:31"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:49:56"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:50:41"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:50:48"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:51:12"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:51:37"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:51:39"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:51:45"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:51:54"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:52:28"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:52:41"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:52:56"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:53:07"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:54:13"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:54:55"}
+{"level":"error","message":"Error : 400, Error [E_VALIDATION_ERROR]: Validation failure ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:55:20"}
+{"level":"error","message":"Error : 400, The password field must have at least 8 characters ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:56:03"}
+{"level":"error","message":"Error : 401, Invalid user or password ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:56:17"}
+{"level":"error","message":"Error : 400, The email field must be a valid email address ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:56:27"}
+{"level":"error","message":"Error : 400, The email field must be a valid email address ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:56:31"}
+{"level":"error","message":"Error : 401, Invalid user or password ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:56:35"}
+{"level":"error","message":"Error : 400, The email field must be a valid email address ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:57:12"}
+{"level":"error","message":"Error : 400, The email field must be a valid email address ; additionnalData : POST, /login/login","timestamp":"18-04-2024 10:58:47"}

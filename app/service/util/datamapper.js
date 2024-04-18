@@ -5,7 +5,7 @@ import logger from '../logs/logger.js';
 const datamapperUtil = {
     
     async executeQuery(query, values) {
-        let result ;
+        let result;
         let error;
         try {
             const response = await client.query(query, values);
@@ -17,8 +17,8 @@ const datamapperUtil = {
     },
 
     async executeDeleteQuery(query, values) {
-        let result ;
-        let error ;
+        let result;
+        let error;
         try {
             const response = await client.query(query, values);
             result = !!response.rowCount;
