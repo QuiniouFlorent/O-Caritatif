@@ -1,12 +1,8 @@
 import vine from '@vinejs/vine';
 
-const commentSchema = vine.object({});
-
-const boardmemberSchema = vine.object({});
-
-const homedataSchema = vine.object({});
-
-const newsSchema = vine.object({});
+const commentSchema = vine.object({
+        content : vine.string().minLength(1),
+});
 
 const createuserSchema = vine.object({
         email : vine.string().email(),
@@ -18,12 +14,10 @@ const createuserSchema = vine.object({
 const loginSchema = vine.object({
         email : vine.string().email(),
         password : vine.string().minLength(8)
-})
+});
 
-export {commentSchema,
-        boardmemberSchema,
-        homedataSchema,
+export {
+        commentSchema,
         loginSchema,
-        newsSchema,
         createuserSchema            
 };

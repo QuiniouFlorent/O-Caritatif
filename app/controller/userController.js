@@ -122,9 +122,11 @@ const userController = {
         const mailRequest = await sendMailReset(email, token);
         
         if(!mailRequest.result) { 
-            error = mailRequest.error };
+            error = mailRequest.error 
+        };
         if(!mailRequest.error) { 
-            result = mailRequest.result };
+            result = mailRequest.result 
+        };
         controllerUtil.manageResponse(error, result, res, next);
     },
 

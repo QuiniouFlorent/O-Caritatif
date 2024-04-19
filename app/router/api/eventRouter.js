@@ -13,7 +13,7 @@ eventRouter.get('/event/:id', eventController.getOneEvent);
 eventRouter.post('/event', authentification.isResponsableOrAdmin, upload('event').single('image'), eventController.createEvent);
 
 eventRouter.patch('/event/:id', authentification.isResponsableOrAdmin, eventController.updateEvent);
-eventRouter.patch('/event/:id/photo', upload('event').single('image'), authentification.isResponsableOrAdmin, eventController.updateEventPhoto);
+eventRouter.patch('/event/:id/photo', authentification.isResponsableOrAdmin, upload('event').single('image'), eventController.updateEventPhoto);
 
 eventRouter.delete('/event/:id', authentification.isResponsableOrAdmin, eventController.removeEvent);
 

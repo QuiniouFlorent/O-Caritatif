@@ -70,7 +70,7 @@ async function sendMailReset(to, token) {
                 resolve({result, error : error});
             } else {
                 let result = info.response;
-                resolve({result: result, error});
+                resolve({result : result, error});
             }
         });
     })

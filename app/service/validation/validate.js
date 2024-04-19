@@ -1,8 +1,6 @@
-import { createuserSchema, loginSchema } from './schema.js';
+import { createuserSchema, loginSchema, commentSchema } from './schema.js';
 import APIerror from '../error/APIerror.js';
 import vine, { SimpleMessagesProvider } from '@vinejs/vine';
-import debug from 'debug';
-const logger = debug('app:validate');
 
 const messages = {
     string: 'The {{ field }} field must be a string',
@@ -48,6 +46,21 @@ const validate = {
         } catch (error) {
             next(new APIerror(error.messages[0].message, 400));
         } 
+    },
+
+    async comment( req, res, next ) {
+        const fields = {
+            content: 'content'
+        };
+        const messagesProvider = new SimpleMessagesProvider(messages, fields);
+
+        try {
+            const validator = vine.compile(commentSchema);
+            const result = await validator.validate(req.body);
+            next();
+        } catch (error) {
+            next(new APIerror(error.messages[0].message, 400));
+        }
     }
 }
 
