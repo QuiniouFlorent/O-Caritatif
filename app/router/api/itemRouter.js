@@ -11,11 +11,11 @@ const itemRouter = Router();
 itemRouter.get('/item', itemController.getAllItem);
 itemRouter.get('/item/:id', itemController.getOneItem);
 
-itemRouter.post('/item', /*authentification.isResponsableOrAdmin, */upload('item').single('image'), itemController.createItem);
+itemRouter.post('/item', authentification.isResponsableOrAdmin, upload('item').single('image'), itemController.createItem);
 
-itemRouter.patch('/item/:id', /*authentification.isAuthentificated, */itemController.updateItem);
-itemRouter.patch('/item/:id/photo', /*authentification.isResponsableOrAdmin,*/ upload('item').single('image'), itemController.updateItemPhoto);
+itemRouter.patch('/item/:id', authentification.isAuthentificated, itemController.updateItem);
+itemRouter.patch('/item/:id/photo', authentification.isResponsableOrAdmin, upload('item').single('image'), itemController.updateItemPhoto);
 
-itemRouter.delete('/item/:id', /*authentification.isResponsableOrAdmin,*/ itemController.removeItem);
+itemRouter.delete('/item/:id', authentification.isResponsableOrAdmin, itemController.removeItem);
 
 export default itemRouter;

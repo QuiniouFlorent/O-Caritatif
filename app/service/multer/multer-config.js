@@ -9,20 +9,16 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
-const MIME_TYPES = {
-    'image/jpg': 'jpg',
-    'image/jpeg': 'jpg',
-    'image/png': 'png',
-    'image/webp': 'webp'
-};
-
 const storage = function(folder) {
+    
     return new CloudinaryStorage({
         cloudinary: cloudinary,
         params: {
             folder: folder,
-            format: (req, file) => MIME_TYPES[file.mimetype] || 'jpg',
-            public_id: (req, file) => file.originalname.split(' ').join('_') + Date.now()
+            ressource_type: 'image',
+            format: (req, file) => 'webp',
+            public_id: (req, file) => file.originalname.split(' ').join('_') + Date.now(),
+            transformation: { quality : 'auto:eco' }
         }
     })
 };
